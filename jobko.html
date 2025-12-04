@@ -8,7 +8,6 @@
     <style>
         body{background-color: #d1e3ef;}
         table{
-            border: 2px solid #08121b;
             margin: auto;
             width: 700px;
             border-spacing: 0;
@@ -21,8 +20,6 @@
             border: 1px #4e5255 solid;
             height: 45px;
             background-color: #3b4956;
-            border-top: 2px solid #08121b;
-            border-left: 2px solid #08121b;
         }
         td{
             border: 1px #4e5255 solid; 
@@ -30,54 +27,73 @@
             height: 45px;
             background-color: #fff;
         }
-        .fisrtblock{width: 82px;}
-        .hour{background-color: #9db5d9;}
-        .channel{color: #fff;}
+        .hour{
+            background-color: #9db5d9;
+            border-left: solid #08121b 2px;
+            width: ;
+        }
+        .channel{
+            color: #fff;
+            border-top: 2px solid #08121b;
+            }
         .bottom{
             background-color: #cadbed;
             color: #7c8c99;
+            border-bottom: 2px solid #08121b;
+            border-left: #08121b 2px solid;
+            border-right: #08121b 2px solid;
         }
-
+        .empty{
+            width: 82px;
+            border-top: 2px solid #08121b;
+            border-left: #08121b 2px solid;
+        }
+            .xtm{
+                border-top: 2px solid #08121b;
+                color: #fff;
+                border-right: #08121b 2px solid;
+        }
+        .right{border-right: solid 2px #08121b;}
     </style>
 </head>
 <body>
     <table>
         <tr>
-            <th class="fisrtblock"></th>
+            <th class="empty"></th>
             <th class="channel">OCN</th>
             <th class="channel">SUPER ACTION</th>
             <th class="channel">채널 CGV</th>
-            <th class="channel">XTM</th>
+            <th class="xtm">XTM</th>
         </tr>
         <tr>
             <th class="hour">19시</th>
             <td rowspan="2">의뢰인</td>
             <td>CSI MIAMI 시즌2(11회)</td>
             <td>지구가 멈춘 날</td>
-            <td>Friends(20회)</td>
+            <td class="right">Friends(20회)</td>
         </tr>
         <tr>
             <th class="hour">20시</th>
             <td>미트더 스파르탄</td>
             <td rowspan="3">공감랭크쇼</td>
-            <td>Friends(21회)</td>
+            <td class="right">Friends(21회)</td>
         </tr>
         <tr>
             <th class="hour">21시</th>
             <td>CSI 시즌2(12회)</td>
             <td rowspan="3">스워드 피쉬</td>
-            <td>가제트(81회)</td>
+            <td class="right">가제트(81회)</td>
         </tr>
         <tr>
             <th class="hour">22시</th>
             <td>CSI 시즌2(13회)</td>
-            <td>가제트(82회)</td>
+            <td class="right">가제트(82회)</td>
         </tr>
         <tr>
             <th class="hour">23시</th>
             <td>더 록</td>
             <td>탑기어</td>
-            <td>가제트(83회)</td>
+            <td class="right">가제트(83회)</td>
         </tr>
         <tr>
             <td colspan="5" class="bottom"><em>일간단위로 업데이트 되며, 방송사 사정에 따라 변경될 수 있습니다.</em></td>
