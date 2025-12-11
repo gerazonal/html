@@ -44,13 +44,13 @@ ul li a .info{
 ul li a .info p{
     font-size: 20px;
     color: #0a0a0a;
+    margin-bottom: 17px;
 }
 
 ul li a .info .tag{
     color: #666;
     font-size: 20px;
     margin-bottom: 17px;
-    line-height: 16px;
 }
 ul li a .info h2{
     font-size: 23px;
@@ -61,7 +61,6 @@ ul li a .info h2{
 
 ul li a .info .cap{
     font-size: 13px;
-    margin-top: 16px;
     color: #727272;
 }
 
