@@ -1,0 +1,22 @@
+@charset "utf-8";
+body{
+
+}
+*{margin: 0; padding: 0;}
+a{text-decoration: none;}
+li{list-style: none;}
+button{border: none;}
+div{
+    margin: 0 auto;
+    width: 800px;
+    height: 600px;
+    border: 5px solid red;
+    text-align: justify;
+    /* 부모요소보다 초과된 데이터를 안보이게 함 */
+    overflow: hidden;
+    /* overflow: scroll 내용이 넘치지 않더라도 스크롤바 강제 생성*/
+    /* 가장많이 쓰는 것, 내용이 넘치면 자동으로 스크롤바 생성, 내용이 넘치지 않으면 딱 맞게 */
+    overflow: auto;
+    overflow-y: scroll;
+    /* overflow-x: scroll; */
+}
