@@ -20,6 +20,8 @@ ul li{
     float: left;
     margin-right: 20PX;
     box-sizing: border-box;
+    border-radius: 24px;
+    overflow: hidden;
 }
 ul li a{
     width: 100%;
