@@ -1,0 +1,42 @@
+@charset "utf-8";
+body{
+
+}
+*{margin: 0; padding: 0;}
+a{text-decoration: none;}
+li{list-style: none;}
+button{border: none; background: none;}
+.box{
+    width: 504px;
+    height: 304px;
+    border: 2px solid #000;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    overflow: hidden;
+}
+
+.box .name{
+    position: absolute;
+    left: 57px;
+    top: -53px;
+    animation: name_ani 2s ease-in-out forwards 2s;
+}
+
+@keyframes name_ani{
+    0%{top: -53px;}
+    100%{top: 158px;}
+}
+
+.box .face{
+    position: absolute;
+    right: 0px;
+    bottom: -100%;
+    animation: face_ani 2s ease-in-out forwards 3s;
+}
+
+@keyframes face_ani{
+    0%{bottom: -100%;}
+    100%{bottom: -5px;}
+}
