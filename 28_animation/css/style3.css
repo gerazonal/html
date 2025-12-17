@@ -20,9 +20,9 @@ button{border: none;}
     position: absolute;
     left: 0;
     top: 0;
-    animation: rotate_ani;
+    animation: pink_ani;
     animation-duration: 5s;
-    animation: rotate_ani 5s infinite ease-in-out;
+    animation: pink_ani 5s infinite ease-in-out;
 } 
 
 .box2{
@@ -39,11 +39,21 @@ button{border: none;}
     position: absolute;
     left: -101px;
     top: 0;
+    animation: yellow_ani 5s forwards;
 }
-@keyframes rotate_ani{
+@keyframes pink_ani{
     0%{left: 0; top: 0;}
     25%{left: 900px; top: 0;}
     50%{left: 900px; top: 200px;}
     75%{left: 0; top: 200px;}
     100%{left: 0;top: 0;}
+}
+
+@keyframes yellow_ani{
+    0%{left: 0; top: 0;}
+    20%{left: 900px;top: 0;}
+    40%{left: 900px;top: 200px;}
+    60%{left: 0;top: 200px;}
+    80%{left: 0;top: 0;}
+    100%{left: -101px; top: 0;}
 }
