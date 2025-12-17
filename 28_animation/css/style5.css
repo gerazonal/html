@@ -21,7 +21,7 @@ button{border: none; background: none;}
     position: absolute;
     left: 57px;
     top: -53px;
-    animation: name_ani 2s ease-in-out forwards 2s;
+    animation: name_ani 2s ease-in-out forwards 1s;
 }
 
 @keyframes name_ani{
