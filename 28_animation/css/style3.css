@@ -1,0 +1,49 @@
+@charset "utf-8";
+body{
+
+}
+*{margin: 0; padding: 0;}
+a{text-decoration: none;}
+li{list-style: none;}
+button{border: none;}
+.box{
+    width: 1000px;
+    height: 300px;
+    border: 1px solid blue;
+    position: relative;
+    margin: 0 auto;
+}
+.box .child1 {
+    width: 100px;
+    height: 100px;
+    background-color: #ff69b3;
+    position: absolute;
+    left: 0;
+    top: 0;
+    animation: rotate_ani;
+    animation-duration: 5s;
+    animation: rotate_ani 5s infinite ease-in-out;
+} 
+
+.box2{
+    width: 1000px;
+    height: 300px;
+    border: 1px red solid;
+    margin: 200px auto 0;
+    position: relative;
+}
+.box2 .child2{
+    width: 100px;
+    height: 100px;
+    background-color: #ff0;
+    position: absolute;
+    left: -101px;
+    top: 0;
+}
+@keyframes rotate_ani{
+    0%{left: 0; top: 0;}
+    25%{left: 900px; top: 0;}
+    50%{left: 900px; top: 200px;}
+    75%{left: 0; top: 200px;}
+    100%{left: 0;top: 0;}
+}

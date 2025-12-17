@@ -1,0 +1,57 @@
+@charset "utf-8";
+body{
+
+}
+*{margin: 0;padding: 0;}
+a{text-decoration: none;}
+li{list-style: none;}
+button{border: none;}
+div{
+    width: 100px;
+    height: 100px;
+    background-color: red;
+    border-radius: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    /* animation: rotate_ani; */
+    /* animation-duration: 3s; */
+    /* 애니메이션 실행 후 원래 위치로 돌아가는거 제거 */
+    /* animation-fill-mode: forwards; */
+    /* 애니메이션 반복 횟수 설정 */
+    /* animation-iteration-count: 3; */
+    /* 애니메이션 무한반복 */
+    /* animation-iteration-count: infinite; */
+    /* 애니메이션 시계반대방향 reverse */
+    /* animation-direction: reverse; */
+    /* 시계방향 1회, 반시계방향 1회씩 */
+    /* animation-direction: alternate; */
+    /* 가속도 설정 */
+    /* animation-timing-function: linear; */
+    /* 지연(delay)시간 */
+    /* animation-delay: 2s; */
+
+    /* 애니메이션 실행 시 약식(shorts hand) */
+    animation: rotate_ani 4s ease-in-out infinite forwards 2s;
+    }
+
+/* 애니메이션 설정 */
+@keyframes circle_ani{
+    from{left: 0;}
+    to{left: 1000px;}
+}
+
+/* 애니메이션 설정 */
+@keyframes move_ani{
+    0%{left: 0;}
+    100%{left: 1500px;}
+}
+
+/* 애니메이션 설정 */
+@keyframes rotate_ani{
+    0%{left: 0; top: 0;}
+    25%{left:1000px; top: 0; background: blue;}
+    50%{left: 1000px; top: 300px; background: yellow;}
+    75%{left: 0; top: 300px; background: pink;}
+    100%{left: 0; top: 0;}
+}
