@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>온도단위 변환</title>
+</head>
+<body>
+    <script>
+        // 외부로 부터 섭씨 온도를 숫자로 입력받아 화씨 온도로 변환
+        // 사용자가 입력한 섭시 __도는 화씨로 __도 입니다.
+
+        let num = prompt ("변환할 섭씨 온도를 입력해주세요") ;
+        let fa = 33.8 ;
+
+        // 섭씨를 화씨로 환산
+        let fad = num * 1.8 + 32
+
+        // 경고창으로 띄우기
+        alert("사용자가 입력한 섭씨" + num + "도는 화씨" + fad + "도 입니다.")
+    </script>
+</body>
+</html>
