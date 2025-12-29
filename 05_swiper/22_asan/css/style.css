@@ -1,0 +1,30 @@
+@charset "utf-8";
+body{
+    font-family: "맑은 고딕", "malgun gothic", "sans-serif";
+}
+*{margin: 0; padding: 0;}
+button{border: none;}
+a{text-decoration: none;}
+li{list-style: none;}
+.header{
+    width: 100%;
+    height: 45px;
+    background-color: #33353f;
+    display: flex;
+    justify-content: space-between;
+}
+.header button img{
+    width: 45px;
+}
+.header h1 a img{
+    width: 90px;
+}
+/* swiper slide */
+
+.swiper{
+    width: 100%;
+}
+.swiper img{
+    width: 100%;
+
+}
