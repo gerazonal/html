@@ -97,6 +97,7 @@ body{
     background: var(--primary);
     color: #fff;
     border-color: var(--primary);
+    margin-top: 24px;
 }
 .btn.outline{
   background:#fff;
