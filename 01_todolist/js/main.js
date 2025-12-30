@@ -23,20 +23,6 @@ function formatHeader(d) {
   return `${month}월 ${day}일, ${weekday}`;
 }
 
-  const suffix = (n) => {
-    const mod100 = n % 100;
-    if (mod100 >= 11 && mod100 <= 13) return "th";
-    switch (n % 10) {
-      case 1: return "st";
-      case 2: return "nd";
-      case 3: return "rd";
-      default: return "th";
-    }
-  };
-
-  return { weekday, dateText: `${month} ${day}${suffix(day)}` };
-
-
 // ===== Storage =====
 const STORAGE_PREFIX = "today_todos_v2:";
 
