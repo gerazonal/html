@@ -14,7 +14,9 @@ window.addEventListener("DOMContentLoaded", () => {
     alert("로그인(데모)\n아이디: " + username);
   });
 
-  $("signupBtn").addEventListener("click", () => alert("회원가입(데모)"));
+$("signupBtn").addEventListener("click", () => {
+  window.location.href = "signup.html";
+});
 
   $("findId").addEventListener("click", (e) => {
     e.preventDefault();
