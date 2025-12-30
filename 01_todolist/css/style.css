@@ -1,0 +1,353 @@
+:root{
+  /* 시안1: 차분한 그레이 톤 */
+  --bg: #f3f3f3;
+  --card: #ffffff;
+
+  --text: #2b2b2b;
+  --muted: #8f8f8f;
+
+  /* 얇은 구분선 */
+  --line: rgba(0,0,0,0.08);
+
+  /* 포인트: 거의 안 보이게(아이콘/포커스 정도만) */
+  --accent: #9a9a9a;
+  --accent-soft: rgba(0,0,0,0.04);
+
+  /* 위험(삭제)도 과하게 튀지 않게 */
+  --danger: #b1b1b1;
+  --danger-soft: rgba(0,0,0,0.04);
+
+  /* 그림자도 아주 약하게 */
+  --radius: 14px;
+  --shadow: 0 8px 18px rgba(0,0,0,0.06);
+}
+
+
+*{ box-sizing: border-box; }
+html, body { height: 100%; }
+
+body{
+  margin:0;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans KR", Arial, "Apple SD Gothic Neo", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+}
+
+/* 전체 컨테이너 */
+.app{
+  min-height: 100svh;
+  display:flex;
+  flex-direction: column;
+}
+
+/* ===== Header (두 번째 시안에서 헤더 느낌만) ===== */
+.topbar{
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display:grid;
+  grid-template-columns: 44px 1fr 44px;
+  align-items:center;
+  gap: 8px;
+
+  padding: 14px 14px 10px;
+  background: rgba(246,247,251,0.86);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
+}
+
+/* ===== Header 화살표 버튼 (완전 플랫) ===== */
+.navBtn{
+  width: 44px;
+  height: 44px;
+  border: none;
+  background: transparent;
+  box-shadow: none;
+
+  display: grid;
+  place-items: center;
+
+  color: var(--accent);
+  cursor: pointer;
+}
+
+.navBtn svg{
+  width: 18px;
+  height: 18px;
+}
+
+.navBtn:active{
+  transform: scale(0.92);
+}
+.titleWrap{
+  text-align:center;
+  line-height:1.1;
+}
+.dow{
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  color: var(--accent);
+  font-weight: 700;
+}
+.date{
+  margin-top: 4px;
+  font-size: 14px;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+/* ===== Layout ===== */
+.wrap{
+  width: 100%;
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 14px 14px 28px;
+  display:flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.card{
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+/* ===== Add card ===== */
+.addCard{ padding: 12px; }
+
+.addRow{
+  display:flex;
+  gap: 10px;
+  align-items:center;
+}
+
+input[type="text"]{
+  width: 100%;
+  border: 1px solid var(--line);
+  background: #fff;
+  color: var(--text);
+  padding: 12px 12px;
+  border-radius: 12px;
+  outline: none;
+  font-size: 15px;
+}
+input[type="text"]::placeholder{ color: rgba(16,24,40,0.40); }
+input[type="text"]:focus{
+  border-color: rgba(107,108,255,0.40);
+  box-shadow: 0 0 0 4px rgba(107,108,255,0.10);
+}
+
+.primaryBtn{
+  min-width: 76px;
+  padding: 12px 12px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: #fff;
+  color: var(--text);
+  font-weight: 700;
+  cursor:pointer;
+}
+.primaryBtn:active{ transform: translateY(1px); }
+
+.subRow{
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--line);
+
+  display:flex;
+  align-items:center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.filters{
+  display:flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.chip{
+  padding: 8px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: #fff;
+  color: var(--muted);
+  font-size: 13px;
+  cursor:pointer;
+}
+.chip[aria-pressed="true"]{
+  border-color: var(--line);
+  background: rgba(0,0,0,0.03);
+  color: var(--text);
+  font-weight: 700;
+}
+
+.counts{
+  display:flex;
+  align-items:center;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 13px;
+}
+.counts .count{ color: var(--text); font-weight: 800; }
+.counts .sep{ color: rgba(16,24,40,0.25); }
+
+/* ===== List card ===== */
+.listCard{ padding: 6px 0; }
+
+.listHeader{
+  display:flex;
+  align-items:center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--line);
+}
+
+.selectAll{
+  display:flex;
+  align-items:center;
+  gap: 10px;
+  color: var(--muted);
+  font-size: 13px;
+  user-select: none;
+}
+.selectAll input{
+  width: 18px; height: 18px;
+  accent-color: var(--accent);
+}
+
+.listActions{ display:flex; gap: 8px; }
+
+.ghostBtn{
+  padding: 9px 10px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: #fff;
+  color: var(--muted);
+  font-size: 13px;
+  cursor:pointer;
+}
+.ghostBtn:active{ transform: translateY(1px); }
+
+.dangerBtn{
+  padding: 9px 10px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: #fff;
+  color: var(--muted);
+  font-weight: 600;
+  font-size: 13px;
+  cursor:pointer;
+}
+
+.dangerBtn:active{
+  transform: translateY(1px);
+}
+
+
+.list{
+  display:flex;
+  flex-direction: column;
+}
+
+/* ===== Row (첫 번째 시안 무드: 깔끔한 리스트 + 얇은 디바이더) ===== */
+.item{
+  display:grid;
+  grid-template-columns: 42px 1fr auto;
+  align-items:center;
+  gap: 10px;
+
+  padding: 12px 12px;
+  border-bottom: 1px solid var(--line);
+}
+.item:last-child{ border-bottom: none; }
+
+.leftCheck{
+  width: 28px; height: 28px;
+  border-radius: 8px;
+  border: 1px solid rgba(16,24,40,0.14);
+  background: #fff;
+  display:grid;
+  place-items:center;
+  cursor:pointer;
+}
+.leftCheck svg{
+  width: 16px; height: 16px;
+  opacity: 0;
+  transform: scale(0.92);
+  transition: opacity .12s ease, transform .12s ease;
+}
+
+/* 체크 완료 효과 (두 번째 시안 느낌만 적용) */
+.item.done .leftCheck{
+  border-color: var(--line);
+  background: rgba(0,0,0,0.03);
+}
+.item.done .leftCheck svg{
+  opacity: 1;
+  transform: scale(1);
+  color: #6e6e6e;
+}
+
+.content{
+  min-width: 0;
+  display:flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.title{
+  font-size: 15px;
+  line-height: 1.25;
+  word-break: break-word;
+}
+.meta{
+  display:flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.item.done .title{
+  color: rgba(16,24,40,0.45);
+  text-decoration: line-through;
+  text-decoration-color: rgba(16,24,40,0.18);
+}
+.item.done .meta{
+  color: rgba(16,24,40,0.35);
+}
+
+.actions{
+  display:flex;
+  align-items:center;
+  gap: 8px;
+}
+
+.iconBtn{
+  width: 34px;
+  height: 34px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: #fff;
+  display:grid;
+  place-items:center;
+  cursor:pointer;
+  color: rgba(16,24,40,0.45);
+}
+.iconBtn svg{ width: 16px; height: 16px; }
+.iconBtn:active{ transform: translateY(1px); }
+
+.iconBtn.danger{
+  color: rgba(0,0,0,0.35);
+  border-color: var(--line);
+  background: #fff;
+}
+
+.empty{
+  padding: 18px 14px;
+  text-align:center;
+  color: rgba(16,24,40,0.45);
+}

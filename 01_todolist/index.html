@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>오늘 할 일</title>
+  <link rel="stylesheet" href="./css/style.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <button class="navBtn" id="prevDayBtn" type="button" aria-label="이전 날짜">
+        <!-- chevron left -->
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+
+      <div class="titleWrap">
+        <div class="date" id="dateLabel">3월 14일</div>
+        <div class="dow" id="dowLabel">월요일</div>
+      </div>
+
+      <button class="navBtn" id="nextDayBtn" type="button" aria-label="다음 날짜">
+        <!-- chevron right -->
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </header>
+
+    <main class="wrap">
+      <section class="card addCard" aria-label="할 일 추가">
+        <div class="addRow">
+          <input id="taskInput" type="text" placeholder="할 일을 입력…" inputmode="text" autocomplete="off" />
+          <button id="addBtn" type="button" class="primaryBtn">추가</button>
+        </div>
+
+        <div class="subRow">
+          <div class="filters" role="group" aria-label="필터">
+            <button class="chip" id="filterAll" aria-pressed="true" type="button">전체</button>
+            <button class="chip" id="filterActive" aria-pressed="false" type="button">미완료</button>
+            <button class="chip" id="filterDone" aria-pressed="false" type="button">완료</button>
+          </div>
+
+          <div class="counts" aria-label="진행 상태">
+            <span class="count" id="countDone">0</span>
+            <span class="sep">/</span>
+            <span class="count" id="countTotal">0</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="card listCard" aria-label="할 일 목록">
+        <div class="listHeader">
+          <label class="selectAll">
+            <input id="toggleAll" type="checkbox" />
+            <span>전체 선택</span>
+          </label>
+
+          <div class="listActions">
+            <button id="clearDoneBtn" class="ghostBtn" type="button">완료 삭제</button>
+            <button id="resetDayBtn" class="dangerBtn" type="button">초기화</button>
+          </div>
+        </div>
+
+        <div class="list" id="list"></div>
+        <div class="empty" id="empty" hidden>아직 할 일이 없어요. 위에서 하나 추가해볼까요?</div>
+      </section>
+    </main>
+  </div>
+
+  <script src="./js/main.js" defer></script>
+</body>
+</html>
