@@ -5,7 +5,7 @@ const API_KEY = "8d60483ae15f6f3d9ad6ecbf199738b3";
 ===================== */
 const overlay = document.getElementById("overlay");
 const cityEl = document.getElementById("city");
-const weatherTypeEl = document.getElementById("desc"); // weather-type
+const weatherTypeEl = document.getElementById("desc");
 const tempEl = document.getElementById("temp");
 const windEl = document.getElementById("wind");
 const humidityEl = document.getElementById("humidity");
@@ -14,13 +14,21 @@ const errorEl = document.getElementById("error");
 const cityInput = document.getElementById("cityInput");
 
 /* =====================
+   전역 상태
+===================== */
+let localizedCityName = "";
+
+/* =====================
    API URL
 ===================== */
 const WEATHER_URL = (lat, lon) =>
-  `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric&lang=en`;
+  `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric&lang=kr`;
 
 const GEO_URL = city =>
   `https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${API_KEY}`;
+
+const REVERSE_GEO_URL = (lat, lon) =>
+  `https://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=1&appid=${API_KEY}`;
 
 /* =====================
    공통 유틸
@@ -46,9 +54,7 @@ function renderGraphic(type) {
       <svg width="220" height="220" viewBox="0 0 200 200">
         <circle cx="100" cy="100" r="70" fill="#FFD400"/>
       </svg>`;
-  }
-
-  else if (type === "Snow") {
+  } else if (type === "Snow") {
     svg = `
       <svg width="220" height="220" viewBox="0 0 200 200">
         <circle cx="100" cy="80" r="45" fill="#FFD400"/>
@@ -61,10 +67,7 @@ function renderGraphic(type) {
           <circle cx="120" cy="150" r="4"/>
         </g>
       </svg>`;
-  }
-
-  else {
-    // Fog / Clouds / Mist
+  } else {
     svg = `
       <svg width="220" height="220" viewBox="0 0 200 200">
         <g stroke="#1F3C88" stroke-width="6">
@@ -83,9 +86,9 @@ function renderGraphic(type) {
 ===================== */
 function render(data) {
   const weatherMain = data.weather[0].main;
-  const weatherDesc = data.weather[0].description.toUpperCase();
+  const weatherDesc = data.weather[0].description;
 
-  cityEl.textContent = data.name.toUpperCase();
+  cityEl.textContent = localizedCityName || data.name;
   weatherTypeEl.textContent = weatherDesc;
 
   tempEl.textContent = `${Math.round(data.main.temp)}°`;
@@ -108,6 +111,15 @@ async function loadByLocation() {
     );
 
     const { latitude, longitude } = position.coords;
+
+    // 🔹 한국어 도시명 (Reverse Geo)
+    const geo = await fetchJSON(REVERSE_GEO_URL(latitude, longitude));
+    localizedCityName =
+      geo[0]?.local_names?.ko ||
+      geo[0]?.name ||
+      "";
+
+    // 🔹 날씨
     const data = await fetchJSON(WEATHER_URL(latitude, longitude));
     render(data);
 
@@ -131,12 +143,17 @@ async function loadByCity(city) {
     const geo = await fetchJSON(GEO_URL(city));
     if (!geo.length) throw new Error("도시 없음");
 
-    const { lat, lon } = geo[0];
+    const geoData = geo[0];
+    localizedCityName =
+      geoData.local_names?.ko ||
+      geoData.name;
+
+    const { lat, lon } = geoData;
     const data = await fetchJSON(WEATHER_URL(lat, lon));
     render(data);
 
   } catch (e) {
-    errorEl.textContent = "도시를 찾을 수 없습니다.";
+    errorEl.textContent = "해당 지역의 날씨 정보를 불러올 수 없습니다.";
   } finally {
     setLoading(false);
   }
