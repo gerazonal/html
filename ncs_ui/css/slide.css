@@ -70,16 +70,12 @@ body {
 }
 
 .start-btn {
-    height: 56px;
-    border-radius: 12px;
-    border: none;
-    font-size: 18px;
-    font-weight: 600;
-    background: #475569;
-    color: #fff;
-    opacity: 0.4;
-}
-
-.start-btn:enabled {
-    opacity: 1;
+  width: 100%;
+  height: 56px;
+  border-radius: 12px;
+  border: none;
+  font-size: 18px;
+  font-weight: 600;
+  background: #475569;
+  color: #ffffff;
 }
