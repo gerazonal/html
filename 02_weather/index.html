@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>전세계 날씨</title>
+
+  <link rel="stylesheet" href="./css/style.css" />
+</head>
+<body>
+
+  <!-- 로딩 -->
+  <div class="overlay" id="overlay">
+    <div class="spinner"></div>
+  </div>
+
+  <div class="app">
+
+    <!-- 상단 : 메뉴바 위치 → 검색창 -->
+    <header class="topbar">
+      <input
+        id="cityInput"
+        class="city-search"
+        type="text"
+        placeholder="SEARCH CITY"
+      />
+    </header>
+
+    <main>
+      <section class="card">
+
+        <!-- 도시 / 날씨 타입 -->
+        <div class="place">
+          <div class="city" id="city">-</div>
+          <div class="weather-type" id="desc">-</div>
+        </div>
+
+        <!-- 그래픽 -->
+        <div id="graphic" class="graphic"></div>
+
+        <!-- 하단 정보 영역 -->
+        <div class="weather-info">
+
+          <!-- 왼쪽: 메인 기온 -->
+          <div class="temp-main" id="temp">--°</div>
+
+          <!-- 오른쪽: 부가 정보 -->
+          <div class="temp-sub">
+            <div class="sub-item">
+              <span class="label">WIND</span>
+              <span class="value" id="wind">-</span>
+            </div>
+            <div class="sub-item">
+              <span class="label">HUMIDITY</span>
+              <span class="value" id="humidity">-</span>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="error" id="error"></div>
+
+      </section>
+    </main>
+
+  </div>
+
+  <script src="./js/main.js"></script>
+</body>
+</html>
