@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light" />
+  <title>CAMBAK - 메인</title>
+  <link rel="stylesheet" href="./css/main.css" />
+</head>
+<body>
+  <main class="phone" role="main">
+
+    <!-- ✅ 탭바 아래로 이어지는 본문만 스크롤 -->
+    <div class="content" id="content">
+      <!-- Hero Banner -->
+      <section class="hero" aria-label="프로모션 배너">
+        <!-- 시안 배너 이미지 있으면 src 교체 -->
+        <img class="hero-img" src="./images/visual.png" alt="2025년 여름 차박지 기획전"
+             onerror="this.style.display='none'"/>
+        <div class="hero-fallback" aria-hidden="true"></div>
+
+        <div class="hero-text">
+          <div class="brand">CAMBAK</div>
+          <h1 class="hero-title">2025년 여름 <br>차박지 기획전</h1>
+          <p class="hero-sub">캠박에서 엄선해 추천하는<br/>여름 차박지를 구경해 보세요</p>
+        </div>
+
+        <button class="bell" type="button" aria-label="알림">
+          <span class="bell-dot" aria-hidden="true"></span>
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 22a2.3 2.3 0 0 0 2.2-1.7H9.8A2.3 2.3 0 0 0 12 22Zm7-6.2-1.6-1.6V9.8a5.4 5.4 0 0 0-4.2-5.2V3.3a1.2 1.2 0 0 0-2.4 0v1.3A5.4 5.4 0 0 0 6.6 9.8v4.4L5 15.8v1.2h14v-1.2Z" fill="currentColor"/>
+          </svg>
+        </button>
+      </section>
+
+      <!-- Theme Categories -->
+      <section class="section" aria-label="테마별 카테고리">
+        <h2 class="section-title">테마별 카테고리</h2>
+
+        <div class="cat-grid" role="list">
+          <button class="cat" type="button" role="listitem"><span class="ico">🌳</span><span class="label">산책</span></button>
+          <button class="cat" type="button" role="listitem"><span class="ico">🍖</span><span class="label">바베큐</span></button>
+          <button class="cat" type="button" role="listitem"><span class="ico">🌠</span><span class="label">별구경</span></button>
+          <button class="cat" type="button" role="listitem"><span class="ico">🔥</span><span class="label">불멍</span></button>
+
+          <button class="cat" type="button" role="listitem"><span class="ico">🐶</span><span class="label">반려견</span></button>
+          <button class="cat" type="button" role="listitem"><span class="ico">🏙️</span><span class="label">도시</span></button>
+          <button class="cat" type="button" role="listitem"><span class="ico">⛰️</span><span class="label">오지</span></button>
+          <button class="cat" type="button" role="listitem"><span class="ico">⛺</span><span class="label">장비</span></button>
+        </div>
+
+        <div class="quick" aria-label="빠른 메뉴">
+          <button class="pill" type="button"><span class="pill-ico">🏷️</span>쿠폰</button>
+          <button class="pill" type="button"><span class="pill-ico">🎉</span>이벤트</button>
+          <button class="pill" type="button"><span class="pill-ico">🎁</span>혜택</button>
+        </div>
+      </section>
+
+      <!-- Ranking -->
+      <section class="section" aria-label="장소 랭킹">
+        <h2 class="section-title">장소 랭킹 TOP 10</h2>
+
+        <div class="rank-grid" aria-label="랭킹 카드">
+          <article class="rank-card" tabindex="0"><div class="thumb" style="background-image:url('./images/tent.png')"></div></article>
+          <article class="rank-card" tabindex="0"><div class="thumb" style="background-image:url('./images/campingc.png')"></div></article>
+          <!-- <article class="rank-card" tabindex="0"><div class="thumb" style="background-image:url('./images/nature.png')"></div></article> -->
+          <!-- <article class="rank-card" tabindex="0"><div class="thumb" style="background-image:url('./images/tent2.png')"></div></article> -->
+        </div>
+
+        <!-- Featured 상세(시안 하단 영역 느낌) -->
+        <article class="featured" aria-label="추천 장소 상세" id="featured">
+          <div class="featured-img" style="background-image:url('./images/nature.png')"></div>
+
+          <div class="featured-body">
+            <div class="featured-title-row">
+              <div>
+                <div class="featured-title">원주두리캠핑장</div>
+                <div class="featured-sub">강원도 원주시 치악면 치악산 1번지</div>
+              </div>
+              <button class="bookmark" type="button" aria-label="북마크">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M6.5 3.5h11A1.5 1.5 0 0 1 19 5v16l-7-3.8L5 21V5a1.5 1.5 0 0 1 1.5-1.5Z"
+                        fill="none" stroke="currentColor" stroke-width="1.8"/>
+                </svg>
+              </button>
+            </div>
+
+            <div class="featured-actions">
+              <button class="btn solid" type="button" id="routeBtn">길찾기</button>
+              <button class="btn outline" type="button" id="dismissBtn">해제하기</button>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <div class="spacer" aria-hidden="true"></div>
+    </div>
+
+    <!-- ✅ 하단 고정 탭바 -->
+    <nav class="tabbar" aria-label="하단 탭">
+      <button class="tab active" type="button" data-tab="home" aria-current="page">
+        <span class="tab-ico">🏠</span><span class="tab-label">홈</span>
+      </button>
+      <button class="tab" type="button" data-tab="search">
+        <span class="tab-ico">🔎</span><span class="tab-label">검색</span>
+      </button>
+      <button class="tab" type="button" data-tab="group">
+        <span class="tab-ico">👨‍👦‍👦</span><span class="tab-label">모임</span>
+      </button>
+      <button class="tab" type="button" data-tab="live">
+        <span class="tab-ico">📺</span><span class="tab-label">라이브</span>
+      </button>
+      <button class="tab" type="button" data-tab="my">
+        <span class="tab-ico">👩</span><span class="tab-label">MY</span>
+      </button>
+    </nav>
+  </main>
+
+  <script src="./js/main1.js" defer></script>
+</body>
+</html>

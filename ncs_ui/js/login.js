@@ -11,7 +11,7 @@ window.addEventListener("DOMContentLoaded", () => {
       alert("아이디와 비밀번호를 입력해주세요.");
       return;
     }
-    alert("로그인(데모)\n아이디: " + username);
+  window.location.href = "main.html";
   });
 
 $("signupBtn").addEventListener("click", () => {

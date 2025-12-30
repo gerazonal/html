@@ -1,0 +1,302 @@
+@charset "utf-8";
+:root{
+  --bg:#ffffff;
+  --ink:#2f3a4b;
+  --muted:#8d9aab;
+  --line:#e6ebf2;
+  --primary:#465266;
+  --shadow:0 1px 0 rgba(0,0,0,.02);
+  --maxw:480px;
+  --tab-h:78px;
+   --card-radius: 12px;   /* ← 원하는 값 (예: 12px) */
+  --tab-gap: 16px; 
+}
+
+html,body{height:100%; background:var(--bg);}
+body{
+  margin:0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial,
+    "Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif;
+  color:var(--ink);
+  display:flex;
+  justify-content:center;
+}
+
+.phone{
+  width:100%;
+  max-width:var(--maxw);
+  min-height:480px;
+  box-sizing:border-box;
+  position:relative;
+  background:var(--bg);
+  overflow:hidden; /* ✅ 스크롤은 content에만 */
+}
+
+/* ✅ 탭바 위로 이어지는 본문만 스크롤 */
+.content{
+height: calc(100vh - (var(--tab-h) + env(safe-area-inset-bottom)));
+  overflow:auto;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 0;
+}
+
+/* Hero */
+.hero{
+  position:relative;
+  height:280px;
+  background:#cfeaf8;
+}
+.hero-img{
+  position:absolute; inset:0;
+  width:100%; height:100%;
+  object-fit:cover;
+}
+/* .hero-fallback{
+  position:absolute; inset:0;
+  background: linear-gradient(135deg, #7bc4e7, #cfeaf8);
+} */
+.hero-text{
+  position:absolute;
+  left:16px; top:20px;
+  max-width:62%;
+  color:#334155;
+}
+.brand{
+  letter-spacing:.18em;
+  font-weight:800;
+  font-size:22px;
+  opacity:.85;
+}
+.hero-title{
+  margin:10px 0 10px;
+  font-size:28px;
+  line-height:1.25;
+  font-weight:900;
+}
+.hero-sub{
+  margin:0;
+  font-size:16px;
+  line-height:1.2;
+  font-weight:600;
+  opacity: 0.85;
+}
+.bell{
+  position:absolute; right:16px; top:14px;
+  width:44px; height:44px;
+  border:none; background:transparent;
+  color:#1f2937;
+  cursor:pointer;
+  display:grid; place-items:center;
+  -webkit-tap-highlight-color: transparent;
+}
+.bell svg{width:26px;height:26px; opacity:.9;}
+.bell-dot{
+  position:absolute; right:12px; top:10px;
+  width:8px; height:8px;
+  border-radius:99px;
+  background:#ef4444;
+}
+
+.section{padding:18px 18px 0;}
+.section-title{
+  margin:10px 0 14px;
+  font-size:20px;
+  font-weight:900;
+  color:#3c495d;
+}
+
+/* Categories */
+.cat-grid{
+  display:grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap:18px 10px;
+  padding:6px 0;
+}
+.cat{
+  border:none;
+  background:transparent;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:10px;
+  cursor:pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.cat .ico{font-size:34px;}
+.cat .label{font-size:16px; font-weight:800; color:#3c495d;}
+
+.quick{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap:12px;
+  margin-top:16px;
+}
+.pill{
+  height:52px;
+  border-radius:12px;
+  border:none;
+  background:#dbe4f0;
+  color:#3c495d;
+  font-size:16px;
+  font-weight:900;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  cursor:pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.pill-ico{font-size:18px;}
+
+/* Rank grid */
+.rank-grid{
+  display:grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap:14px;
+  margin-top:6px;
+  margin-bottom: 24px;
+}
+.rank-card{
+  border-radius:var(--card-radius);
+  overflow:hidden;
+  box-shadow: var(--shadow);
+}
+.thumb{
+  width:100%;
+  aspect-ratio: 1 / 1;
+  background-size: cover;
+  background-position:center;
+  background-image: linear-gradient(135deg, #0f172a, #334155);
+}
+
+/* Featured */
+.featured{margin-top:0; background:#fff;}
+.featured-img{
+  width:100%;
+  aspect-ratio: 16 / 10;
+  background-size: cover;
+  background-position:center;
+  border-radius: var(--card-radius);
+  overflow: hidden;
+  background-image: linear-gradient(135deg, #14532d, #86efac);
+}
+.featured-body{padding:14px 0 2px;}
+.featured-title-row{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:12px;
+}
+.featured-title{
+  font-size:20px;
+  font-weight:900;
+  color:#3c495d;
+}
+.featured-sub{
+  margin-top:6px;
+  font-size:16px;
+  font-weight:700;
+  color:#6b7280;
+}
+.bookmark{
+  width:44px; height:44px;
+  border:none; background:transparent;
+  color:#3c495d;
+  cursor:pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.bookmark svg{width:22px;height:22px;}
+
+.featured-actions{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap:12px;
+  margin-top:14px;
+}
+.btn{
+  height:56px;
+  border-radius:12px;
+  font-size:18px;
+  font-weight:800;
+  cursor:pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.btn.solid{border:none; background:var(--primary); color:#fff;}
+.btn.outline{background:#fff; border:2px solid var(--primary); color:var(--primary);}
+
+.spacer{
+  height: calc(
+    var(--tab-h)
+    + env(safe-area-inset-bottom)
+    + 16px   /* ✅ 원하는 여유 */
+  );
+}
+
+/* ✅ Bottom Tab Bar */
+.tabbar{
+  position:absolute;
+  left:0; right:0; bottom:0;
+  height: calc(var(--tab-h) + env(safe-area-inset-bottom));
+  padding-bottom: env(safe-area-inset-bottom);
+  background:#fff;
+  border-top: 1px solid rgba(0,0,0,.08);
+  display:grid;
+  grid-template-columns: repeat(5, 1fr);
+}
+.tab{
+  border:none;
+  background:transparent;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+  color:#64748b;
+  font-weight:900;
+  cursor:pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.tab-ico{font-size:20px; line-height:1;}
+.tab-label{font-size:14px;}
+.tab.active{color:#3c495d;}
+
+/* 데스크탑에서 모바일 프레임처럼 */
+@media (min-width: 520px){
+  body{background:#f3f5f9;}
+  .phone{
+    box-shadow:0 12px 36px rgba(0,0,0,.08);
+    border-radius:26px;
+    margin:22px 0;
+    min-height: calc(100vh - 44px);
+  }
+}
+
+/* =========================
+   스크롤바 스타일 (트랙 제거, 바만 표시)
+========================= */
+
+/* Webkit 기반 (Chrome, Safari, iOS) */
+.content::-webkit-scrollbar {
+  width: 4px;              /* 아주 얇게 */
+}
+
+.content::-webkit-scrollbar-track {
+  background: transparent; /* 트랙 제거 */
+}
+
+.content::-webkit-scrollbar-thumb {
+  background-color: rgba(70, 82, 102, 0.35); /* primary 계열 */
+  border-radius: 999px;
+}
+
+/* 스크롤 중일 때만 살짝 진하게 */
+.content:hover::-webkit-scrollbar-thumb {
+  background-color: rgba(70, 82, 102, 0.5);
+}
+
+/* Firefox */
+.content {
+  scrollbar-width: thin;                  /* 얇게 */
+  scrollbar-color: rgba(70,82,102,.35) transparent;
+}
+
