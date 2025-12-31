@@ -1,0 +1,115 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", sans-serif;
+  background: #fff;
+}
+
+.login-wrap {
+  min-height: 100vh;
+  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* 로고 */
+.logo-area {
+  margin-top: 40px;
+  margin-bottom: 32px;
+}
+
+.logo-area img {
+  width: 120px;
+}
+
+/* 폼 */
+.login-form {
+  width: 100%;
+}
+
+.input {
+  width: 100%;
+  height: 48px;              /* 요청 반영 */
+  border: none;
+  border-radius: 10px;
+  background: #eee;
+  padding: 0 16px;
+  font-size: 14px;
+  margin-bottom: 12px;
+}
+
+.input::placeholder {
+  color: #aaa;
+}
+
+/* 옵션 */
+.options {
+  display: flex;
+  gap: 20px;
+  font-size: 13px;
+  color: #666;
+  margin: 12px 0 20px;
+}
+
+.options label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* 로그인 버튼 */
+.login-btn {
+  width: 100%;
+  height: 48px;              /* 요청 반영 */
+  background: #36b29b;
+  border: none;
+  border-radius: 12px;
+  color: #fff;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+/* 하단 링크 */
+.links {
+  text-align: center;
+  font-size: 13px;
+  color: #999;
+  margin-bottom: 40px;
+}
+
+.links a {
+  color: #999;
+  text-decoration: none;
+  margin: 0 6px;
+}
+
+/* 소셜 로그인 */
+.social-login {
+  display: flex;
+  gap: 20px;
+}
+
+.social {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  background: none;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.social img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+

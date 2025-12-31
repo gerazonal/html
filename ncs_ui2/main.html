@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>도르멍 | 메인</title>
+  <link rel="stylesheet" href="./css/main.css" />
+</head>
+<body>
+  <div class="app">
+
+    <!-- 스크롤 영역 -->
+    <main class="content">
+
+      <!-- 히어로 -->
+      <section class="hero">
+        <div class="hero-top">
+          <div class="profile">
+            <img src="./images/user1.png" alt="프로필 이미지" />
+          </div>
+
+          <div class="hero-text">
+            <p class="hello">홍당무님 안녕하세요</p>
+            <p class="sub">즐거운 자전거여행 되세요</p>
+          </div>
+        </div>
+
+        <div class="hero-cards">
+          <div class="card weather-card">
+            <div class="weather-left">
+              <p class="label">Mostly Sunny</p>
+              <strong class="temp">20°</strong>
+            </div>
+
+            <div class="weather-icon">
+              <img src="./images/weth.png" alt="날씨 아이콘" />
+            </div>
+          </div>
+
+          <div class="side-cards">
+            <div class="card small-card">
+              <span class="row-label">완주코스</span>
+              <strong class="row-value">1/10</strong>
+            </div>
+
+            <div class="card small-card">
+              <span class="row-label">이동거리</span>
+              <strong class="row-value">15km</strong>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 제주도 자전거 여행정보 가이드 (가로 스크롤) -->
+      <section class="horizontal">
+        <h2>제주도 자전거 여행정보 가이드</h2>
+
+        <div class="horizontal-scroll">
+          <div class="h-card"><img src="./images/guide1.png" alt="가이드사진1" /></div>
+          <div class="h-card"><img src="./images/guide2.png" alt="가이드사진2" /></div>
+          <div class="h-card"><img src="./images/guide3.png" alt="가이드사진3" /></div>
+        </div>
+
+        <div class="guide-bar">
+          <p class="guide-title">지금 난리난 제주환상자전거길</p>
+          <button class="more-btn" type="button">더보기</button>
+        </div>
+      </section>
+
+      <!-- ✅ 여기부터: 327x360 카드 + 좌/상 16px 텍스트 오버레이 -->
+      <section class="vertical">
+        <article class="course-card">
+          <img src="./images/road1.png" alt="자전거길1" />
+          <div class="course-overlay">
+            <p class="course-title">제주도 자전거 여행 패키지<br>첫 번째 코스 이야기</p>
+          </div>
+        </article>
+
+        <article class="course-card">
+          <img src="./images/road2.png" alt="자전거길2" />
+          <div class="course-overlay">
+            <p class="course-title">제주도 자전거 여행 패키지<br>두 번째 코스 이야기</p>
+          </div>
+        </article>
+
+        <article class="course-card">
+          <img src="./images/road3.png" alt="자전거길3" />
+          <div class="course-overlay">
+            <p class="course-title">제주도 자전거 여행 패키지<br>세 번째 코스 이야기</p>
+          </div>
+        </article>
+      </section>
+
+    </main>
+
+    <!-- 하단 탭바 -->
+<nav class="tabbar">
+  <button class="tab active" type="button" data-link="./main.html">
+    <span class="tab-icon">
+      <img src="./images/homeicon.png" alt="홈" />
+    </span>
+    <span class="tab-label">홈</span>
+  </button>
+
+  <button class="tab">
+    <span class="tab-icon" type="button" data-link="./community.html">
+      <img src="./images/commuicon.png" alt="커뮤니티" />
+    </span>
+    <span class="tab-label">커뮤니티</span>
+  </button>
+
+  <button class="tab">
+    <span class="tab-icon" type="button" data-link="course.html">
+      <img src="./images/courseicon.png" alt="코스" />
+    </span>
+    <span class="tab-label">코스</span>
+  </button>
+
+  <button class="tab">
+    <span class="tab-icon" type="button" data-link="ranking.html">
+      <img src="./images/rankicon.png" alt="랭킹" />
+    </span>
+    <span class="tab-label">랭킹</span>
+  </button>
+
+  <button class="tab">
+    <span class="tab-icon" type="button" data-link="my.html">
+      <img src="./images/myicon.png" alt="마이" />
+    </span>
+    <span class="tab-label">마이</span>
+  </button>
+</nav>
+
+  </div>
+  <script src="./js/tabbar.js"></script>
+
+</body>
+</html>

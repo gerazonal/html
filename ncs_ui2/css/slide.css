@@ -1,0 +1,120 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", sans-serif;
+}
+
+.slider {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.slides {
+  display: flex;
+  height: 100%;
+  transition: transform 0.4s ease;
+}
+
+.slide {
+  min-width: 100%;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+}
+
+.slide img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  max-height: 55vh;
+  object-fit: cover;
+  margin: 0 auto;
+}
+
+.slide h2 {
+  margin-top: 20px;
+  color: #36b29b;
+  font-size: 20px;
+}
+
+.slide p {
+  margin-top: 10px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #333;
+}
+
+.slide h2,
+.slide p {
+  padding-left: 24px;
+  padding-right: 24px; /* 좌우 균형도 같이 맞추는 걸 추천 */
+}
+
+.start-btn {
+  margin-top: 24px;
+  width: 100%;
+  padding: 14px;
+  background: #36b29b;
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 16px;
+}
+
+/* ✅ 하단바: 왼쪽 indicator / 오른쪽 skip */
+.bottom-bar {
+  position: absolute;
+  left: 24px;
+  right: 24px;
+  bottom: 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* ✅ indicator는 bottom-bar 안에서 왼쪽 */
+.indicator {
+  position: static;
+  width: auto;
+  display: flex;
+  gap: 8px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  background: #ddd;
+  border-radius: 50%;
+}
+
+.dot.active {
+  background: #36b29b;
+}
+
+/* ✅ skip은 bottom-bar 안에서 오른쪽 */
+.skip {
+  position: static;
+  background: none;
+  border: none;
+  color: #ccc;
+  font-size: 14px;
+  padding: 8px 0;
+}
+
+/* 마지막 슬라이드에서 하단에 고정될 시작 버튼 */
+.start-btn.fixed {
+  position: absolute;
+  left: 24px;
+  right: 24px;
+  bottom: 24px;
+  z-index: 10;
+}
