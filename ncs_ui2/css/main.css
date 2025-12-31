@@ -244,8 +244,8 @@ html, body {
 /* ✅ 327x360 이미지 카드 + 텍스트 오버레이 */
 .course-card {
   position: relative;
-  width: 400px;
-  height: 480px;
+  width: 360px;
+  height: 440px;
   border-radius: 18px;
   overflow: hidden;
 }
