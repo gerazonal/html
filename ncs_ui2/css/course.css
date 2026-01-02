@@ -108,17 +108,22 @@ html, body {
 
 /* ✅ 하단 탭바: main.css 구조 그대로 */
 .tabbar {
-  height: 72px;
-  border-top: 1px solid #eee;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  background: #fff;
   position: fixed;
   left: 0;
   right: 0;
   bottom: 0;
+
+  height: 72px;
+  background: #fff;
+  border-top: 1px solid #eee;
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  z-index: 1000; /* 🔴 이거 중요 */
 }
+
 
 .tab {
   background: none;
