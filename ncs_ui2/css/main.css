@@ -94,6 +94,7 @@ html, body {
 
 /* ✅ 날씨 카드: 좌 텍스트 / 우 아이콘 */
 .weather-card {
+  position: relative;
   flex: 2;
   height: 100%;
   display: flex;
@@ -106,6 +107,23 @@ html, body {
   display: flex;
   flex-direction: column;
   gap: 4px;
+}
+
+.weather-right {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(54, 178, 155, 0.12);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.weather-right img {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
 }
 
 /* label 공통 */
@@ -122,22 +140,6 @@ html, body {
   font-weight: 700;
 }
 
-/* 날씨 아이콘 영역 */
-.weather-icon {
-  width: 80px;
-  height: 80px;
-  border-radius: 10px;
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.weather-icon img {
-  width: 70%;
-  height: 70%;
-  object-fit: contain;
-}
-
 /* ✅ 오른쪽: 위/아래 2개 카드 (날씨 카드 높이와 정확히 맞춤) */
 .side-cards {
   flex: 1;
@@ -149,6 +151,39 @@ html, body {
   padding: 0;
   background: none;
   box-shadow: none;
+}
+/* ✅ 위치 배지(우상단) 올리기 위해 relative 필요 */
+.weather-card {
+  position: relative; /* 추가 */
+}
+
+/* ✅ 우상단 위치 표시 배지 */
+.weather-location {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  font-size: 12px;
+  font-weight: 700;
+  color: #111;
+
+  background: rgba(255,255,255,0.88);
+  border-radius: 999px;
+  padding: 6px 10px;
+}
+
+.loc-icon {
+  width: 14px;
+  height: 14px;
+  object-fit: contain;
+  display: block;
+}
+
+.loc-text {
+  white-space: nowrap;
 }
 
 /* 완주코스/이동거리 카드 */

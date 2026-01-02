@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>도르멍 | 코스</title>
+
+  <!-- main과 동일 톤으로 가져가기 -->
+  <link rel="stylesheet" href="./css/course.css" />
+
+  <!-- Kakao Map SDK -->
+  <script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=25a096e373bc4a941e6e884a8064785b"></script>
+</head>
+<body>
+  <div class="app">
+
+    <!-- 상단 네비 (간단 버전) -->
+    <header class="topbar">
+      <h1 class="title">추천 코스</h1>
+    </header>
+
+    <!-- 스크롤 영역 (탭바 위까지만) -->
+    <main class="content">
+
+<section class="course-list">
+
+  <!-- 1) 제주 환상자전거길 (제주시 출발 → 성산 도착 예시) -->
+  <article class="course-card"
+    data-start-lat="33.4996" data-start-lng="126.5312"
+    data-end-lat="33.4590" data-end-lng="126.9416">
+    <h2>제주 환상자전거길</h2>
+    <p class="meta">난이도 · 중급</p>
+    <p class="distance">234km</p>
+  </article>
+
+  <!-- 2) 애월–함덕 해안 코스 (애월 → 함덕 예시) -->
+  <article class="course-card"
+    data-start-lat="33.4626" data-start-lng="126.3090"
+    data-end-lat="33.5434" data-end-lng="126.6696">
+    <h2>애월–함덕 해안 코스</h2>
+    <p class="meta">난이도 · 쉬움</p>
+    <p class="distance">35km</p>
+  </article>
+
+  <!-- 3) 제주시–중문 구간 (제주시 → 중문 예시) -->
+  <article class="course-card"
+    data-start-lat="33.4996" data-start-lng="126.5312"
+    data-end-lat="33.2490" data-end-lng="126.4080">
+    <h2>제주시–중문 구간</h2>
+    <p class="meta">난이도 · 중급</p>
+    <p class="distance">88km</p>
+  </article>
+
+  <!-- 4) 한라산 농촌 라이딩 (한라수목원 → 1100고지 근처 예시) -->
+  <article class="course-card"
+    data-start-lat="33.4693" data-start-lng="126.4951"
+    data-end-lat="33.3573" data-end-lng="126.4628">
+    <h2>한라산 농촌 라이딩</h2>
+    <p class="meta">난이도 · 쉬움~중급</p>
+    <p class="distance">20~40km</p>
+  </article>
+
+</section>
+
+
+      <section class="map-wrap">
+        <div id="map"></div>
+      </section>
+
+    </main>
+
+    <!-- ✅ main.html 탭바 구조 그대로 복사 + 코스 active -->
+    <nav class="tabbar">
+      <button class="tab" type="button" data-link="./main.html">
+        <span class="tab-icon">
+          <img src="./images/homeicon.png" alt="홈" />
+        </span>
+        <span class="tab-label">홈</span>
+      </button>
+
+      <button class="tab" type="button" data-link="./commu.html">
+        <span class="tab-icon">
+          <img src="./images/commuicon.png" alt="커뮤니티" />
+        </span>
+        <span class="tab-label">커뮤니티</span>
+      </button>
+
+      <button class="tab active" type="button" data-link="./course.html">
+        <span class="tab-icon">
+          <img src="./images/courseicon.png" alt="코스" />
+        </span>
+        <span class="tab-label">코스</span>
+      </button>
+
+      <button class="tab" type="button" data-link="./ranking.html">
+        <span class="tab-icon">
+          <img src="./images/rankicon.png" alt="랭킹" />
+        </span>
+        <span class="tab-label">랭킹</span>
+      </button>
+
+      <button class="tab" type="button" data-link="./my.html">
+        <span class="tab-icon">
+          <img src="./images/myicon.png" alt="마이" />
+        </span>
+        <span class="tab-label">마이</span>
+      </button>
+    </nav>
+
+  </div>
+
+  <!-- main에서 쓰던 tabbar.js 그대로 재사용 -->
+  <script src="./js/tabbar.js"></script>
+  <script src="./js/course.js"></script>
+</body>
+</html>

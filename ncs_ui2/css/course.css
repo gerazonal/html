@@ -1,0 +1,170 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", sans-serif;
+  overflow: hidden;
+}
+
+.app {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 상단 네비 */
+.topbar{
+  height: 56px;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  border-bottom: 1px solid #eee;
+  background: #fff;
+}
+.title{
+  font-size: 18px;
+  font-weight: 700;
+  color: #111;
+}
+
+/* 스크롤 영역 (탭바 위까지만) */
+.content{
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  padding-bottom: 90px;
+}
+
+/* 세로 스크롤바 숨김 (main과 동일) */
+.content::-webkit-scrollbar { display: none; }
+.content { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* 카드 리스트 */
+.course-list{
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.course-card{
+  background: #fff;
+  border-radius: 16px;
+  padding: 14px 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.course-card.active {
+  outline: 2px solid #36b29b;
+  background: #f6fffd;
+}
+
+.course-head{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.course-card h2{
+  font-size: 16px;
+  font-weight: 700;
+  color: #111;
+}
+
+.desc{
+  font-size: 13px;
+  color: #777;
+  margin-bottom: 6px;
+}
+
+.km{
+  font-size: 14px;
+  font-weight: 700;
+  color: #36b29b;
+}
+
+/* 난이도 배지 */
+.badge{
+  font-size: 12px;
+  font-weight: 700;
+  padding: 6px 10px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+.badge.easy{ color:#36b29b; background: rgba(54,178,155,0.12); }
+.badge.mid{ color:#111; background: rgba(0,0,0,0.06); }
+.badge.mix{ color:#111; background: rgba(0,0,0,0.06); }
+
+/* 지도 */
+.map-wrap{
+  height: 260px;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #eee;
+}
+#map{ width: 100%; height: 100%; }
+
+/* ✅ 하단 탭바: main.css 구조 그대로 */
+.tabbar {
+  height: 72px;
+  border-top: 1px solid #eee;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: #fff;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.tab {
+  background: none;
+  border: none;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+
+  font-size: 12px;
+  color: #aaa;
+}
+
+.tab-icon {
+  width: 24px;
+  height: 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tab-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: grayscale(100%) opacity(0.5);
+}
+
+.tab.active {
+  color: #36b29b;
+}
+
+.tab.active .tab-icon img {
+  filter: brightness(0) saturate(100%)
+          invert(53%)
+          sepia(33%)
+          saturate(640%)
+          hue-rotate(120deg)
+          brightness(95%)
+          contrast(90%);
+}
+
+.tab-label {
+  font-size: 12px;
+  line-height: 1;
+}
