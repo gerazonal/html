@@ -168,3 +168,17 @@ html, body {
   font-size: 12px;
   line-height: 1;
 }
+
+.course-card {
+  transition: box-shadow 0.2s ease, transform 0.2s ease, border 0.2s ease;
+}
+
+.course-card.active {
+  border: 2px solid #36b29b;          /* 주컬러 */
+  box-shadow: 0 6px 16px rgba(54,178,155,0.25);
+  background: #f6fffd;
+}
+
+.course-card.active h2 {
+  color: #36b29b;
+}
