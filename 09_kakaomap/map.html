@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>카카오맵 API 지도 예시</title>
+  <style>
+    /* 지도가 표시될 영역은 반드시 높이가 있어야 합니다 */
+    #map { width: 100%; height: 480px; border-radius: 12px; }
+    body { margin: 0; padding: 24px; font-family: system-ui, -apple-system, Segoe UI, Roboto, Apple SD Gothic Neo, "Noto Sans KR", sans-serif; }
+  </style>
+</head>
+<body>
+  <h1 style="margin:0 0 12px; font-size: 20px;">카카오맵 API로 지도 그리기</h1>
+  <p style="margin:0 0 16px; color:#444;">아래 예시는 서울시청 근처를 중심으로 지도를 띄웁니다.</p>
+
+  <div id="map"></div>
+
+  <!-- 1) 카카오맵 SDK 로드: appkey를 본인 키로 교체하세요 -->
+  <script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=25a096e373bc4a941e6e884a8064785b"></script>
+
+  <script>
+    // 2) 지도 생성
+    const container = document.getElementById('map');
+
+    // 서울시청 좌표 (예시)
+    const center = new kakao.maps.LatLng(37.5662952, 126.9779451);
+
+    const options = {
+      center,
+      level: 3, // 숫자가 클수록 더 넓게(축소)
+    };
+
+    const map = new kakao.maps.Map(container, options);
+
+    // 3) 마커 추가(옵션)
+    const marker = new kakao.maps.Marker({ position: center });
+    marker.setMap(map);
+
+    // 4) 인포윈도우(옵션)
+    const info = new kakao.maps.InfoWindow({
+      content: '<div style="padding:8px 10px; font-size:13px;">서울시청</div>'
+    });
+    info.open(map, marker);
+
+    // 5) 지도 중심 이동 함수(예: 버튼/검색 결과에서 호출)
+    function moveTo(lat, lng) {
+      const pos = new kakao.maps.LatLng(lat, lng);
+      map.setCenter(pos);
+      marker.setPosition(pos);
+      info.close();
+    }
+
+    // 예시: 2초 후 광화문 쪽으로 이동
+    setTimeout(() => moveTo(37.5759, 126.9768), 2000);
+  </script>
+</body>
+</html>
