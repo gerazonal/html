@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>객체 응용</title>
+</head>
+<body>
+    <script>
+        // 배열
+        let name = ['마오']
+        let type = ['당절임']
+        let ingredient = ['망고','설탕','치자']
+        let origin = ['필리핀']
+
+        document.write(`제품명은 ${name}이고 성분은 ${ingredient}이며 원산지는 ${origin}이다.<br>`)
+        document.write("<hr>")
+        // 객체
+        let product = 
+            {
+                품명: "마오",
+                성분: '망고,설탕,치자',
+                원산지: '필리핀',
+            }
+        
+        document.write(`제품명은 ${product.품명}이고 성분은 ${product.성분}이며 원산지는 ${product.원산지}이다.`)
+    </script>
+</body>
+</html>
