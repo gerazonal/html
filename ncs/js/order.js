@@ -20,7 +20,7 @@ const RADIUS_M = 6000;
 */
 const STORE_THUMBNAILS = {
   // "카카오 place id": "이미지URL"
-"123456789": "./assets/matcha.jpg",
+"123456789": "./assets/loca.jpg",
 };
 
 /* ===== Favorites (localStorage) ===== */
@@ -136,22 +136,34 @@ function renderList(stores) {
 
   hideLoading();
 
-  stores.forEach((p) => {
-    const id = p.id; // Kakao place id
+  stores.forEach((p, idx) => {
+    const id = p.id;
     const name = p.place_name || "텐퍼센트 매장";
     const addr = p.road_address_name || p.address_name || "";
     const dist = formatDistance(p.distance);
 
+    // ✅ 첫 번째만 매장 이미지, 나머지는 placeholder 고정
+    const thumbSrc = (idx === 0) ? "./assets/matcha.png" : "./assets/store-placeholder.jpg";
+
+    // ✅ 첫 번째만 준비중 OFF, 나머지는 준비중 ON
+    const isReady = (idx === 0);
+
     const item = document.createElement("article");
     item.className = "store-item";
 
-    const thumb = resolveThumb(p);
     const favOn = isFav(id);
 
     item.innerHTML = `
-      <div class="thumb">
-        <img src="${esc(thumb)}" alt="${esc(name)} 썸네일" onerror="this.style.display='none'">
-        <div class="status">준비중</div>
+      <div class="thumb-wrap">
+        <div class="thumb">
+          <img src="${esc(thumbSrc)}" alt="${esc(name)} 썸네일" />
+        </div>
+
+        ${isReady ? "" : `<div class="status">준비중</div>`}
+
+        <button class="fav-over ${favOn ? "active" : ""}" type="button" aria-label="즐겨찾기">
+          <span>★</span>
+        </button>
       </div>
 
       <div class="info">
@@ -159,13 +171,10 @@ function renderList(stores) {
         <p class="addr">${esc(addr)}</p>
         <p class="dist">${esc(dist)}</p>
       </div>
-
-      <button class="fav-btn ${favOn ? "active" : ""}" type="button" aria-label="즐겨찾기">
-        <div class="fav-dot"><span>★</span></div>
-      </button>
     `;
 
-    const favBtn = item.querySelector(".fav-btn");
+    // 즐겨찾기 토글
+    const favBtn = item.querySelector(".fav-over");
     favBtn.addEventListener("click", (e) => {
       e.stopPropagation();
       const nowOn = toggleFav(id);
@@ -173,63 +182,22 @@ function renderList(stores) {
       showToast(nowOn ? "즐겨찾는 매장에 등록했어요" : "즐겨찾기 해제했어요");
     });
 
-    // (선택) 아이템 클릭 시 “매장 선택” 같은 가상동작
-    item.addEventListener("click", () => {
-      showToast("매장 선택(가상)");
-    });
+    // ✅ 준비중 매장은 클릭 막기(원하면)
+    if (!isReady) {
+      item.style.opacity = "0.98";
+      item.addEventListener("click", () => {
+        showToast("준비중인 매장입니다.");
+      });
+    } else {
+      item.addEventListener("click", () => {
+        showToast("매장 선택(가상)");
+      });
+    }
 
     listEl.appendChild(item);
   });
 }
 
-/* ===== Search (Kakao Places) ===== */
-async function searchNearbyTenPercent() {
-  clearItems();
-  setLoading("현재 위치 기반으로 텐퍼센트 매장을 불러오는 중…");
-
-  if (!window.kakao || !kakao.maps || !kakao.maps.services) {
-    setLoading("카카오맵 SDK가 로드되지 않았어요. appkey를 확인해 주세요.");
-    return;
-  }
-
-  let pos;
-  try {
-    pos = await getCurrentPosition();
-  } catch {
-    setLoading("위치 권한이 필요해요. 브라우저에서 위치 권한을 허용해 주세요.");
-    return;
-  }
-
-  const ps = new kakao.maps.services.Places();
-  const loc = new kakao.maps.LatLng(pos.lat, pos.lng);
-
-  // ✅ “텐퍼센트만” 나오게: keywordSearch + strict filter
-  ps.keywordSearch(
-    KEYWORD,
-    (data, status) => {
-      if (status !== kakao.maps.services.Status.OK) {
-        setLoading("검색에 실패했어요. 잠시 후 다시 시도해 주세요.");
-        return;
-      }
-
-      let filtered = data;
-
-      if (KEYWORD_STRICT) {
-        filtered = data.filter(p => (p.place_name || "").includes(KEYWORD));
-      }
-
-      // 거리순(서비스 옵션 sort도 있지만, 혹시 대비해서 한번 더)
-      filtered.sort((a, b) => Number(a.distance || 999999) - Number(b.distance || 999999));
-
-      renderList(filtered);
-    },
-    {
-      location: loc,
-      radius: RADIUS_M,
-      sort: kakao.maps.services.SortBy.DISTANCE,
-    }
-  );
-}
 
 /* ===== Favorites tab ===== */
 function renderFavorites() {
