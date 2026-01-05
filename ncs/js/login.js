@@ -12,7 +12,7 @@ loginBtn.addEventListener("click", () => {
   }
 
   // ✅ 실제 검증 없이 다음 페이지로 이동
-  window.location.href = "main.html"; // 다음 페이지 경로
+  window.location.href = "./home.html"; // 다음 페이지 경로
 });
 
 const linkButtons = document.querySelectorAll(".link-btn");
