@@ -198,6 +198,56 @@ function renderList(stores) {
   });
 }
 
+/* ===== Search (Nearby) ===== */
+async function searchNearbyTenPercent() {
+  clearItems();
+  setLoading("현재 위치 기반으로 매장을 불러오는 중…");
+
+  if (!window.kakao || !kakao.maps || !kakao.maps.services) {
+    setLoading("카카오맵 SDK가 로드되지 않았어요.");
+    return;
+  }
+
+  let pos;
+  try {
+    pos = await getCurrentPosition();
+  } catch {
+    setLoading("위치 권한이 필요해요.");
+    return;
+  }
+
+  const ps = new kakao.maps.services.Places();
+  const loc = new kakao.maps.LatLng(pos.lat, pos.lng);
+
+  ps.keywordSearch(
+    KEYWORD,
+    (data, status) => {
+      if (status !== kakao.maps.services.Status.OK) {
+        setLoading("매장을 찾지 못했어요.");
+        return;
+      }
+
+      let filtered = data;
+      if (KEYWORD_STRICT) {
+        filtered = data.filter(p =>
+          (p.place_name || "").includes(KEYWORD)
+        );
+      }
+
+      // 거리순 정렬 (안전)
+      filtered.sort(
+        (a, b) => Number(a.distance || 999999) - Number(b.distance || 999999)
+      );
+
+      renderList(filtered);
+    },
+    {
+      location: loc,
+      radius: RADIUS_M,
+      sort: kakao.maps.services.SortBy.DISTANCE
+    }
+  );
+}
 
 /* ===== Favorites tab ===== */
 function renderFavorites() {
