@@ -1,0 +1,439 @@
+/* ===== Font ===== */
+@font-face {
+  font-family: "SF Pro Text";
+  src: local("SF Pro Text");
+}
+
+* {
+  box-sizing: border-box;
+  font-family: "SF Pro Text", -apple-system, BlinkMacSystemFont, sans-serif;
+}
+a{text-decoration: none;}
+
+body {
+  margin: 0;
+  background: #ffffff;
+  color: #2b2b2b;
+}
+
+/* ===== Top Nav ===== */
+.top-nav {
+  height: 56px;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.top-nav .icon {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+}
+
+.logo-area {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 17px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-area img{
+    height: 100%;
+    width: auto;
+}
+
+/* ===== Content ===== */
+.content {
+  padding: 16px;
+  padding-bottom: 80px; /* 탭바 여백 */
+}
+
+/* ===== Greeting ===== */
+
+.greeting {
+     display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 64px;
+}
+.greeting .user {
+  font-weight: 600;
+  line-height: 29px;
+  margin-bottom: 0;
+  font-size: 20px;
+}
+
+.greeting .hello {
+  margin: 0;
+  line-height: 29px;
+  font-size: 20px;
+}
+
+.greeting-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+/* 오른쪽 아이콘 영역 */
+.greeting-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.greet-icon {
+  height: auto;
+  cursor: pointer;
+}
+
+.greet-icon.barcode {
+  width: 46px;         /* 바코드 */
+}
+
+.greet-icon.coupon {
+  width: 50px;         /* 쿠폰 */
+}
+
+/* ===== Stamp Card ===== */
+.stamp-card {
+  margin-top: 24px;
+  padding: 14px 16px;
+  background: #f4efe7;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.stamp-left {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  color: #3a2a1a;
+}
+
+.stamp-left span{
+    display: flex;
+    align-items: center;
+    line-height: 1;
+}
+.stamp-left .star {
+  color: #6b4b2a;
+  font-size: 16px;
+}
+
+.stamp-count {
+  font-weight: 600;
+}
+
+.stamp-right {
+  font-size: 13px;
+  color: #7a6a58;
+}
+
+/* ===== Banner Slider ===== */
+.banner-slider {
+  position: relative;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
+  overflow: hidden;
+}
+
+/* 트랙 */
+.banner-track {
+  display: flex;
+  width: 200%;                 /* 배너 2장 */
+  margin: 0;
+  padding: 0;
+  gap: 0;
+  transition: transform 0.5s ease;
+}
+
+/* 배너 1장 = 화면 */
+.banner {
+  width: 100vw;                /* 좌우 여백 제거 */
+  height: 260px;
+  flex-shrink: 0;
+  overflow: hidden;
+  margin-top: 36px;
+}
+
+/* 이미지 */
+.banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+
+/* ===== Banner Indicator (시안 위치) ===== */
+.banner-indicator {
+  position: absolute;     /* ❗ 배너 위에 겹침 */
+  bottom: 12px;
+  right: 16px;            /* 시안처럼 우측 하단 */
+  display: flex;
+  gap: 6px;
+}
+
+.banner-indicator .dot {
+  width: 6px;
+  height: 6px;
+  background: rgba(0,0,0,0.3);
+  border-radius: 50%;
+}
+
+.banner-indicator .dot.active {
+  width: 18px;
+  border-radius: 10px;
+  background: #355f4b;
+}
+
+
+/* ===== Recent Orders ===== */
+.recent-orders h3 {
+    margin: 36px 0 24px;
+  margin-bottom: 12px;
+}
+
+
+/* 나중에 스크롤바 제거 가능 */
+.order-track::-webkit-scrollbar {
+  height: 6px;
+}
+
+.order-track::-webkit-scrollbar-thumb {
+  background: #d0d0d0;
+  border-radius: 4px;
+}
+
+
+/* ===== Tab Bar ===== */
+.tab-bar {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 64px;
+  border-top: 1px solid #e5e5e5;
+  background: #fff;
+  display: flex;
+}
+
+.tab {
+  flex: 1;
+  text-align: center;
+  font-size: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+}
+
+.tab-bar .tab {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  font-weight: 700;
+  color: #333;          /* 비활성 텍스트 */
+  font-size: 12px;
+   filter: brightness(0) saturate(100%) invert(18%);
+}
+
+.tab-bar .tab-icon {
+  width: 24px;
+  height: 24px;
+  filter: brightness(0) saturate(100%) invert(18%);   /* ← 여기로 이동 */
+}
+
+.tab-bar .tab.active {
+  color: #335c4c;          /* 시안의 다크 그린 */
+}
+
+.tab-bar .tab.active .tab-icon {
+  filter: brightness(0) saturate(100%) invert(27%) sepia(18%)
+          saturate(520%) hue-rotate(118deg) brightness(90%) contrast(92%);
+}
+
+
+/* 탭 아이콘 이미지용 */
+.tab img {
+  width: 20px;
+  height: 20px;
+  margin: 0 auto;
+}
+
+/* ===== Clickable UI ===== */
+.js-barcode,
+.js-coupon,
+.js-stamp-card {
+  cursor: pointer;
+}
+
+/* ===== Recent Orders Card (시안 레이아웃) ===== */
+.order-track {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+}
+
+.order-card {
+  min-width: 260px;
+  height: 150px;
+  background: #f4efe7;
+  border-radius: 16px;
+  padding: 16px;
+  flex-shrink: 0;
+}
+
+.order-top {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.thumb {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #e2c7a8;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.order-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.order-name {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+  color: #2b2b2b;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.order-opt {
+  margin: 6px 0 0 0;
+  font-size: 13px;
+  color: #8a8a8a;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.order-divider {
+  margin: 14px 0;
+  height: 1px;
+  background: rgba(0,0,0,0.12);
+}
+
+.order-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.order-store {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #8a8a8a;
+  font-size: 13px;
+  min-width: 0;
+}
+
+.store-name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.order-btn {
+  height: 28px;
+  padding: 0 12px;
+  border: none;
+  border-radius: 999px;
+  background: #6b4b2a;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.store-icon {
+    display: flex;
+    align-items: center;
+}
+.store-icon img{
+    display: block;
+    width: 20px;
+    height: 20px;
+}
+
+/* ===== Order Overlay (iframe) ===== */
+:root {
+  --top-nav-height: 56px;
+}
+
+.order-overlay-wrap {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  pointer-events: none;
+  overflow-x: hidden;
+}
+
+.order-dim {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  opacity: 0;
+  transition: opacity .25s ease;
+}
+
+.order-frame {
+  position: absolute;
+  left: 0;
+  top: var(--top-nav-height);
+  width: 100vw;
+  height: calc(100vh - var(--top-nav-height));
+  border: 0;
+  background: #fff;
+  border-radius: 16px 16px 0 0;
+  transform: translateY(100%);
+  transition: transform .35s ease;
+}
+
+body.order-open .order-overlay-wrap {
+  pointer-events: auto;
+}
+
+body.order-open .order-dim {
+  opacity: 1;
+}
+
+body.order-open .order-frame {
+  transform: translateY(0);
+}
+

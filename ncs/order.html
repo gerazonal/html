@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>주문하기</title>
+
+  <link rel="stylesheet" href="./css/order.css" />
+
+  <!-- Kakao Maps SDK (키만 교체) -->
+  <script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=ff93c34281d3f76a87da6c60e322a969&libraries=services"></script>
+</head>
+
+<body>
+  <!-- Top -->
+  <header class="order-top">
+    <button class="icon-btn" id="btnBack" aria-label="뒤로가기">←</button>
+
+    <div class="tab-row" role="tablist" aria-label="매장 탭">
+      <button class="seg active" id="tabNear" type="button">가까운 매장</button>
+      <span class="sep">|</span>
+      <button class="seg" id="tabFav" type="button">즐겨찾는 매장</button>
+    </div>
+
+    <button class="icon-btn" id="btnSearch" aria-label="검색">🔍</button>
+  </header>
+
+  <div class="divider"></div>
+
+  <!-- List -->
+  <main class="store-list" id="storeList">
+    <div class="loading" id="loading">현재 위치 기반으로 매장을 불러오는 중…</div>
+  </main>
+
+  <!-- Toast -->
+  <div class="toast" id="toast" aria-live="polite"></div>
+
+  <script src="./js/order.js"></script>
+</body>
+</html>

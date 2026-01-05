@@ -1,0 +1,102 @@
+:root {
+  --bg: #F3EDE4;
+  --brand: #2F5D4E;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI,
+    Roboto, "Noto Sans KR", Helvetica, Arial;
+  background: var(--bg);
+  color: var(--brand);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.app {
+  min-height: 100vh;
+  min-height: 100svh;
+  padding: env(safe-area-inset-top)
+           env(safe-area-inset-right)
+           env(safe-area-inset-bottom)
+           env(safe-area-inset-left);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.splash {
+  width: min(420px, 92vw);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  text-align: center;
+  padding: 24px;
+}
+
+/* ===== LOGO SLOT ===== */
+.logo-slot {
+  width: 170px;
+  height: 111.5px;
+  display: grid;
+  place-items: center;
+}
+
+.logo-slot img,
+.logo-slot svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* ===== DOT LOADING ===== */
+.dots {
+  display: inline-flex;
+  gap: 10px;
+  align-items: center;
+  height: 12px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--brand);
+  opacity: 0.25;
+  animation: pulse 1.2s infinite ease-in-out;
+}
+
+.dot:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+.dot:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+@keyframes pulse {
+  0%, 80%, 100% {
+    opacity: 0.25;
+  }
+  40% {
+    opacity: 0.9;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dot {
+    animation: none;
+    opacity: 0.7;
+  }
+}

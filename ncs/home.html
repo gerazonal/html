@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Main</title>
+
+  <link rel="stylesheet" href="./css/home.css" />
+</head>
+<body>
+
+  <!-- Top Navigation -->
+
+  <header class="top-nav">
+  <!-- Left Icon -->
+  <img src="images/hamburger.png" class="icon left" alt="menu" />
+
+  <!-- Center Logo -->
+
+  <div class="logo-area">
+    <!-- 로고 이미지 삽입 -->
+    <img src="./images/textlogo.png" alt="logo" />
+  </div>
+
+  <!-- Right Icon -->
+
+  <img src="images/bell.png" class="icon right" alt="notification" />
+</header>
+
+  <main class="content">
+
+<!-- Greeting -->
+<div class="greeting">
+  <div class="greeting-left">
+    <p class="user">유진 님</p>
+    <p class="hello">안녕하세요!</p>
+  </div>
+
+  <div class="greeting-right">
+    <img class="greet-icon barcode js-barcode" src="images/barcode.png" alt="barcode">
+    <img class="greet-icon coupon js-coupon" src="images/coupon.png" alt="coupon">
+  </div>
+</div>
+
+<!-- Stamp / Coupon Card -->
+<section class="stamp-card js-stamp-card">
+  <div class="stamp-left">
+    <span class="star">★</span>
+    <span class="stamp-text">스탬프</span>
+    <span class="stamp-count">2 / 10</span>
+  </div>
+
+  <div class="stamp-right">
+    <span class="coupon-text">쿠폰 발급까지 8개</span>
+  </div>
+</section>
+
+
+<!-- Banner Slider -->
+<section class="banner-slider">
+  <div class="banner-track">
+    <div class="banner">
+      <img src="./images/mainvisual1.png" alt="banner">
+    </div>
+    <div class="banner">
+      <img src="./images/mainvisual2.png" alt="banner">
+    </div>
+  </div>
+
+  <!-- ❗ 배너 위에 겹치는 인디케이터 -->
+  <div class="banner-indicator">
+    <span class="dot active"></span>
+    <span class="dot"></span>
+  </div>
+</section>
+
+
+<!-- Recent Orders -->
+<section class="recent-orders">
+  <h3>최근 주문내역</h3>
+
+  <div class="order-track">
+    <!-- 카드 1 -->
+    <article class="order-card">
+      <div class="order-top">
+        <div class="thumb">
+          <!-- 음료 이미지 삽입 -->
+          <img src="./images/dirty.png" alt="drink">
+        </div>
+
+        <div class="order-info">
+          <p class="order-name">더티땅콩라떼</p>
+          <p class="order-opt">ICED | 오트변경 | 연하게</p>
+        </div>
+      </div>
+
+      <div class="order-divider"></div>
+
+      <div class="order-bottom">
+        <div class="order-store">
+          <span class="store-icon"><img src="./images/location-icon.png" alt="장소아이콘"></span>
+          <span class="store-name">김포장기점</span>
+        </div>
+
+        <button class="order-btn" type="button">바로 주문하기</button>
+      </div>
+    </article>
+
+    <!-- 카드 2 -->
+    <article class="order-card">
+      <div class="order-top">
+        <div class="thumb">
+          <img src="./images/tenlatte.png" alt="drink">
+        </div>
+
+        <div class="order-info">
+          <p class="order-name">텐라떼</p>
+          <p class="order-opt">ICED | 샷 추가</p>
+        </div>
+      </div>
+
+      <div class="order-divider"></div>
+
+      <div class="order-bottom">
+        <div class="order-store">
+          <span class="store-icon"><img src="./images/location-icon.png" alt="장소아이콘"></span>
+          <span class="store-name">김포장기점</span>
+        </div>
+
+        <button class="order-btn" type="button">바로 주문하기</button>
+      </div>
+    </article>
+
+    <!-- 카드 3 -->
+    <article class="order-card">
+      <div class="order-top">
+        <div class="thumb">
+          <img src="./images/americano.png" alt="drink">
+        </div>
+
+        <div class="order-info">
+          <p class="order-name">아메리카노</p>
+          <p class="order-opt">HOT | 연하게</p>
+        </div>
+      </div>
+
+      <div class="order-divider"></div>
+
+      <div class="order-bottom">
+        <div class="order-store">
+          <span class="store-icon"><img src="./images/location-icon.png" alt="장소아이콘"></span>
+          <span class="store-name">김포운양점</span>
+        </div>
+
+        <button class="order-btn" type="button">바로 주문하기</button>
+      </div>
+    </article>
+  </div>
+</section>
+
+
+  </main>
+
+<nav class="tab-bar">
+  <a class="tab active" href="#">
+    <!-- 아이콘 이미지 삽입 -->
+    <img class="tab-icon" src="./images/homeicon.png" alt="홈">
+    <span class="tab-label">홈</span>
+  </a>
+
+  <a class="tab" href="#">
+    <img class="tab-icon" src="./images/ordericon.png" alt="주문하기">
+    <span class="tab-label">주문하기</span>
+  </a>
+
+  <a class="tab" href="#">
+    <img class="tab-icon" src="./images/cardicon.png" alt="텐페이카드">
+    <span class="tab-label">텐페이카드</span>
+  </a>
+
+  <a class="tab" href="#">
+    <img class="tab-icon" src="./images/myicon.png" alt="MY">
+    <span class="tab-label">MY</span>
+  </a>
+</nav>
+<!-- ===== 주문하기 오버레이 컨테이너 (추가) ===== -->
+<div class="order-overlay-wrap" aria-hidden="true">
+  <div class="order-dim"></div>
+  <iframe class="order-frame" src="" title="주문하기"></iframe>
+</div>
+
+  <script src="./js/home.js"></script>
+
+</body>
+</html>

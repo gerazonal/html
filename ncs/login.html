@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login</title>
+
+  <link rel="stylesheet" href="./css/login.css" />
+</head>
+<body>
+
+  <main class="login-container">
+    <!-- Logo Area -->
+    <div class="logo-area">
+      <!-- 로고 이미지 삽입 영역 -->
+      <img src="./images/loginlogo.png" alt="logo" />
+    </div>
+
+
+<!-- Input Area -->
+<div class="input-group">
+  <input type="text" id="userId" placeholder="아이디 입력" />
+  <input type="password" id="password" placeholder="비밀번호 입력" />
+</div>
+
+<!-- Options -->
+<div class="options">
+  <label>
+    <input type="checkbox" />
+    자동로그인
+  </label>
+  <label>
+    <input type="checkbox" />
+    아이디저장
+  </label>
+</div>
+
+<!-- Login Button -->
+<button class="login-btn" id="loginBtn">로그인</button>
+
+<!-- Links -->
+<div class="links">
+  <span class="link-btn" data-action="find-id">아이디찾기</span>
+  <span class="divider">|</span>
+  <span class="link-btn" data-action="find-pw">비밀번호찾기</span>
+  <span class="divider">|</span>
+  <span class="link-btn" data-action="signup">회원가입</span>
+</div>
+
+
+<!-- Social Login -->
+<div class="social-login">
+  <!-- 소셜 로그인 아이콘 삽입 영역 -->
+  <img src="./images/kakao.png" />
+  <img src="./images/naver.png" />
+  <img src="images/apple.png" />
+</div>
+
+
+  </main>
+
+  <script src="./js/login.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,124 @@
+/* ===== Font ===== */
+@font-face {
+  font-family: "SF Pro Text";
+  src: local("SF Pro Text");
+}
+
+* {
+  box-sizing: border-box;
+  font-family: "SF Pro Text", -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+body {
+  margin: 0;
+  background: #ffffff;
+  color: #2b2b2b;
+}
+
+/* ===== Layout ===== */
+.login-container {
+  min-height: 100vh;
+  padding: 80px 24px 40px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ===== Logo ===== */
+.logo-area {
+  height: 120px;           /* 로고 영역 확보 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
+.logo-area img {
+  max-width: 260px;   /* 🔹 기존보다 반절 수준 */
+  width: 100%;
+  height: auto;
+}
+
+/* ===== Inputs ===== */
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  margin-bottom: 24px;
+}
+
+.input-group input {
+  border: none;
+  border-bottom: 1px solid #d0d0d0;
+  padding: 12px 0;
+  font-size: 16px;
+  outline: none;
+}
+
+.input-group input::placeholder {
+  color: #b5b5b5;
+}
+
+/* ===== Options ===== */
+.options {
+  display: flex;
+  gap: 24px;
+  font-size: 14px;
+  color: #8a8a8a;
+  margin-bottom: 16px;
+}
+
+.options label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+}
+
+/* ===== Login Button (온보딩 버튼 규격 재사용) ===== */
+.login-btn {
+  height: 56px;
+  border-radius: 16px;
+  background: #355f4b;
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 24px;
+}
+
+/* ===== Links ===== */
+.links {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  font-size: 13px;
+  color: #c0c0c0;
+  margin-bottom: 48px;
+}
+
+.divider {
+  margin: 0 4px;
+}
+
+/* ===== Social Login ===== */
+.social-login {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+}
+
+/* 소셜 아이콘 이미지용 */
+.social-login img {
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+}
+
+.link-btn {
+  cursor: pointer;            /* ✅ 손모양 */
+}
+
+.link-btn:hover {
+  color: #355f4b;             /* 살짝 강조 (선택) */
+}
