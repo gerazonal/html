@@ -23,6 +23,7 @@ body{
   justify-content:space-between;
   padding:0 16px;
   background:#fff;
+  border-bottom: 1px solid var(--line);
 }
 
 .icon-btn{
@@ -74,7 +75,7 @@ body{
 
 /* List scroll */
 .store-list{
-  height:calc(100vh - 56px - 1px);
+  height:calc(100vh - 56px - 48px - 1px);
   overflow-y:auto;
   padding:0 16px;
 }
@@ -97,6 +98,7 @@ body{
   gap:12px;
   padding:16px 0;
 }
+
 
 
 .info{
