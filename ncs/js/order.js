@@ -143,7 +143,7 @@ function renderList(stores) {
     const dist = formatDistance(p.distance);
 
     // ✅ 첫 번째만 매장 이미지, 나머지는 placeholder 고정
-    const thumbSrc = (idx === 0) ? "./assets/loca.png" : "./assets/icon-logo.png";
+    const thumbSrc = (idx === 0) ? "./images/loca.png" : "./images/icon-logo.png";
 
     // ✅ 첫 번째만 준비중 OFF, 나머지는 준비중 ON
     const isReady = (idx === 0);
