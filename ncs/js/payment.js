@@ -62,11 +62,10 @@ methods.forEach((method) => {
   });
 });
 
-// 결제하기 버튼
 document.getElementById("btnPay")?.addEventListener("click", () => {
-  // ✅ 홈에 알려줄 신호
+  // 홈에게 오버레이 닫으라고 신호
   sessionStorage.setItem("CLOSE_ORDER_OVERLAY", "true");
 
-  // 홈으로 이동
-  window.location.href = "home.html";
+  // ✅ iframe 밖(진짜 홈)으로 이동
+  window.top.location.href = "home.html";
 });
