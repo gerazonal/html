@@ -63,13 +63,17 @@ tabs.forEach((tab, idx) => {
     // 주문하기 탭은 오버레이 로직에서 처리
     if (idx === 1) return;
 
-    // active 토글
-    tabs.forEach(t => t.classList.remove("active"));
-    tab.classList.add("active");
+    // 🔽 여기부터 수정
+    if (idx === 2) {
+      // 텐페이카드
+      window.location.href = "./tenpay.html";
+      return;
+    }
 
-    // 가상 동작 alert
-    const label = tab.dataset.label || tab.innerText.trim();
-    alert(`${label} 탭 (가상 동작)`);
+    if (idx === 3) {
+      window.location.href = "./my.html";
+      return;
+    }
   });
 });
 

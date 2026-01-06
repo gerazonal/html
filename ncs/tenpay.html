@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>탠페이 카드</title>
+  <link rel="stylesheet" href="./css/tenpay.css">
+</head>
+<body>
+
+<!-- 상단 내비바 -->
+<header class="top-bar">
+  <button class="icon-btn" onclick="location.href='home.html'">
+  <img src="./images/previousicon.png" alt="뒤로가기">
+</button>
+
+  <button class="icon-btn">
+    <img src="./images/bell.png" alt="알림">
+  </button>
+</header>
+
+<main class="content">
+  <h1 class="page-title">탠페이 카드</h1>
+
+<main class="content">
+
+  <!-- 기프트 카드 -->
+  <section class="gift-card">
+    <div class="gift-box">
+      <span class="brand">TENPERCENT</span>
+    </div>
+
+    <!-- 바코드 -->
+    <div class="barcode" id="barcode"></div>
+
+    <!-- 잔액 -->
+    <div class="balance">
+      잔액 <strong>32,000원</strong>
+    </div>
+  </section>
+ <!-- 유의사항 -->
+<footer class="notice">
+  <h2>탠페이 카드 사용 시 유의사항</h2>
+  <ul>
+    <li>탠페이 카드는 텐퍼센트 전 매장에서 사용 가능합니다.</li>
+    <li>결제 완료 후에는 취소 및 환불이 불가합니다.</li>
+    <li>잔액은 일부 프로모션 및 할인에 사용이 제한될 수 있습니다.</li>
+    <li>카드 분실 시 재발급이 불가하오니 유의해 주세요.</li>
+  </ul>
+</footer>
+
+</main>
+
+<script src="./js/tenpay.js"></script>
+</body>
+</html>
