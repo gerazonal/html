@@ -64,5 +64,5 @@ methods.forEach((method) => {
 
 // 결제하기 버튼 → 홈으로 이동
 document.getElementById("btnPay")?.addEventListener("click", () => {
-  window.location.href = "home.html";
+  history.back();
 });
