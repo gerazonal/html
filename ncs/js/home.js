@@ -46,25 +46,39 @@ if (stampCard) {
   });
 }
 
-/* ===== Tab Bar Active Toggle ===== */
+/* ===== Tab Bar Virtual Action (주문하기 제외) ===== */
 const tabs = document.querySelectorAll(".tab-bar .tab");
+const tabOrder = tabs[1]; // 주문하기 탭 (2번째)
 
-tabs.forEach(tab => {
-  tab.addEventListener("click", e => {
-    e.preventDefault(); // 페이지 이동 막기 (가상 동작)
+tabs.forEach((tab, idx) => {
+  tab.addEventListener("click", (e) => {
+    e.preventDefault();
 
+    // ✅ 홈 탭(0번째) → 새로고침
+    if (idx === 0) {
+      window.location.reload();
+      return;
+    }
+
+    // 주문하기 탭은 오버레이 로직에서 처리
+    if (idx === 1) return;
+
+    // active 토글
     tabs.forEach(t => t.classList.remove("active"));
     tab.classList.add("active");
+
+    // 가상 동작 alert
+    const label = tab.dataset.label || tab.innerText.trim();
+    alert(`${label} 탭 (가상 동작)`);
   });
 });
+
+
 
 /* ===== Order Overlay (iframe) ===== */
 const overlayWrap = document.querySelector(".order-overlay-wrap");
 const overlayDim = document.querySelector(".order-dim");
 const orderFrame = document.querySelector(".order-frame");
-
-// 탭바에서 "주문하기" 탭(2번째)
-const tabOrder = document.querySelectorAll(".tab-bar .tab")[1];
 
 function openOrderOverlay() {
   if (!overlayWrap || !orderFrame) return;
@@ -76,19 +90,6 @@ function openOrderOverlay() {
   // 탭 active를 주문하기로 맞추기
   tabs.forEach(t => t.classList.remove("active"));
   if (tabOrder) tabOrder.classList.add("active");
-}
-
-function closeOrderOverlay() {
-  document.body.classList.remove("order-open");
-  if (overlayWrap) overlayWrap.setAttribute("aria-hidden", "true");
-
-  setTimeout(() => {
-    if (orderFrame) orderFrame.src = "";
-  }, 300);
-
-  // 탭 active를 홈으로 복귀
-  tabs.forEach(t => t.classList.remove("active"));
-  tabs[0].classList.add("active");
 }
 
 // dim 클릭하면 닫기
@@ -136,5 +137,16 @@ function closeOrderOverlay() {
 
   tabs.forEach(t => t.classList.remove("active"));
   tabs[0].classList.add("active");
+}
+
+function updateBanner() {
+  if (!track) return;
+  track.style.transform = `translateX(-${index * 100}vw)`;
+}
+if (total > 0) {
+  setInterval(() => {
+    index = (index + 1) % total;
+    updateBanner();
+  }, INTERVAL);
 }
 
