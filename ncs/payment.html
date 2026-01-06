@@ -1,0 +1,116 @@
+<!-- order-detail.html -->
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>주문하기</title>
+  <link rel="stylesheet" href="./css/payment.css" />
+</head>
+<body>
+
+  <!-- Top Nav -->
+  <header class="top-nav">
+    <button class="icon-btn" id="btnBack" type="button" aria-label="뒤로가기">
+      <img src="./images/previousicon.png" alt="뒤로가기" />
+    </button>
+
+    <h1 class="nav-title">주문하기</h1>
+
+    <button class="icon-btn cart" id="btnCart" type="button" aria-label="장바구니">
+      <img src="./images/cart-icon.png" alt="장바구니" />
+      <span class="badge" aria-label="장바구니 수량">1</span>
+    </button>
+  </header>
+
+  <!-- Scroll Area -->
+  <main class="content" id="content">
+      <!-- Store Selector -->
+  <div class="store-select">
+    <button class="store-btn" id="btnStore" type="button" aria-label="매장 선택">
+      <img class="store-arrow" src="./images/under-arrow-icon.png" alt="" />
+      <span>김포장기점</span>
+    </button>
+  </div>
+    <section class="menu-image" aria-label="메뉴 이미지">
+      <!-- 사용자가 교체할 이미지 -->
+      <img src="./images/dirtypeanutlatte.png" alt="더티땅콩라떼" />
+    </section>
+
+    <h2 class="menu-title">더티땅콩라떼</h2>
+
+    <p class="options-title">선택옵션</p>
+
+    <section class="option-list" aria-label="옵션 선택">
+      <button class="option-chip is-active" type="button">ICED</button>
+      <button class="option-chip is-active" type="button">1/2 연하게</button>
+      <button class="option-chip" type="button">
+        오트변경 <span class="plus">+500</span>
+      </button>
+
+      <button class="option-chip is-active" type="button">얼음적게</button>
+      <button class="option-chip" type="button">토핑제외</button>
+      <button class="option-chip is-active" type="button">덜달게</button>
+    </section>
+
+    <div class="confirm-hint">주문 메뉴와 옵션을 확인해주세요!</div>
+
+    <!-- 상품금액 -->
+<div class="price-row" aria-label="상품 금액">
+  <span class="label">상품금액</span>
+  <span class="price">4,400원</span>
+</div>
+
+</div>
+
+        <section class="pay-panel" aria-label="결제 정보">
+
+      <ul class="methods" aria-label="결제 수단">
+          <!-- ✅ 추가: 텐페이 카드 (기본 활성) -->
+  <li class="method is-on is-primary">
+    <span class="check" aria-hidden="true">✓</span>
+    텐페이 카드
+  </li>
+
+  <div class="balance-card">
+        <img class="balance-icon" src="./images/cardicon-l.png" alt="카드이미지" />
+
+        <div class="balance-text">
+          <span class="balance-label">잔액</span>
+          <strong class="balance-amount">32,000원</strong>
+          <button class="charge-btn" id="btnCharge" type="button">
+            <span class="charge-text">충전하기</span>
+            <img class="charge-arrow" src="./images/charge-under-arrow.png" alt="펼치기 아이콘"/>
+          </button>
+        </div>
+      </div>
+        <li class="method">
+          <span class="check" aria-hidden="true">✓</span>
+          간편카드 결제
+        </li>
+        <li class="method">
+          <span class="check" aria-hidden="true">✓</span>
+          신용카드
+        </li>
+        <li class="method">
+          <span class="check" aria-hidden="true">✓</span>
+          네이버페이
+        </li>
+        <li class="method">
+          <span class="check" aria-hidden="true">✓</span>
+          카카오페이
+        </li>
+      </ul>
+      
+    </section>
+  </main>
+
+  <!-- Bottom Fixed (항상 고정) -->
+  <footer class="bottom-fixed" id="bottomFixed">
+    <p class="notice">매장 주문 접수 시, 취소가 불가합니다</p>
+    <button class="pay-btn" id="btnPay" type="button">결제하기</button>
+  </footer>
+
+  <script src="./js/payment.js"></script>
+</body>
+</html>

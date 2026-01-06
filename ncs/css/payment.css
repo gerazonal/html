@@ -1,0 +1,416 @@
+html, body {
+  height: 100%;
+  overflow: hidden; /* ✅ 바깥 스크롤 제거 */
+}
+
+/* order-detail.css */
+:root{
+  --bg:#ffffff;
+  --text:#333333;
+  --muted:#9a9a9a;
+  --line:#e6e6e6;
+
+  --brand:#335C4C;
+  --chip-bg:#ffffff;
+  --chip-shadow: 0 2px 8px rgba(0,0,0,0.08);
+
+  --hint-bg:#d9e3de;
+  --hint-text:#2f5c4b;
+}
+
+*{ box-sizing:border-box; }
+html,body{ height:100%; }
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:"SF Pro Text",-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;
+}
+
+/* =========================
+   Top Nav
+========================= */
+.top-nav{
+  height:56px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 16px;
+  background:#fff;
+}
+
+.nav-title{
+  margin:0;
+  font-size:20px;
+  font-weight:700;
+  letter-spacing:-0.2px;
+}
+
+.icon-btn{
+  width:44px;               /* 터치 영역 */
+  height:44px;
+  padding:0;
+  border:0;
+  background:transparent;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+}
+
+.icon-btn img{
+  width:24px;
+  height:24px;
+  display:block;
+}
+
+.cart{
+  position:relative;
+}
+
+.badge{
+  position:absolute;
+  top:6px;
+  right:6px;
+  min-width:18px;
+  height:18px;
+  padding:0 5px;
+  border-radius:999px;
+  background:var(--brand);
+  color:#fff;
+  font-size:12px;
+  line-height:18px;
+  text-align:center;
+}
+
+/* =========================
+   Store selector (pill)
+========================= */
+.store-select{
+  display:flex;
+  justify-content:center;
+  padding:0;
+}
+
+.store-btn{
+  height: 36px; 
+  line-height: 36px;
+  padding:0 16px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  border: 0;
+  cursor:pointer;
+  border-radius:999px;
+  background:var(--brand);
+  color:#fff;
+  font-size:16px;
+  font-weight:500;
+}
+
+.store-arrow{
+  width:20px;
+  height:20px;
+  display:block;
+}
+
+/* =========================
+   Scroll Content
+   - 하단 고정 footer 높이만큼 padding-bottom 확보
+========================= */
+.content{
+  padding:14px 24px 24px;
+  overflow:auto;
+  height: calc(100vh - 56px); /* footer 높이는 JS로 보정 */
+}
+
+/* 메뉴 이미지 */
+.menu-image{
+  display:flex;
+  justify-content:center;
+  align-items: center;
+  width: 100%;
+  margin-top:16px;
+}
+
+.menu-image img{
+  width:100%;
+  max-width:350px;      /* 데스크탑에서 너무 커지지 않게 */
+  max-height: 350px;
+  aspect-ratio: 1 / 1;  /* 정사각 느낌 */
+  display: block;
+  object-fit:cover;
+}
+
+/* 타이틀 */
+.menu-title{
+  margin:16px 0 0;
+  text-align:center;
+  font-size:22px;
+  font-weight:700;
+  letter-spacing:-0.6px;
+}
+
+/* 옵션 타이틀 */
+.options-title{
+  margin:26px 0 12px;
+  text-align:center;
+  color:var(--muted);
+  font-size:15px;
+}
+
+/* 옵션 칩 */
+.option-list{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  justify-content:center;
+  padding:0 4px;
+}
+
+.option-chip{
+  height: 36px;
+  line-height: 36px;
+  padding: 0 18px;
+  border:0;
+  cursor:pointer;
+  background:var(--chip-bg);
+  color:#333;
+  border-radius:999px;
+  font-size:16px;
+  font-weight:000;
+  box-shadow: var(--chip-shadow);
+}
+
+.option-chip .plus{
+  color:var(--muted);
+  font-weight:500;
+}
+
+.option-chip.is-active{
+  outline:2px solid rgba(51,92,76,0.18);
+}
+
+/* 안내 박스 */
+.confirm-hint{
+  height: 40px;
+  line-height: 40px;
+  padding:0 16px;
+  margin:32px 0 0;
+  width:100%;
+  border-radius:999px;
+  
+  background:var(--hint-bg);
+  color:var(--hint-text);
+  font-size:16px;
+  font-weight:500;
+  text-align:center;
+}
+
+/* =========================
+   Bottom fixed
+========================= */
+.bottom-fixed{
+  position:fixed;
+  left:0;
+  right:0;
+  bottom:0;
+  background:#fff;
+  padding:10px 24px 14px;
+}
+
+.notice{
+  margin:-10px 0 12px;
+  text-align:center;
+  color:#777;
+  font-size:16px;
+  font-weight:600;
+  padding-top:12px;
+  border-top:1px solid var(--line);
+}
+
+/* 결제 버튼 */
+.pay-btn{
+  width: 100%;
+  height: 56px;                 /* login 버튼과 동일 */
+  border-radius: 16px;          /* 동일 */
+  background: #355F4B;          /* 동일 */
+  color: #ffffff;
+
+  font-size: 18px;              /* 동일 */
+  font-weight: 600;             /* 동일 */
+  border: none;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+/* 결제 패널 */
+.pay-panel{
+  margin-top:14px;
+}
+
+/* 잔액 카드 */
+.balance-card{
+  border:2px solid rgba(51,92,76,0.55);
+  border-radius:16px;
+  padding:16px 16px;
+  display:flex;
+  align-items:center;
+  gap:16px;
+}
+
+.balance-icon{
+  width:80px;
+  height:80px;
+  display:block;
+}
+
+.balance-text{
+  display:flex;
+  flex-direction:column;
+}
+
+.balance-label{
+  font-size:15px;
+  color:#777;
+  font-weight:500;
+}
+
+.balance-amount{
+  font-size:26px;
+  letter-spacing:-0.4px;
+  line-height: 32px;
+}
+
+.charge-btn{
+  border:0;
+  background:transparent;
+  padding:0;
+  cursor:pointer;
+
+  display:inline-flex;
+  align-items:center;
+  gap:6px;              /* 충전하기 ↔ 아이콘 간격 */
+  color:var(--brand);
+  font-weight:800;
+  font-size:16px;
+}
+
+.charge-arrow{
+  width:20px;           /* 원하시면 14~18px 조절 */
+  height:20px;
+  display:block;
+}
+
+/* 결제 수단 */
+.methods{
+  list-style:none;
+  padding:14px 0 0;
+  margin:0;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+.method{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-size:19px;
+  font-weight:500;
+  color:#333;
+}
+
+/* ✅ 결제수단 체크박스 기본(비활성) */
+.check{
+  width:22px;
+  height:22px;
+  border-radius:50%;
+  border:2px solid #cfcfcf;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:14px;
+  color:transparent;          /* ✅ 비활성은 체크 숨김 */
+}
+
+/* ✅ 활성(체크 ON) */
+.method.is-on .check{
+  background: var(--brand);  /* ✅ 채움 */
+  border-color: var(--brand);
+  color:#fff;                /* ✅ 체크 표시 보임 */
+}
+
+/* =========================
+   Desktop preview helper (선택)
+========================= */
+@media (min-width: 740px){
+  body{
+    max-width:420px;
+    margin:0 auto;
+    box-shadow: 0 0 0 1px rgba(0,0,0,0.06);
+    min-height:100vh;
+  }
+  .bottom-fixed{
+    left:50%;
+    transform:translateX(-50%);
+    max-width:420px;
+  }
+}
+
+/* ===== 상품금액 Row ===== */
+.price-row{
+  margin: 32px 0 10px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.price-row .label{
+  font-size:20px;
+  font-weight:500;
+  color:#333;
+  letter-spacing:-0.2px;
+}
+
+.price-row .price{
+  font-size:24px;
+  font-weight:700;
+  color:#333;
+  letter-spacing:-0.5px;
+}
+
+/* ===== 텐페이 카드 라인 (선택) ===== */
+.tpay-row{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin: 18px 0 12px;
+}
+
+.tpay-check{
+  width:22px;
+  height:22px;
+  border-radius:50%;
+  background: var(--brand);
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:14px;
+  font-weight:900;
+}
+
+.tpay-text{
+  font-size:22px;
+  font-weight:900;
+  color:#333;
+  letter-spacing:-0.2px;
+}

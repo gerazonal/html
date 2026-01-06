@@ -189,10 +189,12 @@ function renderList(stores) {
         showToast("준비중인 매장입니다.");
       });
     } else {
-      item.addEventListener("click", () => {
-        showToast("매장 선택(가상)");
-      });
-    }
+  item.addEventListener("click", () => {
+    // ✅ 맨 위 매장 선택 → payment.html로 이동
+    window.location.href = "payment.html";
+  });
+}
+
 
     listEl.appendChild(item);
   });
