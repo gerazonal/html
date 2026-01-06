@@ -123,3 +123,18 @@ window.addEventListener("DOMContentLoaded", () => {
     closeOrderOverlay(); // ✅ 기존에 쓰던 오버레이 닫기 함수
   }
 });
+
+function closeOrderOverlay() {
+  if (!overlayWrap) return; // 가드
+
+  document.body.classList.remove("order-open");
+  overlayWrap.setAttribute("aria-hidden", "true");
+
+  setTimeout(() => {
+    if (orderFrame) orderFrame.src = "";
+  }, 300);
+
+  tabs.forEach(t => t.classList.remove("active"));
+  tabs[0].classList.add("active");
+}
+
