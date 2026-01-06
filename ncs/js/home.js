@@ -112,3 +112,14 @@ if (tabOrder) {
 
 // order.html에서 닫기 호출 가능하게 공개
 window.closeOrderOverlay = closeOrderOverlay;
+
+// ===== payment에서 돌아온 경우: 오버레이 닫기 =====
+window.addEventListener("DOMContentLoaded", () => {
+  const shouldCloseOverlay = sessionStorage.getItem("CLOSE_ORDER_OVERLAY");
+
+  if (shouldCloseOverlay === "true") {
+    sessionStorage.removeItem("CLOSE_ORDER_OVERLAY");
+
+    closeOrderOverlay(); // ✅ 기존에 쓰던 오버레이 닫기 함수
+  }
+});

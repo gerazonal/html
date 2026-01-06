@@ -62,7 +62,11 @@ methods.forEach((method) => {
   });
 });
 
-// 결제하기 버튼 → 홈으로 이동
+// 결제하기 버튼
 document.getElementById("btnPay")?.addEventListener("click", () => {
-  history.back();
+  // ✅ 홈에 알려줄 신호
+  sessionStorage.setItem("CLOSE_ORDER_OVERLAY", "true");
+
+  // 홈으로 이동
+  window.location.href = "home.html";
 });
