@@ -1,0 +1,300 @@
+    :root {
+      --bg: #ffffff;
+      --text: #111111;
+      --muted: #6b7280;
+      --line: #e5e7eb;
+      --chip: #111111;
+      --accent: #111111;
+      --card: #ffffff;
+      --shadow: 0 8px 22px rgba(0,0,0,.08);
+      --radius: 14px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      height: 100%;
+      background: var(--bg);
+      color: var(--text);
+      margin: 0;
+      font-family: "SF Pro Text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", Arial, sans-serif;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+
+    /* Mobile frame */
+    .app {
+      max-width: 420px;
+      margin: 0 auto;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      border-left: 1px solid #f3f4f6;
+      border-right: 1px solid #f3f4f6;
+    }
+
+    /* Top bar */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(255,255,255,.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 14px;
+    }
+
+    .icon-btn {
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      background: #fff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: transform .06s ease, box-shadow .12s ease;
+    }
+    .icon-btn:active { transform: scale(.98); }
+
+    .title-wrap {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .title {
+      font-weight: 800;
+      font-size: 18px;
+      line-height: 1.1;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .subtitle {
+      margin-top: 4px;
+      font-size: 13px;
+      color: var(--muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* Search bar for list */
+    .search-row {
+      padding: 0 14px 12px;
+    }
+
+    .search {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 10px 12px;
+      background: #fff;
+    }
+
+    .search input {
+      border: 0;
+      outline: none;
+      width: 100%;
+      font-size: 14px;
+    }
+
+    /* Content */
+    .content {
+      flex: 1;
+      padding: 12px 0;
+    }
+
+    /* List items */
+    .list {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .row {
+      display: flex;
+      gap: 10px;
+      padding: 14px 14px;
+      border-bottom: 1px solid var(--line);
+      background: #fff;
+    }
+
+    .row-main {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .row-title {
+      font-weight: 800;
+      font-size: 17px;
+      margin: 0 0 8px;
+    }
+
+    .kv {
+      font-size: 13px;
+      margin: 4px 0;
+      color: var(--text);
+    }
+
+    .kv strong {
+      font-weight: 800;
+    }
+
+    .row-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding-left: 6px;
+    }
+
+    /* Detail */
+    .hero {
+      position: relative;
+      padding: 10px 14px 0;
+    }
+
+    .hero-img {
+      height: 220px;
+      border-radius: var(--radius);
+      background: linear-gradient(135deg, #f3f4f6, #e5e7eb);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #6b7280;
+      font-weight: 700;
+    }
+
+    .fav-floating {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+    }
+
+    .detail-section {
+      padding: 14px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .label {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6px 10px;
+      border-radius: 8px;
+      background: var(--chip);
+      color: #fff;
+      font-weight: 800;
+      font-size: 12px;
+      width: fit-content;
+    }
+
+    .value {
+      margin-top: 6px;
+      font-size: 14px;
+      line-height: 1.55;
+      color: var(--text);
+    }
+
+    .value.muted { color: var(--muted); }
+
+    .divider {
+      height: 1px;
+      background: var(--line);
+      margin: 2px 14px 12px;
+    }
+
+    .cta {
+      padding: 0 14px 12px;
+    }
+
+    .btn {
+      width: 100%;
+      border: 0;
+      border-radius: 10px;
+      background: #111;
+      color: #fff;
+      padding: 12px 14px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .btn.secondary {
+      background: #fff;
+      color: #111;
+      border: 1px solid var(--line);
+    }
+
+    .map {
+      padding: 0 14px 16px;
+    }
+
+    #map {
+      width: 100%;
+      height: 260px;
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      overflow: hidden;
+      background: #f9fafb;
+    }
+
+    /* Bottom nav (optional demo) */
+    .bottom-nav {
+      position: sticky;
+      bottom: 0;
+      z-index: 10;
+      background: rgba(255,255,255,.92);
+      backdrop-filter: blur(10px);
+      border-top: 1px solid var(--line);
+      padding: 10px 14px;
+      display: flex;
+      gap: 10px;
+      justify-content: space-between;
+    }
+
+    .tab {
+      flex: 1;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: #fff;
+      padding: 10px;
+      text-align: center;
+      font-weight: 800;
+      font-size: 13px;
+      cursor: pointer;
+    }
+
+    .tab.active {
+      background: #111;
+      color: #fff;
+      border-color: #111;
+    }
+
+    /* Simple icons */
+    .i { width: 18px; height: 18px; display: inline-block; }
+    .i svg { width: 100%; height: 100%; display: block; }
+
+    /* Loading / empty */
+    .state {
+      padding: 14px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .icon-btn { transition: none; }
+    }
