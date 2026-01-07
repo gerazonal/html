@@ -4,6 +4,8 @@
       --muted: #6b7280;
       --line: #e5e7eb;
       --chip: #111111;
+      --accent: #111111;
+      --card: #ffffff;
       --shadow: 0 8px 22px rgba(0,0,0,.08);
       --radius: 14px;
     }
@@ -12,9 +14,11 @@
 
     html, body {
       height: 100%;
+      background: var(--bg);
+      color: var(--text);
       margin: 0;
-       font-family: "SF Pro Text", -apple-system, BlinkMacSystemFont,
-    "Segoe UI", Roboto, "Noto Sans KR", Arial, sans-serif;
+      font-family: "SF Pro Text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", Arial, sans-serif;
     }
 
     a { color: inherit; text-decoration: none; }
