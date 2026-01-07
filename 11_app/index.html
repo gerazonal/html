@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>해·달 출몰 시각 조회</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      background: #0e0e1a;
+      color: #fff;
+      font-family: -apple-system, BlinkMacSystemFont,
+                   "SF Pro Text", "Pretendard", sans-serif;
+    }
+    h1 {
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
+    label {
+      font-size: 14px;
+      margin-top: 14px;
+      display: block;
+    }
+    input, select, button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 6px;
+      border-radius: 10px;
+      border: none;
+      font-size: 14px;
+    }
+    input, select {
+      background: #1c1c2b;
+      color: #fff;
+    }
+    button {
+      background: #4f6cff;
+      color: #fff;
+      margin-top: 20px;
+      font-size: 16px;
+    }
+    .card {
+      margin-top: 20px;
+      padding: 16px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 14px;
+    }
+    .row {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 8px;
+      font-size: 15px;
+    }
+  </style>
+</head>
+<body>
+
+<h1>🌞🌙 해·달 출몰 시각 조회</h1>
+
+<!-- 날짜 선택 -->
+<label>날짜</label>
+<input type="date" id="date">
+
+<!-- 지역 선택 -->
+<label>지역</label>
+<select id="location">
+  <option value="서울">서울</option>
+  <option value="부산">부산</option>
+  <option value="대구">대구</option>
+  <option value="인천">인천</option>
+  <option value="광주">광주</option>
+  <option value="대전">대전</option>
+  <option value="울산">울산</option>
+  <option value="세종">세종</option>
+  <option value="제주">제주</option>
+</select>
+
+<button onclick="loadData()">조회하기</button>
+
+<!-- 결과 -->
+<div class="card">
+  <h3>🌞 해</h3>
+  <div class="row"><span>일출</span><span id="sunrise">-</span></div>
+  <div class="row"><span>일몰</span><span id="sunset">-</span></div>
+</div>
+
+<div class="card">
+  <h3>🌙 달</h3>
+  <div class="row"><span>월출</span><span id="moonrise">-</span></div>
+  <div class="row"><span>월몰</span><span id="moonset">-</span></div>
+</div>
+
+<script>
+/* ===============================
+   1️⃣ 본인 API 인증키 입력
+================================ */
+const API_KEY = "4d95e6487613dd61cdbf4aca7879a923109ade5a0f092666c68c1c19563c99ed";
+
+/* ===============================
+   2️⃣ 날짜 기본값: 오늘
+================================ */
+const dateInput = document.getElementById("date");
+dateInput.value = new Date().toISOString().slice(0, 10);
+
+/* ===============================
+   3️⃣ 조회 함수
+================================ */
+function loadData() {
+  const date = dateInput.value.replaceAll("-", "");
+  const location = document.getElementById("location").value;
+
+  const url =
+    "https://apis.data.go.kr/B090041/openapi/service/RiseSetInfoService/getAreaRiseSetInfo" +
+    "?ServiceKey=" + encodeURIComponent(API_KEY) +
+    "&locdate=" + date +
+    "&location=" + encodeURIComponent(location) +
+    "&_type=json";
+
+  fetch(url)
+    .then(res => res.json())
+    .then(data => {
+      const item = data.response.body.items.item[0];
+
+      document.getElementById("sunrise").innerText = item.sunrise;
+      document.getElementById("sunset").innerText = item.sunset;
+      document.getElementById("moonrise").innerText = item.moonrise;
+      document.getElementById("moonset").innerText = item.moonset;
+    })
+    .catch(err => {
+      alert("불러오기 실패\n(API 키 / 날짜 / 지역 확인)");
+      console.error(err);
+    });
+}
+</script>
+
+</body>
+</html>
