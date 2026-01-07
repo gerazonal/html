@@ -144,9 +144,10 @@
 
 
         const res = await fetch(url);
-        const data = await res.json();
+        const data = await res.text();
+        cnosole.log(text);
 
-        const items = data?.channel?.item ?? [];
+        const items = data.channel?.item ?? [];
 
         resultInfoEl.textContent = `검색 결과 ${items.length}건`;
 
@@ -162,8 +163,9 @@
           card.innerHTML = `
             <div class="word">${item.word}</div>
             ${item.pos ? `<div class="pos">${item.pos}</div>` : ''}
-            <div class="definition">${item.definition || ''}</div>
-            ${item.example ? `<div class="example">예) ${item.example}</div>` : ''}
+            <div class="definition">
+              ${item.sense?.definition || ''}
+              </div>
           `;
 
           resultEl.appendChild(card);
