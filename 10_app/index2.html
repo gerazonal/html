@@ -138,12 +138,16 @@
       try {
         // CORS 회피용 공개 프록시 예시 (운영에서는 서버 사용 권장)
         const proxy = 'https://api.allorigins.win/raw?url=';
-        const url = `${proxy}${encodeURIComponent(`https://stdict.korean.go.kr/api/search.do?key=${ADAA50EA3FE0C8296C71BDE00D6CB800}&type_search=search&req_type=json&q=${keyword}`)}`;
+        const url = `https://api.allorigins.win/raw?url=${encodeURIComponent(
+  `https://stdict.korean.go.kr/api/search.do?key=API_KEY&req_type=json&q=${keyword}`
+)}`;
+
 
         const res = await fetch(url);
         const data = await res.json();
 
-        const items = data.channel?.item || [];
+        const items = data?.channel?.item ?? [];
+
         resultInfoEl.textContent = `검색 결과 ${items.length}건`;
 
         if (!items.length) {
