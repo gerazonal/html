@@ -1,187 +1,464 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>표준국어대사전 단어 검색</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>의약품 성분별 1일 최대투여량 조회</title>
   <style>
-    :root {
-      --primary: #2563eb;
-      --bg: #f8fafc;
-      --card: #ffffff;
-      --text: #0f172a;
-      --muted: #64748b;
-      --border: #e2e8f0;
+    :root{
+      --bg:#0b0f14;
+      --card:#121826;
+      --muted:#9aa4b2;
+      --text:#e6edf3;
+      --line:#223045;
+      --accent:#5cc8ff;
+      --danger:#ff5c7a;
+      --ok:#2fe39b;
     }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
-      background: var(--bg);
-      color: var(--text);
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family: "SF Pro Text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+      background: radial-gradient(1200px 600px at 50% -10%, rgba(92,200,255,.18), transparent 60%),
+                  radial-gradient(900px 500px at 10% 0%, rgba(47,227,155,.10), transparent 55%),
+                  var(--bg);
+      color:var(--text);
     }
-    header {
-      padding: 16px 20px;
-      background: var(--card);
-      border-bottom: 1px solid var(--border);
-      font-weight: 600;
-    }
-    .container {
-      max-width: 720px;
+    .wrap{
+      max-width: 520px;
       margin: 0 auto;
-      padding: 20px;
+      padding: 18px 16px 28px;
     }
-    .search-box {
-      display: flex;
-      gap: 8px;
-      margin-bottom: 16px;
+    header{
+      padding: 10px 2px 14px;
     }
-    .search-box input {
-      flex: 1;
-      padding: 12px 14px;
-      font-size: 16px;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      outline: none;
-    }
-    .search-box button {
-      padding: 0 18px;
-      border: none;
-      border-radius: 10px;
-      background: var(--primary);
-      color: #fff;
-      font-size: 15px;
-      cursor: pointer;
-    }
-    .search-box button:disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
-    }
-    .result-info {
-      font-size: 14px;
-      color: var(--muted);
-      margin-bottom: 12px;
-    }
-    .card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 16px;
-      margin-bottom: 12px;
-    }
-    .word {
+    .title{
       font-size: 20px;
-      font-weight: 700;
-      margin-bottom: 6px;
+      line-height: 1.25;
+      font-weight: 750;
+      letter-spacing: -0.2px;
+      margin: 0 0 6px;
     }
-    .pos {
-      display: inline-block;
+    .sub{
+      margin:0;
+      color: var(--muted);
       font-size: 13px;
-      color: #1d4ed8;
-      background: #e0e7ff;
-      padding: 2px 8px;
-      border-radius: 999px;
-      margin-bottom: 8px;
+      line-height: 1.35;
     }
-    .definition {
+
+    .searchCard{
+      background: rgba(18,24,38,.92);
+      border: 1px solid rgba(255,255,255,.06);
+      border-radius: 16px;
+      padding: 14px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.25);
+      backdrop-filter: blur(10px);
+    }
+    .row{
+      display:flex;
+      gap:10px;
+      align-items:center;
+    }
+    .input{
+      flex:1;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding: 12px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(11,15,20,.55);
+    }
+    .input input{
+      width:100%;
+      border:0;
+      outline:none;
+      background:transparent;
+      color:var(--text);
       font-size: 15px;
-      line-height: 1.6;
     }
-    .example {
-      margin-top: 8px;
+    .input input::placeholder{ color: rgba(154,164,178,.75); }
+
+    .btn{
+      border:0;
+      outline:none;
+      background: linear-gradient(135deg, rgba(92,200,255,.95), rgba(47,227,155,.95));
+      color:#041018;
+      font-weight: 750;
+      padding: 12px 14px;
+      border-radius: 14px;
       font-size: 14px;
-      color: var(--muted);
+      min-width: 84px;
+      cursor:pointer;
+      box-shadow: 0 10px 22px rgba(92,200,255,.14);
     }
-    .empty {
-      text-align: center;
+    .btn:active{ transform: translateY(1px); }
+    .meta{
+      display:flex;
+      justify-content: space-between;
+      gap:10px;
+      margin-top: 10px;
       color: var(--muted);
-      padding: 40px 0;
+      font-size: 12px;
     }
-    footer {
-      text-align: center;
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(11,15,20,.35);
+      white-space: nowrap;
+    }
+    .dot{
+      width:8px; height:8px; border-radius:999px;
+      background: rgba(154,164,178,.75);
+    }
+    .dot.ok{ background: var(--ok); }
+    .dot.bad{ background: var(--danger); }
+
+    .sectionTitle{
+      margin: 18px 2px 10px;
+      font-size: 14px;
+      font-weight: 700;
+      color: rgba(230,237,243,.92);
+    }
+
+    .list{
+      display:flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .card{
+      background: rgba(18,24,38,.92);
+      border: 1px solid rgba(255,255,255,.06);
+      border-radius: 16px;
+      padding: 14px;
+      box-shadow: 0 10px 26px rgba(0,0,0,.22);
+    }
+    .kname{
+      font-size: 16px;
+      font-weight: 800;
+      margin: 0 0 2px;
+      letter-spacing: -0.2px;
+    }
+    .ename{
       font-size: 12px;
       color: var(--muted);
-      margin-top: 24px;
+      margin: 0 0 12px;
     }
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .kv{
+      border: 1px solid rgba(255,255,255,.08);
+      background: rgba(11,15,20,.35);
+      border-radius: 14px;
+      padding: 10px;
+      min-height: 52px;
+    }
+    .k{
+      font-size: 11px;
+      color: rgba(154,164,178,.9);
+      margin-bottom: 6px;
+    }
+    .v{
+      font-size: 13px;
+      font-weight: 700;
+      color: rgba(230,237,243,.95);
+      word-break: break-word;
+    }
+    .maxdose{
+      display:flex;
+      align-items: baseline;
+      gap: 8px;
+      margin-top: 10px;
+      padding-top: 12px;
+      border-top: 1px dashed rgba(255,255,255,.12);
+    }
+    .maxdose .label{
+      color: rgba(154,164,178,.95);
+      font-size: 12px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .maxdose .value{
+      font-size: 18px;
+      font-weight: 900;
+      letter-spacing: -0.2px;
+    }
+
+    .state{
+      margin-top: 12px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(11,15,20,.35);
+      color: rgba(230,237,243,.92);
+      font-size: 13px;
+      display:none;
+    }
+    .state.show{ display:block; }
+    .state.error{ border-color: rgba(255,92,122,.35); }
+    .state.loading{ border-color: rgba(92,200,255,.35); }
+    footer{
+      margin-top: 18px;
+      color: rgba(154,164,178,.85);
+      font-size: 11px;
+      line-height: 1.4;
+      padding: 0 2px;
+    }
+    a{ color: rgba(92,200,255,.95); text-decoration: none; }
   </style>
 </head>
-<body>
-  <header>표준국어대사전 검색</header>
-  <main class="container">
-    <div class="search-box">
-      <input type="text" id="keyword" placeholder="검색할 단어를 입력하세요" />
-      <button id="searchBtn">검색</button>
-    </div>
 
-    <div id="resultInfo" class="result-info"></div>
-    <div id="result"></div>
-  </main>
-  <footer>데이터 출처: 국립국어원 표준국어대사전 Open API</footer>
+<body>
+  <div class="wrap">
+    <header>
+      <h1 class="title">성분별 1일 최대투여량 조회</h1>
+      <p class="sub">성분명을 검색하면 제형/경로/단위와 1일 최대투여량 정보를 보여줍니다.</p>
+    </header>
+
+    <section class="searchCard" aria-label="검색">
+      <div class="row">
+        <div class="input" role="group" aria-label="성분명 입력">
+          <span style="opacity:.85">🔎</span>
+          <input id="q" type="text" inputmode="search" autocomplete="off" placeholder="예) 아세트아미노펜 / 정제수" />
+        </div>
+        <button id="btn" class="btn">검색</button>
+      </div>
+
+      <div class="meta">
+        <span class="pill" title="API 상태">
+          <span id="apiDot" class="dot"></span>
+          <span id="apiText">대기</span>
+        </span>
+        <span class="pill" title="결과 수">
+          <span>결과</span>
+          <strong id="count" style="color:rgba(230,237,243,.95)">0</strong>
+        </span>
+      </div>
+
+      <div id="state" class="state"></div>
+    </section>
+
+    <h2 class="sectionTitle">검색 결과</h2>
+    <section id="list" class="list" aria-label="결과 리스트"></section>
+
+    <footer>
+      ※ 본 화면은 공공데이터포털(식품의약품안전처) OpenAPI 기반 프로토타입입니다. 실제 의학적 판단/복약지도는 전문가와 상의하세요.
+    </footer>
+  </div>
 
   <script>
-    const API_URL = 'https://stdict.korean.go.kr/api/search.do'; // 실제 호출은 프록시 필요
-    const API_KEY = 'ADAA50EA3FE0C8296C71BDE00D6CB800'; // 발급받은 인증키 입력
+    // =========================
+    // 설정
+    // =========================
+    const SERVICE_KEY = "4d95e6487613dd61cdbf4aca7879a923109ade5a0f092666c68c1c19563c99ed"; // decoding key 권장
+    const USE_PROXY = false; // CORS 막히면 true로 바꾸고, 아래 프록시 서버 실행
 
-    const keywordInput = document.getElementById('keyword');
-    const searchBtn = document.getElementById('searchBtn');
-    const resultEl = document.getElementById('result');
-    const resultInfoEl = document.getElementById('resultInfo');
+    // 공식 엔드포인트: /getDayMaxDosgQyByIngdInq
+    const API_BASE = "https://apis.data.go.kr/1471000/DayMaxDosgQyByIngdService/getDayMaxDosgQyByIngdInq";
 
-    async function searchWord() {
-      const keyword = keywordInput.value.trim();
-      if (!keyword) return;
+    // 프록시를 쓸 경우(아래 server.js) 이 경로로 요청
+    const PROXY_URL = "/api/daymax";
 
-      resultEl.innerHTML = '';
-      resultInfoEl.textContent = '검색 중...';
-      searchBtn.disabled = true;
+    // =========================
+    // 엘리먼트
+    // =========================
+    const $q = document.getElementById("q");
+    const $btn = document.getElementById("btn");
+    const $list = document.getElementById("list");
+    const $state = document.getElementById("state");
+    const $count = document.getElementById("count");
+    const $apiDot = document.getElementById("apiDot");
+    const $apiText = document.getElementById("apiText");
 
-      try {
-        // CORS 회피용 공개 프록시 예시 (운영에서는 서버 사용 권장)
-        const proxy = 'https://api.allorigins.win/raw?url=';
-        const url = `https://api.allorigins.win/raw?url=${encodeURIComponent(
-  `https://stdict.korean.go.kr/api/search.do?key=API_KEY&req_type=json&q=${keyword}`
-)}`;
+    // =========================
+    // 유틸
+    // =========================
+    function setApiStatus(kind, text){
+      $apiDot.className = "dot" + (kind ? " " + kind : "");
+      $apiText.textContent = text;
+    }
 
+    function showState(kind, msg){
+      $state.className = "state show " + (kind || "");
+      $state.textContent = msg;
+    }
+    function hideState(){
+      $state.className = "state";
+      $state.textContent = "";
+    }
 
-        const res = await fetch(url);
-        const data = await res.text();
-        cnosole.log(text);
+    function esc(s){
+      return String(s ?? "").replace(/[&<>"']/g, (m)=>({
+        "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+      }[m]));
+    }
 
-        const items = data.channel?.item ?? [];
+    function fmtDose(value){
+      if (value === null || value === undefined || value === "") return "-";
+      const n = Number(value);
+      if (Number.isFinite(n)) {
+        // 소수점 5자리 데이터가 많아서 보기 좋게 trim
+        return n.toString();
+      }
+      return String(value);
+    }
 
-        resultInfoEl.textContent = `검색 결과 ${items.length}건`;
+    // =========================
+    // API 호출
+    // =========================
+    async function fetchDayMaxByIngredientName(name){
+      if (!name.trim()) throw new Error("성분명을 입력해줘.");
 
-        if (!items.length) {
-          resultEl.innerHTML = '<div class="empty">검색 결과가 없습니다.</div>';
+      if (USE_PROXY) {
+        // 프록시 서버가 serviceKey를 들고 호출
+        const url = `${PROXY_URL}?name=${encodeURIComponent(name.trim())}`;
+        const res = await fetch(url, { headers: { "Accept": "application/json" } });
+        if (!res.ok) throw new Error(`프록시 요청 실패: HTTP ${res.status}`);
+        return await res.json();
+      }
+
+      // 브라우저에서 직접 호출(환경에 따라 CORS 막힐 수 있음)
+      const params = new URLSearchParams({
+        serviceKey: SERVICE_KEY,
+        type: "json",
+        pageNo: "1",
+        numOfRows: "30",
+        DRUG_CPNT_KOR_NM: name.trim()
+      });
+
+      const url = `${API_BASE}?${params.toString()}`;
+      const res = await fetch(url, { headers: { "Accept": "application/json" } });
+      if (!res.ok) throw new Error(`API 요청 실패: HTTP ${res.status}`);
+      return await res.json();
+    }
+
+    function normalizeItems(apiJson){
+      // data.go.kr 표준 포맷을 가정: { response: { header, body: { items: { item: [...] }}}}
+      const body = apiJson?.response?.body;
+      const items = body?.items?.item ?? [];
+      const list = Array.isArray(items) ? items : [items];
+      const totalCount = Number(body?.totalCount ?? list.length ?? 0);
+      const resultCode = apiJson?.response?.header?.resultCode;
+      const resultMsg  = apiJson?.response?.header?.resultMsg;
+      return { list, totalCount, resultCode, resultMsg };
+    }
+
+    function render(list){
+      $list.innerHTML = "";
+      if (!list.length) {
+        $list.innerHTML = `
+          <div class="card" style="text-align:center;color:rgba(154,164,178,.92)">
+            검색 결과가 없어요.
+          </div>`;
+        return;
+      }
+
+      const html = list.map(item => {
+        const kor = item.DRUG_CPNT_KOR_NM ?? "";
+        const eng = item.DRUG_CPNT_ENG_NM ?? "";
+        const cpnt = item.CPNT_CD ?? "-";
+        const form = item.FOML_NM ?? "-";
+        const route = item.DOSAGE_ROUTE_CODE ?? "-";
+        const unit = item.DAY_MAX_DOSG_QY_UNIT ?? "-";
+        const max = fmtDose(item.DAY_MAX_DOSG_QY);
+
+        return `
+          <article class="card">
+            <div class="kname">${esc(kor || "(성분명 없음)")}</div>
+            <div class="ename">${esc(eng)}</div>
+
+            <div class="grid">
+              <div class="kv">
+                <div class="k">성분코드</div>
+                <div class="v">${esc(cpnt)}</div>
+              </div>
+              <div class="kv">
+                <div class="k">제형</div>
+                <div class="v">${esc(form)}</div>
+              </div>
+              <div class="kv">
+                <div class="k">투여경로</div>
+                <div class="v">${esc(route)}</div>
+              </div>
+              <div class="kv">
+                <div class="k">단위</div>
+                <div class="v">${esc(unit)}</div>
+              </div>
+            </div>
+
+            <div class="maxdose">
+              <div class="label">1일 최대투여량</div>
+              <div class="value">${esc(max)} <span style="font-size:12px;font-weight:800;color:rgba(154,164,178,.95)">${esc(unit)}</span></div>
+            </div>
+          </article>
+        `;
+      }).join("");
+
+      $list.innerHTML = html;
+    }
+
+    async function search(){
+      const name = $q.value;
+      hideState();
+      setApiStatus("", "조회중…");
+      showState("loading", "검색 중…");
+
+      $btn.disabled = true;
+      $btn.style.opacity = "0.85";
+
+      try{
+        const json = await fetchDayMaxByIngredientName(name);
+        const { list, totalCount, resultCode, resultMsg } = normalizeItems(json);
+
+        if (resultCode && resultCode !== "00") {
+          setApiStatus("bad", "오류");
+          showState("error", `${resultMsg || "API 오류"} (코드: ${resultCode})`);
+          $count.textContent = "0";
+          render([]);
           return;
         }
 
-        items.forEach(item => {
-          const card = document.createElement('div');
-          card.className = 'card';
+        setApiStatus("ok", "정상");
+        hideState();
+        $count.textContent = String(totalCount || list.length || 0);
+        render(list);
+      } catch (err){
+        console.error(err);
+        setApiStatus("bad", "실패");
+        $count.textContent = "0";
 
-          card.innerHTML = `
-            <div class="word">${item.word}</div>
-            ${item.pos ? `<div class="pos">${item.pos}</div>` : ''}
-            <div class="definition">
-              ${item.sense?.definition || ''}
-              </div>
-          `;
+        // CORS/네트워크 힌트
+        const msg = String(err?.message || err);
+        const hint = msg.includes("Failed to fetch")
+          ? "브라우저에서 CORS로 막혔을 가능성이 커요. 아래 server.js 프록시를 켠 뒤, USE_PROXY=true로 바꿔서 실행해봐."
+          : "";
 
-          resultEl.appendChild(card);
-        });
-      } catch (e) {
-        console.error(e);
-        resultInfoEl.textContent = '오류가 발생했습니다.';
-      } finally {
-        searchBtn.disabled = false;
+        showState("error", `${msg}${hint ? "  ·  " + hint : ""}`);
+        render([]);
+      } finally{
+        $btn.disabled = false;
+        $btn.style.opacity = "1";
       }
     }
 
-    searchBtn.addEventListener('click', searchWord);
-    keywordInput.addEventListener('keydown', e => {
-      if (e.key === 'Enter') searchWord();
+    // 이벤트
+    $btn.addEventListener("click", search);
+    $q.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") search();
     });
+
+    // 초기 상태
+    setApiStatus("", "대기");
   </script>
+  
 </body>
 </html>
