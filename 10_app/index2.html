@@ -119,8 +119,8 @@
   <footer>데이터 출처: 국립국어원 표준국어대사전 Open API</footer>
 
   <script>
-    const API_URL = 'https://stdict.korean.go.kr/apisearch.do'; // 실제 호출은 프록시 필요
-    const API_KEY = 'YOUR_API_KEY'; // 발급받은 인증키 입력
+    const API_URL = 'https://stdict.korean.go.kr/api/search.do'; // 실제 호출은 프록시 필요
+    const API_KEY = 'ADAA50EA3FE0C8296C71BDE00D6CB800'; // 발급받은 인증키 입력
 
     const keywordInput = document.getElementById('keyword');
     const searchBtn = document.getElementById('searchBtn');
@@ -138,7 +138,7 @@
       try {
         // CORS 회피용 공개 프록시 예시 (운영에서는 서버 사용 권장)
         const proxy = 'https://api.allorigins.win/raw?url=';
-        const url = `${proxy}${encodeURIComponent(`https://stdict.korean.go.kr/api/search.do?key=${API_KEY}&type_search=search&req_type=json&q=${keyword}`)}`;
+        const url = `${proxy}${encodeURIComponent(`https://stdict.korean.go.kr/api/search.do?key=${ADAA50EA3FE0C8296C71BDE00D6CB800}&type_search=search&req_type=json&q=${keyword}`)}`;
 
         const res = await fetch(url);
         const data = await res.json();
