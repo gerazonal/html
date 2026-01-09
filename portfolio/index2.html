@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Designer Portfolio</title>
+
+  <style>
+    /* ================== RESET ================== */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
+      color: #111;
+      background: #fff;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    /* ================== HEADER (reference style) ================== */
+    .site-header {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      background: #fff;
+      z-index: 1000;
+      border-bottom: 1px solid #eee;
+    }
+
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      height: 64px;
+      padding: 0 40px;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      font-size: 13px;
+    }
+
+    .header-center {
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+
+    .header-right {
+      justify-self: end;
+      display: flex;
+      gap: 24px;
+      font-size: 12px;
+      color: #777;
+      pointer-events: auto;
+    }
+
+    .header-right a:hover { color: #111; }
+
+    /* fixed header spacing */
+    .page { padding-top: 64px; }
+
+    /* ================== SPLASH ================== */
+    .splash {
+      height: calc(100vh - 64px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #fff;
+    }
+
+    .splash h1 {
+      font-size: 96px;
+      font-weight: 500;
+      letter-spacing: -0.05em;
+      opacity: 0;
+      transform: translateY(12px);
+      animation: splashFadeUp 1.2s ease-out forwards;
+    }
+
+    @keyframes splashFadeUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ================== ARCHIVE ================== */
+    .archive {
+      position: relative;
+      min-height: calc(100vh - 64px);
+      padding: 0;
+      scroll-margin-top: 64px;
+      display: flex;
+      align-items: center;
+    }
+
+    .archive-inner {
+      padding: 40px 80px;
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .intro { margin: 0 0 96px; }
+
+    .project-list {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      width: 100%;
+    }
+
+    .project {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    .project-left {
+      display: flex;
+      gap: 24px;
+      align-items: baseline;
+    }
+
+    .project .num { font-style: italic; color: #999; }
+    .project .title { font-weight: 400; }
+    .project .category { font-size: 14px; color: #999; font-style: italic; }
+
+    /* ================== ABOUT / CONTACT ================== */
+    .about {
+      min-height: calc(100vh - 64px); /* 다른 페이지와 동일한 높이 기준 */
+      padding: 0 80px; /* 상하 패딩 제거 */
+      scroll-margin-top: 64px;
+      display: flex;
+      align-items: center; /* 세로 중앙 기준 */
+    }
+
+    .about-inner {
+      margin-top: 40px; /* 살짝 아래로 내려 자연스럽게 중앙 배치 */
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 160px;
+      align-items: start;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .about-left .name { font-size: 36px; font-weight: 600; margin-bottom: 8px; }
+    .about-left .role { font-size: 14px; color: #999; margin-bottom: 32px; }
+    .about-left .desc { font-size: 16px; line-height: 1.8; color: #555; max-width: 520px; }
+
+    .about-right { display: flex; flex-direction: column; gap: 64px; }
+
+    .about-block h4 { font-size: 18px; font-weight: 500; margin-bottom: 16px; }
+    .about-block ul { list-style: none; font-size: 14px; }
+
+    .about-block li {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px solid #eee;
+    }
+    .about-block li span { color: #999; }
+
+    .about-block .tools { display: flex; flex-direction: column; gap: 16px; }
+    .about-block .tools li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: none;
+      padding: 0;
+    }
+
+    .level { display: flex; gap: 8px; }
+    .level i {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #ddd;
+      display: inline-block;
+    }
+    .level i.on { background: #ff4d00; }
+
+    /* ================== PAGE INDICATOR ================== */
+    .page-indicator {
+      position: fixed;
+      right: 32px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      z-index: 1200;
+    }
+
+    .page-indicator .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #ccc;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.25s ease, background 0.25s ease;
+      padding: 0;
+    }
+
+    .page-indicator .dot.active {
+      background: #111;
+      transform: scale(1.4);
+    }
+
+    /* ================== RESPONSIVE ================== */
+    @media (max-width: 900px) {
+      .header-inner { padding: 0 24px; }
+      .archive-inner { padding: 24px 24px; }
+      .about { padding: 180px 24px 160px; }
+      .about-inner { grid-template-columns: 1fr; gap: 64px; }
+      .splash h1 { font-size: 64px; }
+      .header-right { gap: 16px; }
+      .page-indicator { right: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="header-left"></div>
+      <div class="header-center">Jang Yujin</div>
+      <nav class="header-right" aria-label="Primary">
+        <a href="#archive">Works</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- PAGE INDICATOR -->
+  <nav class="page-indicator" aria-label="Page indicator">
+    <button type="button" data-target="top" class="dot active" aria-label="Go to Portfolio"></button>
+    <button type="button" data-target="archive" class="dot" aria-label="Go to Works"></button>
+    <button type="button" data-target="contact" class="dot" aria-label="Go to Contact"></button>
+  </nav>
+
+  <main class="page">
+    <!-- SPLASH -->
+    <section class="splash" id="top" aria-label="Portfolio splash">
+      <h1>Portfolio</h1>
+    </section>
+
+    <!-- ARCHIVE -->
+    <section class="archive" id="archive" aria-label="Archive">
+      <div class="archive-inner">
+        <div class="intro">
+          <h2 style="font-size:40px; line-height:1.3; font-weight:500;">안녕하세요,<br>디자이너 장유진입니다.</h2>
+        </div>
+
+        <div class="project-list">
+          <a class="project" href="project-01.html">
+            <div class="project-left">
+              <div class="num">01</div>
+              <div class="title">Project 01</div>
+            </div>
+            <div class="category">Branding ✳</div>
+          </a>
+
+          <a class="project" href="project-02.html">
+            <div class="project-left">
+              <div class="num">02</div>
+              <div class="title">Project 02</div>
+            </div>
+            <div class="category">Branding ✳</div>
+          </a>
+
+          <a class="project" href="project-03.html">
+            <div class="project-left">
+              <div class="num">03</div>
+              <div class="title">Project 03</div>
+            </div>
+            <div class="category">Editorial Design ✳</div>
+          </a>
+
+          <a class="project" href="project-04.html">
+            <div class="project-left">
+              <div class="num">04</div>
+              <div class="title">Project 04</div>
+            </div>
+            <div class="category">Editorial Design ✳</div>
+          </a>
+
+          <a class="project" href="project-05.html">
+            <div class="project-left">
+              <div class="num">05</div>
+              <div class="title">Project 05</div>
+            </div>
+            <div class="category">Type Design ✳</div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT (ABOUT/RESUME) -->
+    <section class="about" id="contact" aria-label="Contact">
+      <div class="about-inner">
+        <div class="about-left">
+          <h3 class="name">장유진</h3>
+          <p class="role">웹 · 앱 디자이너</p>
+          <p class="desc">
+            단순함을 명확함으로 만드는 디자이너 장유진입니다.<br>
+          </p>
+        </div>
+
+        <div class="about-right">
+          <div class="about-block">
+            <h4>Profile</h4>
+            <ul>
+              <li>Contact<span>010-XXXX-XXXX</span></li>
+              <li>E-mail<span>your@email.com</span></li>
+              <li>Instagram<span>@your_id</span></li>
+            </ul>
+          </div>
+
+          <div class="about-block">
+            <h4>Education</h4>
+            <ul>
+              <li>2016<span>XX고등학교 졸업</span></li>
+              <li>2018<span>XX대학교 XX과 졸업</span></li>
+            </ul>
+          </div>
+
+          <div class="about-block">
+            <h4>Tools</h4>
+            <ul class="tools">
+              <li>
+                <span>Photoshop</span>
+                <div class="level"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div>
+              </li>
+              <li>
+                <span>Illustrator</span>
+                <div class="level"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div>
+              </li>
+              <li>
+                <span>Figma</span>
+                <div class="level"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></div>
+              </li>
+              <li>
+                <span>HTML / CSS</span>
+                <div class="level"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // ==============================
+    // Scene-like scroll (connected & smooth)
+    // - 1(Splash) ↔ 2(Archive) ↔ 3(About)
+    // - requestAnimationFrame + easing으로 "툭" 끊김 제거
+    // - wheel 입력은 누적으로 "살짝" 기준 통일
+    // ==============================
+
+    const splashEl = document.querySelector('.splash');
+    const archiveEl = document.querySelector('#archive');
+    const aboutEl = document.querySelector('#contact');
+
+    const dots = Array.from(document.querySelectorAll('.page-indicator .dot'));
+
+    let isAnimating = false;
+    let wheelAccum = 0;
+    let wheelResetTimer = null;
+
+    function lock(ms) {
+      isAnimating = true;
+      window.setTimeout(() => { isAnimating = false; }, ms);
+    }
+
+    function easeInOutCubic(t) {
+      return t < 0.5
+        ? 4 * t * t * t
+        : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    }
+
+    function smoothScrollTo(targetY, duration) {
+      const startY = window.scrollY;
+      const diff = targetY - startY;
+      const startTime = performance.now();
+
+      function frame(now) {
+        const t = Math.min((now - startTime) / duration, 1);
+        const eased = easeInOutCubic(t);
+        window.scrollTo(0, startY + diff * eased);
+        if (t < 1) requestAnimationFrame(frame);
+      }
+
+      requestAnimationFrame(frame);
+    }
+
+    function updateIndicator(active) {
+      dots.forEach(dot => {
+        dot.classList.toggle('active', dot.dataset.target === active);
+      });
+    }
+
+    function goToTop() {
+      lock(900);
+      smoothScrollTo(0, 850);
+      updateIndicator('top');
+    }
+
+    function goToArchive() {
+      if (!archiveEl) return;
+      const y = archiveEl.getBoundingClientRect().top + window.pageYOffset;
+      lock(1000);
+      smoothScrollTo(y, 950);
+      updateIndicator('archive');
+    }
+
+    function goToAbout() {
+      if (!aboutEl) return;
+      const y = aboutEl.getBoundingClientRect().top + window.pageYOffset;
+      lock(1000);
+      smoothScrollTo(y, 950);
+      updateIndicator('contact');
+    }
+
+    function resetWheelAccumSoon() {
+      if (wheelResetTimer) window.clearTimeout(wheelResetTimer);
+      wheelResetTimer = window.setTimeout(() => { wheelAccum = 0; }, 120);
+    }
+
+    // Indicator click → same smooth transition
+    dots.forEach(dot => {
+      dot.addEventListener('click', () => {
+        const target = dot.dataset.target;
+        if (target === 'top') goToTop();
+        if (target === 'archive') goToArchive();
+        if (target === 'contact') goToAbout();
+      });
+    });
+
+    // Keep indicator in sync when user scrolls manually
+    let ticking = false;
+    function syncIndicatorByScroll() {
+      if (!splashEl || !archiveEl || !aboutEl) return;
+
+      const y = window.scrollY;
+      const archiveTop = archiveEl.getBoundingClientRect().top + window.pageYOffset;
+      const aboutTop = aboutEl.getBoundingClientRect().top + window.pageYOffset;
+
+      // section boundaries (simple & stable)
+      const midLine = y + (window.innerHeight * 0.5);
+      if (midLine < archiveTop) updateIndicator('top');
+      else if (midLine < aboutTop) updateIndicator('archive');
+      else updateIndicator('contact');
+    }
+
+    window.addEventListener('scroll', () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        ticking = false;
+        if (!isAnimating) syncIndicatorByScroll();
+      });
+    }, { passive: true });
+
+    // Wheel snap logic
+    window.addEventListener('wheel', (e) => {
+      if (!splashEl || !archiveEl || !aboutEl) return;
+      if (isAnimating) {
+        e.preventDefault();
+        return;
+      }
+      if (e.ctrlKey) return; // 트랙패드 줌 제스처 등 예외
+
+      const y = window.scrollY;
+      const splashHeight = splashEl.offsetHeight;
+
+      const archiveTop = archiveEl.getBoundingClientRect().top + window.pageYOffset;
+      const archiveBottom = archiveTop + archiveEl.offsetHeight;
+      const aboutTop = aboutEl.getBoundingClientRect().top + window.pageYOffset;
+
+      const inArchive = y >= archiveTop - 1 && y <= archiveBottom + 1;
+
+      // Archive 영역에서는 기본 스크롤 자체를 차단 (잔 스크롤 제거)
+      if (inArchive) e.preventDefault();
+
+      wheelAccum += e.deltaY * 1.6; // 감도 증가
+      resetWheelAccumSoon();
+
+      // 1) Splash → Archive
+      if (!inArchive && y < splashHeight - 24 && wheelAccum > 40) {
+        wheelAccum = 0;
+        goToArchive();
+        return;
+      }
+
+      // 2) Archive → Splash
+      const nearArchiveTop = Math.abs(y - archiveTop) < 320;
+      if (nearArchiveTop && wheelAccum < -30) {
+        wheelAccum = 0;
+        goToTop();
+        return;
+      }
+
+      // 3) Archive → About (Archive 어디서든 아래로)
+      if (inArchive && wheelAccum > 25) {
+        wheelAccum = 0;
+        goToAbout();
+        return;
+      }
+
+      // 4) About → Archive (About 상단 근처에서 위로)
+      const nearAboutTop = Math.abs(y - aboutTop) < 280;
+      if (nearAboutTop && wheelAccum < -40) {
+        wheelAccum = 0;
+        goToArchive();
+      }
+    }, { passive: false });
+
+    // Initial state
+    syncIndicatorByScroll();
+
+    // ------------------------------
+    // Minimal tests (console)
+    // ------------------------------
+    (function runTests() {
+      console.assert(!!splashEl, '[TEST] splash exists');
+      console.assert(!!archiveEl, '[TEST] archive exists');
+      console.assert(!!aboutEl, '[TEST] about/contact exists');
+      console.assert(dots.length === 3, '[TEST] indicator dots = 3');
+
+      console.assert(typeof smoothScrollTo === 'function', '[TEST] smoothScrollTo is function');
+      console.assert(typeof updateIndicator === 'function', '[TEST] updateIndicator is function');
+      console.assert(typeof goToArchive === 'function', '[TEST] goToArchive is function');
+      console.assert(typeof goToTop === 'function', '[TEST] goToTop is function');
+      console.assert(typeof goToAbout === 'function', '[TEST] goToAbout is function');
+
+      console.assert(easeInOutCubic(0) === 0, '[TEST] easing at 0');
+      console.assert(Math.abs(easeInOutCubic(1) - 1) < 1e-9, '[TEST] easing at 1');
+
+      // updateIndicator should activate exactly one dot
+      updateIndicator('archive');
+      const activeCount = dots.filter(d => d.classList.contains('active')).length;
+      console.assert(activeCount === 1, '[TEST] only one active dot');
+
+      // lock sanity
+      isAnimating = false;
+      lock(10);
+      console.assert(isAnimating === true, '[TEST] lock sets animating');
+      window.setTimeout(() => {
+        console.assert(isAnimating === false, '[TEST] lock releases animating');
+      }, 25);
+
+      // wheel accum reset sanity
+      wheelAccum = 10;
+      resetWheelAccumSoon();
+      window.setTimeout(() => {
+        console.assert(wheelAccum === 0, '[TEST] wheelAccum resets');
+      }, 160);
+
+      // restore initial indicator
+      syncIndicatorByScroll();
+    })();
+  </script>
+</body>
+</html>
