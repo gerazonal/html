@@ -8,7 +8,11 @@
   box-sizing: border-box;
   font-family: "SF Pro Text", -apple-system, BlinkMacSystemFont, sans-serif;
 }
+
 a{text-decoration: none;}
+
+button{border: none;
+background: none;}
 
 body {
   margin: 0;

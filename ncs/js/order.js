@@ -56,7 +56,16 @@ function closeOverlayToHome() {
     window.parent.closeOrderOverlay();
   }
 }
-btnBack.addEventListener("click", closeOverlayToHome);
+btnBack.addEventListener("click", () => {
+  // 1️⃣ 오버레이(iframe)에서 열렸을 경우
+  if (window.parent && window.parent !== window && window.parent.closeOrderOverlay) {
+    window.parent.closeOrderOverlay();
+    return;
+  }
+
+  // 2️⃣ 독립 페이지로 열렸을 경우
+  window.location.href = "home.html";
+});
 
 btnSearch.addEventListener("click", () => {
   showToast("검색 UI는 다음 단계에서 연결합니다.");
