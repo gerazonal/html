@@ -259,7 +259,7 @@ body {
 
 /* ===== 활성화 탭 ===== */
 .tab-bar .tab.active {
-  color: #335c4c;
+  color: #333;
   opacity: 1;                   /* ✅ 선택 시 100% */
 }
 
