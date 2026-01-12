@@ -16,7 +16,7 @@
     }
     a { color: inherit; text-decoration: none; }
 
-    /* ================== HEADER (reference style) ================== */
+    /* ================== HEADER ================== */
     .site-header {
       position: fixed;
       top: 0; left: 0;
@@ -27,19 +27,21 @@
     }
 
     .header-inner {
-      max-width: 1200px;
+      max-width: 1600px; /* 1920 기준 좌우 마진 160px */
       margin: 0 auto;
       height: 64px;
-      padding: 0 40px;
+      padding: 0 32px;
       display: grid;
-      grid-template-columns: 1fr auto 1fr;
+      grid-template-columns: auto 1fr auto;
       align-items: center;
       font-size: 13px;
     }
 
-    .header-center {
+    .header-left.header-name {
       font-weight: 600;
       letter-spacing: 0.02em;
+      font-size: 13px;
+      white-space: nowrap;
     }
 
     .header-right {
@@ -66,7 +68,7 @@
     }
 
     .splash h1 {
-      font-size: 96px;
+      font-size: 120px;
       font-weight: 500;
       letter-spacing: -0.05em;
       opacity: 0;
@@ -79,74 +81,46 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* ================== ARCHIVE ================== */
-    .archive {
-      position: relative;
+    /* ================== ABOUT (2nd) ================== */
+    .about {
       min-height: calc(100vh - 64px);
       padding: 0;
       scroll-margin-top: 64px;
       display: flex;
-      align-items: center;
-    }
-
-    .archive-inner {
-      padding: 40px 80px;
-      max-width: 1200px;
-      margin: 0 auto;
-      width: 100%;
-    }
-
-    .intro { margin: 0 0 96px; }
-
-    .project-list {
-      display: flex;
-      flex-direction: column;
-      gap: 32px;
-      width: 100%;
-    }
-
-    .project {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      font-size: 20px;
-      cursor: pointer;
-    }
-
-    .project-left {
-      display: flex;
-      gap: 24px;
-      align-items: baseline;
-    }
-
-    .project .num { font-style: italic; color: #999; }
-    .project .title { font-weight: 400; }
-    .project .category { font-size: 14px; color: #999; font-style: italic; }
-
-    /* ================== ABOUT / CONTACT ================== */
-    .about {
-      min-height: calc(100vh - 64px); /* 다른 페이지와 동일한 높이 기준 */
-      padding: 0 80px; /* 상하 패딩 제거 */
-      scroll-margin-top: 64px;
-      display: flex;
-      align-items: center; /* 세로 중앙 기준 */
+      align-items: flex-start; /* 전체 콘텐츠를 위 기준으로 */
+      padding-top: 80px; /* 이름 / profile / education 전부 위로 끌어올림 */
     }
 
     .about-inner {
-      margin-top: 40px; /* 살짝 아래로 내려 자연스럽게 중앙 배치 */
+      width: 100%;
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 0 0;
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 160px;
       align-items: start;
-      max-width: 1200px;
-      margin: 0 auto;
+      margin-top: 0; /* 보정값 제거 */
     }
 
-    .about-left .name { font-size: 36px; font-weight: 600; margin-bottom: 8px; }
-    .about-left .role { font-size: 14px; color: #999; margin-bottom: 32px; }
+    .about-title {
+      grid-column: 1 / -1;
+      margin-bottom: 40px; /* 타이틀 아래 콘텐츠(이름/프로필)만 위로 끌어올림 */
+    }
+
+    .about-left { margin-top: -16px; }
+
+    .about-left .name { font-size: 44px; font-weight: 600; margin-bottom: 8px; }
+    .about-left .role { font-size: 14px; color: #999; margin-bottom: 24px; }
     .about-left .desc { font-size: 16px; line-height: 1.8; color: #555; max-width: 520px; }
 
-    .about-right { display: flex; flex-direction: column; gap: 64px; }
+    .about-right {
+      display: flex;
+      flex-direction: column;
+      gap: 64px;
+      align-self: flex-start;
+      margin-top: -8px; /* Profile/Education 블록만 위로 이동 */
+    }
 
     .about-block h4 { font-size: 18px; font-weight: 500; margin-bottom: 16px; }
     .about-block ul { list-style: none; font-size: 14px; }
@@ -159,24 +133,136 @@
     }
     .about-block li span { color: #999; }
 
-    .about-block .tools { display: flex; flex-direction: column; gap: 16px; }
-    .about-block .tools li {
+    /* ================== TOOLS (3rd) ================== */
+    .tools {
+      min-height: calc(100vh - 64px);
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      border-bottom: none;
-      padding: 0;
     }
 
-    .level { display: flex; gap: 8px; }
-    .level i {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: #ddd;
-      display: inline-block;
+    .tools-inner {
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 0 0;
+      width: 100%;
     }
-    .level i.on { background: #ff4d00; }
+
+    .tools-title {
+      font-size: 40px;
+      font-weight: 500;
+      margin-bottom: 80px;
+    }
+
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+    }
+
+    .tool-card {
+      border: 1px solid #eee;
+      padding: 40px;
+      min-height: 200px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .tool-card h3 {
+      font-size: 20px;
+      font-weight: 500;
+    }
+
+    .tool-card p {
+      font-size: 14px;
+      color: #777;
+      line-height: 1.6;
+    }
+
+    /* ================== ARCHIVE (4th) ================== */
+    .archive {
+      position: relative;
+      min-height: calc(100vh - 64px);
+      padding: 0;
+      scroll-margin-top: 64px;
+      display: flex;
+      align-items: center;
+    }
+
+    .archive-inner {
+      padding: 40px 0;
+      max-width: 1600px; /* 1920 기준 좌우 마진 160px */
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .intro { margin: 0 0 80px; /* 섹션 타이틀-콘텐츠 간격 통일 */ }
+
+    .section-title {
+      font-size: 40px;
+      font-weight: 500;
+      margin-bottom: 80px;
+    }
+
+    /* ================== WORKS GRID ================== */
+    .works-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+    }
+
+    .work-card {
+      display: block;
+      border: 1px solid #eee;
+      padding: 24px;
+      transition: border-color .2s ease, transform .2s ease;
+    }
+
+    .work-card:hover {
+      border-color: #111;
+      transform: translateY(-4px);
+    }
+
+    .work-thumb {
+      width: 100%;
+      height: 220px;
+      background: #f3f3f3;
+      margin-bottom: 16px;
+    }
+
+    .work-info h3 {
+      font-size: 18px;
+      font-weight: 500;
+      margin-bottom: 6px;
+    }
+
+    .work-info p {
+      font-size: 13px;
+      color: #999;
+    }
+
+    .work-hidden { display: none; }
+
+    .works-more {
+      display: flex;
+      justify-content: center;
+      margin-top: 56px;
+    }
+
+    .more-btn {
+      border: 1px solid #eee;
+      background: #fff;
+      padding: 14px 22px;
+      font-size: 12px;
+      color: #777;
+      cursor: pointer;
+      transition: border-color .2s ease, color .2s ease;
+    }
+
+    .more-btn:hover {
+      border-color: #111;
+      color: #111;
+    }
 
     /* ================== PAGE INDICATOR ================== */
     .page-indicator {
@@ -206,14 +292,68 @@
       transform: scale(1.4);
     }
 
+    /* ================== CONTACT ================== */
+    .contact {
+      min-height: calc(100vh - 64px);
+      display: flex;
+      align-items: center;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 160px;
+    }
+
+    .contact-info p {
+      font-size: 16px;
+      line-height: 1.8;
+      margin-bottom: 24px;
+      color: #555;
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .form-field label {
+      font-size: 12px;
+      color: #999;
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    .form-field input,
+    .form-field textarea {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid #eee;
+      font-size: 14px;
+      font-family: inherit;
+    }
+
     /* ================== RESPONSIVE ================== */
     @media (max-width: 900px) {
       .header-inner { padding: 0 24px; }
-      .archive-inner { padding: 24px 24px; }
-      .about { padding: 180px 24px 160px; }
-      .about-inner { grid-template-columns: 1fr; gap: 64px; }
-      .splash h1 { font-size: 64px; }
       .header-right { gap: 16px; }
+
+      .splash h1 { font-size: 64px; }
+
+      .about-inner {
+        grid-template-columns: 1fr;
+        gap: 64px;
+        padding: 0 24px;
+        margin-top: 24px;
+      }
+
+      .tools-inner { padding: 0 24px; }
+      .tools-grid { grid-template-columns: 1fr; }
+
+      .archive-inner { padding: 24px 24px; }
+      .works-grid { grid-template-columns: 1fr; }
+
       .page-indicator { right: 16px; }
     }
   </style>
@@ -222,87 +362,42 @@
 
   <header class="site-header">
     <div class="header-inner">
-      <div class="header-left"></div>
-      <div class="header-center">Jang Yujin</div>
-      <nav class="header-right" aria-label="Primary">
+      <div class="header-left header-name">Jang yujin</div>
+      <div></div>
+      <nav class="header-right">
+        <a href="#contact">About</a>
+        <a href="#tools">Tools</a>
         <a href="#archive">Works</a>
-        <a href="#contact">Contact</a>
+        <a href="#contact-page">Contact</a>
       </nav>
     </div>
   </header>
 
-  <!-- PAGE INDICATOR -->
-  <nav class="page-indicator" aria-label="Page indicator">
-    <button type="button" data-target="top" class="dot active" aria-label="Go to Portfolio"></button>
-    <button type="button" data-target="archive" class="dot" aria-label="Go to Works"></button>
-    <button type="button" data-target="contact" class="dot" aria-label="Go to Contact"></button>
+  <nav class="page-indicator">
+    <button class="dot active" data-target="top"></button>
+    <button class="dot" data-target="contact"></button>
+    <button class="dot" data-target="tools"></button>
+    <button class="dot" data-target="archive"></button>
+    <button class="dot" data-target="contact-page"></button>
   </nav>
 
   <main class="page">
     <!-- SPLASH -->
-    <section class="splash" id="top" aria-label="Portfolio splash">
+    <section class="splash" id="top">
       <h1>Portfolio</h1>
     </section>
 
-    <!-- ARCHIVE -->
-    <section class="archive" id="archive" aria-label="Archive">
-      <div class="archive-inner">
-        <div class="intro">
-          <h2 style="font-size:40px; line-height:1.3; font-weight:500;">안녕하세요,<br>디자이너 장유진입니다.</h2>
-        </div>
-
-        <div class="project-list">
-          <a class="project" href="project-01.html">
-            <div class="project-left">
-              <div class="num">01</div>
-              <div class="title">Project 01</div>
-            </div>
-            <div class="category">Branding ✳</div>
-          </a>
-
-          <a class="project" href="project-02.html">
-            <div class="project-left">
-              <div class="num">02</div>
-              <div class="title">Project 02</div>
-            </div>
-            <div class="category">Branding ✳</div>
-          </a>
-
-          <a class="project" href="project-03.html">
-            <div class="project-left">
-              <div class="num">03</div>
-              <div class="title">Project 03</div>
-            </div>
-            <div class="category">Editorial Design ✳</div>
-          </a>
-
-          <a class="project" href="project-04.html">
-            <div class="project-left">
-              <div class="num">04</div>
-              <div class="title">Project 04</div>
-            </div>
-            <div class="category">Editorial Design ✳</div>
-          </a>
-
-          <a class="project" href="project-05.html">
-            <div class="project-left">
-              <div class="num">05</div>
-              <div class="title">Project 05</div>
-            </div>
-            <div class="category">Type Design ✳</div>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- CONTACT (ABOUT/RESUME) -->
-    <section class="about" id="contact" aria-label="Contact">
+    <!-- ABOUT -->
+    <section class="about" id="contact">
       <div class="about-inner">
+        <h2 class="section-title about-title">About</h2>
+
         <div class="about-left">
           <h3 class="name">장유진</h3>
           <p class="role">웹 · 앱 디자이너</p>
           <p class="desc">
-            단순함을 명확함으로 만드는 디자이너 장유진입니다.<br>
+            사용자 경험을 중심으로 구조와 흐름을 설계하는 디자이너입니다.<br />
+            브랜드와 서비스의 맥락을 시각적으로 정리하는 일을 합니다.
           </p>
         </div>
 
@@ -310,41 +405,88 @@
           <div class="about-block">
             <h4>Profile</h4>
             <ul>
-              <li>Contact<span>010-XXXX-XXXX</span></li>
-              <li>E-mail<span>your@email.com</span></li>
-              <li>Instagram<span>@your_id</span></li>
+              <li>Contact <span>010-0000-0000</span></li>
+              <li>E-mail <span>your@email.com</span></li>
+              <li>Instagram <span>@your_id</span></li>
             </ul>
           </div>
 
           <div class="about-block">
             <h4>Education</h4>
             <ul>
-              <li>2016<span>XX고등학교 졸업</span></li>
-              <li>2018<span>XX대학교 XX과 졸업</span></li>
+              <li>2016 <span>XX고등학교 졸업</span></li>
+              <li>2018 <span>XX대학교 시각디자인과</span></li>
             </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TOOLS -->
+    <section class="tools" id="tools">
+      <div class="tools-inner">
+        <h2 class="section-title">Tools</h2>
+        <div class="tools-grid">
+          <div class="tool-card"><h3>Figma</h3><p>UI · UX / Prototyping</p></div>
+          <div class="tool-card"><h3>Photoshop</h3><p>Image Editing</p></div>
+          <div class="tool-card"><h3>Illustrator</h3><p>Graphic Design</p></div>
+          <div class="tool-card"><h3>HTML / CSS</h3><p>Web Structure</p></div>
+          <div class="tool-card"><h3>After Effects</h3><p>Motion</p></div>
+          <div class="tool-card"><h3>Notion</h3><p>Documentation</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WORKS -->
+    <section class="archive" id="archive">
+      <div class="archive-inner">
+        <h2 class="section-title">Works</h2>
+        <div class="works-grid" id="worksGrid">
+          <a class="work-card" href="#"><div class="work-thumb"></div><div class="work-info"><h3>Project 01</h3><p>Branding</p></div></a>
+          <a class="work-card" href="#"><div class="work-thumb"></div><div class="work-info"><h3>Project 02</h3><p>UI / UX</p></div></a>
+          <a class="work-card" href="#"><div class="work-thumb"></div><div class="work-info"><h3>Project 03</h3><p>Editorial</p></div></a>
+          <a class="work-card" href="#"><div class="work-thumb"></div><div class="work-info"><h3>Project 04</h3><p>Web / App</p></div></a>
+          <a class="work-card" href="#"><div class="work-thumb"></div><div class="work-info"><h3>Project 05</h3><p>Branding</p></div></a>
+          <a class="work-card" href="#"><div class="work-thumb"></div><div class="work-info"><h3>Project 06</h3><p>UI / UX</p></div></a>
+
+          <!-- 더보기로 펼쳐질 추가 카드(초기 숨김) -->
+          <a class="work-card work-hidden" href="#"><div class="work-thumb"></div><div class="work-info"><h3>Project 07</h3><p>Editorial</p></div></a>
+          <a class="work-card work-hidden" href="#"><div class="work-thumb"></div><div class="work-info"><h3>Project 08</h3><p>Web / App</p></div></a>
+          <a class="work-card work-hidden" href="#"><div class="work-thumb"></div><div class="work-info"><h3>Project 09</h3><p>Branding</p></div></a>
+        </div>
+
+        <div class="works-more">
+          <button type="button" class="more-btn" id="moreBtn">+ more</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT PAGE -->
+    <section class="contact" id="contact-page">
+      <div class="archive-inner">
+        <h2 class="section-title">Contact</h2>
+
+        <div class="contact-grid">
+          <div class="contact-info">
+            <p><strong>E-mail</strong><br/>your@email.com</p>
+            <p><strong>Phone</strong><br/>010-0000-0000</p>
           </div>
 
-          <div class="about-block">
-            <h4>Tools</h4>
-            <ul class="tools">
-              <li>
-                <span>Photoshop</span>
-                <div class="level"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div>
-              </li>
-              <li>
-                <span>Illustrator</span>
-                <div class="level"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div>
-              </li>
-              <li>
-                <span>Figma</span>
-                <div class="level"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></div>
-              </li>
-              <li>
-                <span>HTML / CSS</span>
-                <div class="level"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></div>
-              </li>
-            </ul>
-          </div>
+          <form class="contact-form">
+            <div class="form-field">
+              <label>Name</label>
+              <input type="text" placeholder="Your name" />
+            </div>
+            <div class="form-field">
+              <label>E-mail</label>
+              <input type="email" placeholder="Your email" />
+            </div>
+            <div class="form-field">
+              <label>Message</label>
+              <textarea rows="5" placeholder="Your message"></textarea>
+            </div>
+            <button type="submit" class="more-btn">Send</button>
+          </form>
         </div>
       </div>
     </section>
@@ -352,214 +494,54 @@
 
   <script>
     // ==============================
-    // Scene-like scroll (connected & smooth)
-    // - 1(Splash) ↔ 2(Archive) ↔ 3(About)
-    // - requestAnimationFrame + easing으로 "툭" 끊김 제거
-    // - wheel 입력은 누적으로 "살짝" 기준 통일
+    // Page indicator click → smooth scroll
+    // (레이아웃 작업 중이라 최소 기능만 유지)
     // ==============================
-
-    const splashEl = document.querySelector('.splash');
-    const archiveEl = document.querySelector('#archive');
-    const aboutEl = document.querySelector('#contact');
-
     const dots = Array.from(document.querySelectorAll('.page-indicator .dot'));
 
-    let isAnimating = false;
-    let wheelAccum = 0;
-    let wheelResetTimer = null;
-
-    function lock(ms) {
-      isAnimating = true;
-      window.setTimeout(() => { isAnimating = false; }, ms);
-    }
-
-    function easeInOutCubic(t) {
-      return t < 0.5
-        ? 4 * t * t * t
-        : 1 - Math.pow(-2 * t + 2, 3) / 2;
-    }
-
-    function smoothScrollTo(targetY, duration) {
-      const startY = window.scrollY;
-      const diff = targetY - startY;
-      const startTime = performance.now();
-
-      function frame(now) {
-        const t = Math.min((now - startTime) / duration, 1);
-        const eased = easeInOutCubic(t);
-        window.scrollTo(0, startY + diff * eased);
-        if (t < 1) requestAnimationFrame(frame);
-      }
-
-      requestAnimationFrame(frame);
+    function smoothScrollTo(y) {
+      window.scrollTo({ top: y, behavior: 'smooth' });
     }
 
     function updateIndicator(active) {
-      dots.forEach(dot => {
-        dot.classList.toggle('active', dot.dataset.target === active);
-      });
+      dots.forEach(dot => dot.classList.toggle('active', dot.dataset.target === active));
     }
 
-    function goToTop() {
-      lock(900);
-      smoothScrollTo(0, 850);
-      updateIndicator('top');
+    function goToId(id) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const y = el.getBoundingClientRect().top + window.pageYOffset - 64;
+      smoothScrollTo(Math.max(0, y));
+      updateIndicator(id);
     }
 
-    function goToArchive() {
-      if (!archiveEl) return;
-      const y = archiveEl.getBoundingClientRect().top + window.pageYOffset;
-      lock(1000);
-      smoothScrollTo(y, 950);
-      updateIndicator('archive');
-    }
-
-    function goToAbout() {
-      if (!aboutEl) return;
-      const y = aboutEl.getBoundingClientRect().top + window.pageYOffset;
-      lock(1000);
-      smoothScrollTo(y, 950);
-      updateIndicator('contact');
-    }
-
-    function resetWheelAccumSoon() {
-      if (wheelResetTimer) window.clearTimeout(wheelResetTimer);
-      wheelResetTimer = window.setTimeout(() => { wheelAccum = 0; }, 120);
-    }
-
-    // Indicator click → same smooth transition
     dots.forEach(dot => {
-      dot.addEventListener('click', () => {
-        const target = dot.dataset.target;
-        if (target === 'top') goToTop();
-        if (target === 'archive') goToArchive();
-        if (target === 'contact') goToAbout();
-      });
+      dot.addEventListener('click', () => goToId(dot.dataset.target));
     });
 
-    // Keep indicator in sync when user scrolls manually
-    let ticking = false;
-    function syncIndicatorByScroll() {
-      if (!splashEl || !archiveEl || !aboutEl) return;
-
-      const y = window.scrollY;
-      const archiveTop = archiveEl.getBoundingClientRect().top + window.pageYOffset;
-      const aboutTop = aboutEl.getBoundingClientRect().top + window.pageYOffset;
-
-      // section boundaries (simple & stable)
-      const midLine = y + (window.innerHeight * 0.5);
-      if (midLine < archiveTop) updateIndicator('top');
-      else if (midLine < aboutTop) updateIndicator('archive');
-      else updateIndicator('contact');
-    }
-
     window.addEventListener('scroll', () => {
-      if (ticking) return;
-      ticking = true;
-      requestAnimationFrame(() => {
-        ticking = false;
-        if (!isAnimating) syncIndicatorByScroll();
-      });
+      const y = window.scrollY + window.innerHeight * 0.5;
+      const aboutTop = document.getElementById('contact').offsetTop;
+      const toolsTop = document.getElementById('tools').offsetTop;
+      const worksTop = document.getElementById('archive').offsetTop;
+
+      if (y < aboutTop) updateIndicator('top');
+      else if (y < toolsTop) updateIndicator('contact');
+      else if (y < worksTop) updateIndicator('tools');
+      else updateIndicator('archive');
     }, { passive: true });
 
-    // Wheel snap logic
-    window.addEventListener('wheel', (e) => {
-      if (!splashEl || !archiveEl || !aboutEl) return;
-      if (isAnimating) {
-        e.preventDefault();
-        return;
-      }
-      if (e.ctrlKey) return; // 트랙패드 줌 제스처 등 예외
-
-      const y = window.scrollY;
-      const splashHeight = splashEl.offsetHeight;
-
-      const archiveTop = archiveEl.getBoundingClientRect().top + window.pageYOffset;
-      const archiveBottom = archiveTop + archiveEl.offsetHeight;
-      const aboutTop = aboutEl.getBoundingClientRect().top + window.pageYOffset;
-
-      const inArchive = y >= archiveTop - 1 && y <= archiveBottom + 1;
-
-      // Archive 영역에서는 기본 스크롤 자체를 차단 (잔 스크롤 제거)
-      if (inArchive) e.preventDefault();
-
-      wheelAccum += e.deltaY * 1.6; // 감도 증가
-      resetWheelAccumSoon();
-
-      // 1) Splash → Archive
-      if (!inArchive && y < splashHeight - 24 && wheelAccum > 40) {
-        wheelAccum = 0;
-        goToArchive();
-        return;
-      }
-
-      // 2) Archive → Splash
-      const nearArchiveTop = Math.abs(y - archiveTop) < 320;
-      if (nearArchiveTop && wheelAccum < -30) {
-        wheelAccum = 0;
-        goToTop();
-        return;
-      }
-
-      // 3) Archive → About (Archive 어디서든 아래로)
-      if (inArchive && wheelAccum > 25) {
-        wheelAccum = 0;
-        goToAbout();
-        return;
-      }
-
-      // 4) About → Archive (About 상단 근처에서 위로)
-      const nearAboutTop = Math.abs(y - aboutTop) < 280;
-      if (nearAboutTop && wheelAccum < -40) {
-        wheelAccum = 0;
-        goToArchive();
-      }
-    }, { passive: false });
-
-    // Initial state
-    syncIndicatorByScroll();
-
-    // ------------------------------
-    // Minimal tests (console)
-    // ------------------------------
-    (function runTests() {
-      console.assert(!!splashEl, '[TEST] splash exists');
-      console.assert(!!archiveEl, '[TEST] archive exists');
-      console.assert(!!aboutEl, '[TEST] about/contact exists');
-      console.assert(dots.length === 3, '[TEST] indicator dots = 3');
-
-      console.assert(typeof smoothScrollTo === 'function', '[TEST] smoothScrollTo is function');
-      console.assert(typeof updateIndicator === 'function', '[TEST] updateIndicator is function');
-      console.assert(typeof goToArchive === 'function', '[TEST] goToArchive is function');
-      console.assert(typeof goToTop === 'function', '[TEST] goToTop is function');
-      console.assert(typeof goToAbout === 'function', '[TEST] goToAbout is function');
-
-      console.assert(easeInOutCubic(0) === 0, '[TEST] easing at 0');
-      console.assert(Math.abs(easeInOutCubic(1) - 1) < 1e-9, '[TEST] easing at 1');
-
-      // updateIndicator should activate exactly one dot
-      updateIndicator('archive');
-      const activeCount = dots.filter(d => d.classList.contains('active')).length;
-      console.assert(activeCount === 1, '[TEST] only one active dot');
-
-      // lock sanity
-      isAnimating = false;
-      lock(10);
-      console.assert(isAnimating === true, '[TEST] lock sets animating');
-      window.setTimeout(() => {
-        console.assert(isAnimating === false, '[TEST] lock releases animating');
-      }, 25);
-
-      // wheel accum reset sanity
-      wheelAccum = 10;
-      resetWheelAccumSoon();
-      window.setTimeout(() => {
-        console.assert(wheelAccum === 0, '[TEST] wheelAccum resets');
-      }, 160);
-
-      // restore initial indicator
-      syncIndicatorByScroll();
-    })();
+    // ==============================
+    // Works +more
+    // ==============================
+    const moreBtn = document.getElementById('moreBtn');
+    if (moreBtn) {
+      moreBtn.addEventListener('click', () => {
+        document.querySelectorAll('.work-hidden').forEach(el => el.classList.remove('work-hidden'));
+        moreBtn.style.display = 'none';
+      });
+    }
   </script>
+
 </body>
 </html>
