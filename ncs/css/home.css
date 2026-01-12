@@ -236,32 +236,36 @@ body {
   gap: 4px;
 }
 
+/* ===== Tab Bar 기본 상태 ===== */
 .tab-bar .tab {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 4px;
   font-weight: 700;
-  color: #333;          /* 비활성 텍스트 */
   font-size: 12px;
-   filter: brightness(0) saturate(100%) invert(18%);
+
+  color: #333;
+  opacity: 0.6;                 /* ✅ 기본 60% */
+  transition: opacity 0.2s ease;
 }
 
-.tab-bar .tab-icon {
-  width: 24px;
-  height: 24px;
-  filter: brightness(0) saturate(100%) invert(18%);   /* ← 여기로 이동 */
+
+/* 아이콘도 같이 흐려지게 */
+.tab-bar .tab img {
+  opacity: 0.6;
+  transition: opacity 0.2s ease;
 }
 
+/* ===== 활성화 탭 ===== */
 .tab-bar .tab.active {
-  color: #335c4c;          /* 시안의 다크 그린 */
+  color: #335c4c;
+  opacity: 1;                   /* ✅ 선택 시 100% */
 }
 
-.tab-bar .tab.active .tab-icon {
-  filter: brightness(0) saturate(100%) invert(27%) sepia(18%)
-          saturate(520%) hue-rotate(118deg) brightness(90%) contrast(92%);
+.tab-bar .tab.active img {
+  opacity: 1;
 }
-
 
 /* 탭 아이콘 이미지용 */
 .tab img {
