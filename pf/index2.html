@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CONNECTS Event Landing</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family:'Noto Sans KR', sans-serif; color:#111; }
+
+    /* common */
+    .container { max-width:1200px; margin:0 auto; }
+
+    /* header */
+    .hero {
+      background: radial-gradient(circle at top right, #333, #000);
+      color:#fff;
+      padding-bottom:120px;
+    }
+    .top-nav {
+      max-width:1200px; margin:0 auto;
+      display:flex; justify-content:space-between; align-items:center;
+      padding:24px 0;
+    }
+    .top-nav .logo { font-weight:700; letter-spacing:1px; }
+    .top-nav ul { display:flex; gap:32px; list-style:none; font-size:14px; }
+
+    .hero-content { text-align:center; margin-top:80px; }
+    .hero-content .date {
+      display:inline-block; border:1px solid rgba(255,255,255,.4);
+      padding:6px 16px; border-radius:20px; font-size:13px; margin-bottom:24px;
+    }
+    .hero-content h1 { font-size:48px; line-height:1.25; margin-bottom:16px; }
+    .hero-content h1 strong { color:#7a3cff; }
+    .hero-content p { font-size:16px; opacity:.9; }
+
+    .cta {
+      margin-top:32px; width:110px; height:110px; border-radius:50%;
+      background:#7a3cff; color:#fff; border:none; font-size:15px;
+      cursor:pointer; box-shadow:0 10px 30px rgba(122,60,255,.4);
+    }
+
+    .prize-row {
+      margin-top:80px; display:flex; justify-content:center;
+    }
+    .prize-row img { width:940px; max-width:100%; }
+
+    /* intro */
+    .intro { padding:100px 0; text-align:center; }
+    .intro-text { font-size:18px; margin-bottom:40px; }
+    .video-box img { width:560px; max-width:100%; border-radius:6px; }
+
+    /* steps */
+    .steps {
+      background:linear-gradient(135deg,#6a5acd,#7ec8c8);
+      padding:60px 0; display:flex; justify-content:center; gap:80px;
+      color:#fff;
+    }
+    .step { text-align:center; font-size:14px; }
+    .step span { display:block; margin-top:8px; opacity:.85; }
+
+    /* event */
+    .event { background:linear-gradient(#2b213f,#1c162a); color:#fff; padding:120px 0; }
+    .event-core { max-width:640px; margin:0 auto; text-align:center; }
+    .event-title { font-size:24px; margin-bottom:32px; }
+
+    /* timer */
+    .timer { display:flex; justify-content:center; align-items:center; gap:8px; margin-bottom:24px; }
+    .time-box { width:56px; height:72px; background:#120c1e; border-radius:6px; font-size:40px; font-weight:700; display:flex; align-items:center; justify-content:center; }
+    .colon { font-size:40px; margin:0 4px; }
+
+    /* notice */
+    .notice-bar { background:#2ecc71; color:#000; padding:8px 0; font-size:13px; margin-bottom:28px; }
+
+    /* question */
+    .question { font-size:14px; margin-bottom:24px; }
+
+    /* cards */
+    .card-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-bottom:24px; }
+    .card { background:#fff; color:#111; border-radius:8px; padding:16px 0; display:flex; flex-direction:column; gap:6px; cursor:pointer; transition:all .15s ease; }
+    .card:hover { transform:translateY(-1px); }
+    .card span { font-size:12px; color:#7a3cff; }
+
+    /* 마감: 회색 */
+    .card.disabled { background:#e5e5e5; color:#9a9a9a; cursor:not-allowed; }
+    .card.disabled span { color:#9a9a9a; }
+
+    /* 선택됨: 주컬러 */
+    .card.selected {
+      background:#7a3cff;
+      color:#fff;
+    }
+    .card.selected span { color:#fff; }
+
+    /* input */
+    /* input row : 시안처럼 3칸 고정 */
+    .input-row {
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom:24px;
+    }
+    .input-row .answer-input {
+      flex:1;
+      height:44px;
+      border-radius:6px;
+      border:none;
+      padding:0 12px;
+    }
+    .answer-input {
+      width:100%;
+      height:44px;
+      border-radius:6px;
+      border:none;
+      padding:0 12px;
+    }
+
+    /* button */
+    .apply-btn { width:100%; height:48px; background:#7a3cff; color:#fff; border:none; border-radius:6px; font-size:15px; font-weight:500; cursor:pointer; }
+
+    /* footer */
+    .footer {
+      background:#000; color:#777; text-align:center; padding:40px 0;
+      font-size:13px;
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <nav class="top-nav">
+      <div class="logo">CONNECTS</div>
+      <ul>
+        <li>참가방법</li>
+        <li>당첨자</li>
+        <li>공지사항</li>
+      </ul>
+    </nav>
+
+    <div class="hero-content">
+      <span class="date">2020.3.13 - 3.17</span>
+      <h1><strong>커넥츠가</strong><br/>미러리스 밀어줄게</h1>
+      <p>매일 밤 10시, 선착순 100% 증정</p>
+      <button class="cta">응모<br/>참가하기</button>
+    </div>
+
+    <div class="prize-row">
+      <img src="assets/prize.png" alt="prize list" />
+    </div>
+  </header>
+
+  <section class="intro">
+    <p class="intro-text">소중한 경험을 공유하는 여러분을 커넥츠가 응원합니다.</p>
+    <div class="video-box">
+      <img src="assets/video.jpg" alt="video" />
+    </div>
+  </section>
+
+  <section class="steps">
+    <div class="step">STEP 1<span>응모권 획득</span></div>
+    <div class="step">STEP 2<span>응모하기</span></div>
+    <div class="step">STEP 3<span>결과확인</span></div>
+    <div class="step">STEP 4<span>경품수령</span></div>
+  </section>
+
+  <section class="event">
+    <div class="event-core">
+      <h2 class="event-title">매일 밤 10시 이벤트가 시작됩니다!</h2>
+
+      <!-- 시안 동일: 숫자 블록형 타이머 -->
+      <div class="timer" id="timer">
+        <div class="time-box" data-unit="h1">0</div>
+        <div class="time-box" data-unit="h2">0</div>
+        <span class="colon">:</span>
+        <div class="time-box" data-unit="m1">0</div>
+        <div class="time-box" data-unit="m2">0</div>
+        <span class="colon">:</span>
+        <div class="time-box" data-unit="s1">0</div>
+        <div class="time-box" data-unit="s2">0</div>
+      </div>
+
+      <!-- 시안 동일: 안내 바 -->
+      <div class="notice-bar">소진 시까지 당일 선착순 지급</div>
+
+      <!-- 시안 동일: 질문 문구 -->
+      <p class="question">Q. 제 13회 국시 · 커넥츠에서 응원하고 싶은 선물은?</p>
+
+      <!-- 시안 동일: 카드형 선택 영역 -->
+      <div class="card-grid">
+        <div class="card">
+          <strong>소니 미러리스 A5100</strong>
+          <span>3명</span>
+        </div>
+        <div class="card disabled">
+          <strong>마감</strong>
+          <span>0명</span>
+        </div>
+        <div class="card">
+          <strong>외장하드 1TB</strong>
+          <span>10명</span>
+        </div>
+        <div class="card">
+          <strong>고데기</strong>
+          <span>3명</span>
+        </div>
+        <div class="card">
+          <strong>상품권</strong>
+          <span>20명</span>
+        </div>
+        <div class="card">
+          <strong>비타민</strong>
+          <span>100명</span>
+        </div>
+      </div>
+
+      <!-- 시안 동일: 입력 필드 (이름 / 연락처 / 이메일) : 3칸 가로 -->
+      <div class="input-row" form id="apply">
+        <input class="answer-input" type="text" id="user_name" name="name" placeholder="이름" />
+        <input class="answer-input" type="tel" id="user_phone" name="phone" placeholder="연락처" />
+        <input class="answer-input" type="email" id="user_email" name="email" placeholder="이메일" />
+      </div>
+
+      <!-- 시안 동일: 풀폭 버튼 -->
+      <button class="apply-btn">응모하기</button>
+    </div>
+  </section>
+
+  <footer class="footer">
+    ⓒ CONNECTS. All Rights Reserved.
+  </footer>
+  <script>
+  // 한국 시간(KST) 기준 실시간 시계 (시안용 숫자 블록)
+  const formatter = new Intl.DateTimeFormat('ko-KR', {
+    timeZone: 'Asia/Seoul',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    hour12: false
+  });
+
+  function updateClock() {
+    const parts = formatter.formatToParts(new Date());
+    const h = parts.find(p => p.type === 'hour').value;
+    const m = parts.find(p => p.type === 'minute').value;
+    const s = parts.find(p => p.type === 'second').value;
+
+    const time = h + m + s; // HHMMSS
+
+    document.querySelector('[data-unit="h1"]').textContent = time[0];
+    document.querySelector('[data-unit="h2"]').textContent = time[1];
+    document.querySelector('[data-unit="m1"]').textContent = time[2];
+    document.querySelector('[data-unit="m2"]').textContent = time[3];
+    document.querySelector('[data-unit="s1"]').textContent = time[4];
+    document.querySelector('[data-unit="s2"]').textContent = time[5];
+  }
+
+  updateClock();
+  setInterval(updateClock, 1000);
+  
+  // 상품 단일 선택 (마감 제외)
+  const cards = document.querySelectorAll('.card');
+  cards.forEach(card => {
+    card.addEventListener('click', () => {
+      if (card.classList.contains('disabled')) return;
+      cards.forEach(c => c.classList.remove('selected'));
+      card.classList.add('selected');
+    });
+  });
+</script>
+<script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbxXJq4ITdX7JBrXgoLkcOic-Pr3HNRhFHG4VBXaWAKXl_LyQHDWau_OqkhQ2FnXa7WTsw/exec' // add your own app script link here
+    const form = document.forms['submit-to-google-sheet']
+    const msg = document.getElementById("msg")
+  
+    form.addEventListener('submit', e => {
+      e.preventDefault()
+      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+        .then(response => {
+            msg.innerHTML = "Message sent successfully"
+            setTimeout(function(){
+                msg.innerHTML = ""
+            },5000)
+            form.reset()
+        })
+        .catch(error => console.error('Error!', error.message))
+    })
+  </script>
+</body>
+</html>
