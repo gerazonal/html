@@ -9,9 +9,6 @@
     * { margin:0; padding:0; box-sizing:border-box; }
     body { font-family:'Noto Sans KR', sans-serif; color:#111; }
 
-    /* common */
-    .container { max-width:1200px; margin:0 auto; }
-
     /* header */
     .hero {
       background: radial-gradient(circle at top right, #333, #000);
@@ -41,9 +38,7 @@
       cursor:pointer; box-shadow:0 10px 30px rgba(122,60,255,.4);
     }
 
-    .prize-row {
-      margin-top:80px; display:flex; justify-content:center;
-    }
+    .prize-row { margin-top:80px; display:flex; justify-content:center; }
     .prize-row img { width:940px; max-width:100%; }
 
     /* intro */
@@ -78,7 +73,7 @@
 
     /* cards */
     .card-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-bottom:24px; }
-    .card { background:#fff; color:#111; border-radius:8px; padding:16px 0; display:flex; flex-direction:column; gap:6px; cursor:pointer; transition:all .15s ease; }
+    .card { background:#fff; color:#111; border-radius:8px; padding:16px 0; display:flex; flex-direction:column; gap:6px; cursor:pointer; transition:transform .15s ease, background-color .15s ease; }
     .card:hover { transform:translateY(-1px); }
     .card span { font-size:12px; color:#7a3cff; }
 
@@ -87,29 +82,18 @@
     .card.disabled span { color:#9a9a9a; }
 
     /* 선택됨: 주컬러 */
-    .card.selected {
-      background:#7a3cff;
-      color:#fff;
-    }
+    .card.selected { background:#7a3cff; color:#fff; }
     .card.selected span { color:#fff; }
 
-    /* input */
-    /* input row : 시안처럼 3칸 고정 */
+    /* inputs: 3칸 */
     .input-row {
       display:flex;
       justify-content:space-between;
       gap:12px;
       margin-bottom:24px;
     }
-    .input-row .answer-input {
-      flex:1;
-      height:44px;
-      border-radius:6px;
-      border:none;
-      padding:0 12px;
-    }
     .answer-input {
-      width:100%;
+      flex:1;
       height:44px;
       border-radius:6px;
       border:none;
@@ -117,7 +101,15 @@
     }
 
     /* button */
-    .apply-btn { width:100%; height:48px; background:#7a3cff; color:#fff; border:none; border-radius:6px; font-size:15px; font-weight:500; cursor:pointer; }
+    .apply-btn {
+      width:100%; height:48px;
+      background:#7a3cff; color:#fff;
+      border:none; border-radius:6px;
+      font-size:15px; font-weight:500;
+      cursor:pointer;
+      position:relative;
+      z-index:5;
+    }
 
     /* footer */
     .footer {
@@ -141,7 +133,7 @@
       <span class="date">2020.3.13 - 3.17</span>
       <h1><strong>커넥츠가</strong><br/>미러리스 밀어줄게</h1>
       <p>매일 밤 10시, 선착순 100% 증정</p>
-      <button class="cta">응모<br/>참가하기</button>
+      <button class="cta" type="button">응모<br/>참가하기</button>
     </div>
 
     <div class="prize-row">
@@ -167,8 +159,8 @@
     <div class="event-core">
       <h2 class="event-title">매일 밤 10시 이벤트가 시작됩니다!</h2>
 
-      <!-- 시안 동일: 숫자 블록형 타이머 -->
-      <div class="timer" id="timer">
+      <!-- 시안 동일: 숫자 블록형 시계 (KST) -->
+      <div class="timer" id="timer" aria-label="KST clock">
         <div class="time-box" data-unit="h1">0</div>
         <div class="time-box" data-unit="h2">0</div>
         <span class="colon">:</span>
@@ -179,95 +171,143 @@
         <div class="time-box" data-unit="s2">0</div>
       </div>
 
-      <!-- 시안 동일: 안내 바 -->
       <div class="notice-bar">소진 시까지 당일 선착순 지급</div>
-
-      <!-- 시안 동일: 질문 문구 -->
       <p class="question">Q. 제 13회 국시 · 커넥츠에서 응원하고 싶은 선물은?</p>
 
-      <!-- 시안 동일: 카드형 선택 영역 -->
-      <div class="card-grid">
-        <div class="card">
+      <div class="card-grid" aria-label="gift selection">
+        <div class="card" data-gift="sony_a5100">
           <strong>소니 미러리스 A5100</strong>
           <span>3명</span>
         </div>
-        <div class="card disabled">
+        <div class="card disabled" data-gift="closed">
           <strong>마감</strong>
           <span>0명</span>
         </div>
-        <div class="card">
+        <div class="card" data-gift="hdd_1tb">
           <strong>외장하드 1TB</strong>
           <span>10명</span>
         </div>
-        <div class="card">
+        <div class="card" data-gift="hair_iron">
           <strong>고데기</strong>
           <span>3명</span>
         </div>
-        <div class="card">
+        <div class="card" data-gift="giftcard">
           <strong>상품권</strong>
           <span>20명</span>
         </div>
-        <div class="card">
+        <div class="card" data-gift="vitamin">
           <strong>비타민</strong>
           <span>100명</span>
         </div>
       </div>
 
-      <!-- 시안 동일: 입력 필드 (이름 / 연락처 / 이메일) : 3칸 가로 -->
-      <div class="input-row" form id="apply">
-        <input class="answer-input" type="text" id="user_name" name="name" placeholder="이름" />
-        <input class="answer-input" type="tel" id="user_phone" name="phone" placeholder="연락처" />
-        <input class="answer-input" type="email" id="user_email" name="email" placeholder="이메일" />
+      <!-- 구글 시트 연동하기 쉽게: id/name 고정 -->
+      <div class="input-row">
+        <input class="answer-input" type="text" id="user_name" name="name" placeholder="이름" autocomplete="name" />
+        <input class="answer-input" type="tel" id="user_phone" name="phone" placeholder="연락처" autocomplete="tel" />
+        <input class="answer-input" type="email" id="user_email" name="email" placeholder="이메일" autocomplete="email" />
       </div>
 
-      <!-- 시안 동일: 풀폭 버튼 -->
-      <button class="apply-btn">응모하기</button>
+      <button class="apply-btn" id="apply_btn" type="button">응모하기</button>
     </div>
   </section>
 
-  <footer class="footer">
-    ⓒ CONNECTS. All Rights Reserved.
-  </footer>
+  <footer class="footer">ⓒ CONNECTS. All Rights Reserved.</footer>
+
   <script>
-  // 한국 시간(KST) 기준 실시간 시계 (시안용 숫자 블록)
-  const formatter = new Intl.DateTimeFormat('ko-KR', {
-    timeZone: 'Asia/Seoul',
-    hour: '2-digit',
-    minute: '2-digit',
-    second: '2-digit',
-    hour12: false
-  });
+    // ===== KST clock (Asia/Seoul) -> blocks =====
+    (function () {
+      var formatter = new Intl.DateTimeFormat('ko-KR', {
+        timeZone: 'Asia/Seoul',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: false
+      });
 
-  function updateClock() {
-    const parts = formatter.formatToParts(new Date());
-    const h = parts.find(p => p.type === 'hour').value;
-    const m = parts.find(p => p.type === 'minute').value;
-    const s = parts.find(p => p.type === 'second').value;
+      function setDigit(unit, value) {
+        var el = document.querySelector('[data-unit="' + unit + '"]');
+        if (el) el.textContent = value;
+      }
 
-    const time = h + m + s; // HHMMSS
+      function updateClock() {
+        var parts = formatter.formatToParts(new Date());
+        var h = parts.find(function (p) { return p.type === 'hour'; }).value;
+        var m = parts.find(function (p) { return p.type === 'minute'; }).value;
+        var s = parts.find(function (p) { return p.type === 'second'; }).value;
+        var time = String(h) + String(m) + String(s); // HHMMSS
 
-    document.querySelector('[data-unit="h1"]').textContent = time[0];
-    document.querySelector('[data-unit="h2"]').textContent = time[1];
-    document.querySelector('[data-unit="m1"]').textContent = time[2];
-    document.querySelector('[data-unit="m2"]').textContent = time[3];
-    document.querySelector('[data-unit="s1"]').textContent = time[4];
-    document.querySelector('[data-unit="s2"]').textContent = time[5];
-  }
+        setDigit('h1', time.charAt(0));
+        setDigit('h2', time.charAt(1));
+        setDigit('m1', time.charAt(2));
+        setDigit('m2', time.charAt(3));
+        setDigit('s1', time.charAt(4));
+        setDigit('s2', time.charAt(5));
+      }
 
-  updateClock();
-  setInterval(updateClock, 1000);
-  
-  // 상품 단일 선택 (마감 제외)
-  const cards = document.querySelectorAll('.card');
-  cards.forEach(card => {
-    card.addEventListener('click', () => {
-      if (card.classList.contains('disabled')) return;
-      cards.forEach(c => c.classList.remove('selected'));
-      card.classList.add('selected');
-    });
-  });
-</script>
-<script>
+      updateClock();
+      setInterval(updateClock, 1000);
+    })();
+
+    // ===== gift single-select + form validation =====
+    (function () {
+      var cards = document.querySelectorAll('.card');
+      var applyBtn = document.getElementById('apply_btn');
+      var nameInput = document.getElementById('user_name');
+      var phoneInput = document.getElementById('user_phone');
+      var emailInput = document.getElementById('user_email');
+
+      function clearSelected() {
+        cards.forEach(function (c) { c.classList.remove('selected'); });
+      }
+
+      cards.forEach(function (card) {
+        card.addEventListener('click', function () {
+          if (card.classList.contains('disabled')) return;
+          clearSelected();
+          card.classList.add('selected');
+        });
+      });
+
+      applyBtn.addEventListener('click', function () {
+        var selected = document.querySelector('.card.selected');
+
+        if (!selected) {
+          alert('선물을 선택해주세요');
+          return;
+        }
+        if (!nameInput.value.trim()) {
+          alert('이름을 입력해주세요');
+          nameInput.focus();
+          return;
+        }
+        if (!phoneInput.value.trim()) {
+          alert('연락처를 입력해주세요');
+          phoneInput.focus();
+          return;
+        }
+        if (!emailInput.value.trim()) {
+          alert('이메일을 입력해주세요');
+          emailInput.focus();
+          return;
+        }
+
+        // TODO: 여기서 구글 시트 연동(fetch) 붙이면 됨
+        // 예) selected.dataset.gift, nameInput.value, phoneInput.value, emailInput.value
+        alert('응모가 완료되었습니다.');
+
+        // TODO: 실제 서비스에서는 여기서 구글 시트 연동(fetch) 처리
+        // fetch(...) 이후 성공 시 위 alert 유지
+      });
+
+      // ===== tiny "tests" (console assertions) =====
+      // 런타임에서 요소가 누락되면 바로 알아차리도록 최소 체크
+      console.assert(!!applyBtn, 'apply button missing');
+      console.assert(!!nameInput && !!phoneInput && !!emailInput, 'inputs missing');
+      console.assert(document.querySelectorAll('.card').length >= 2, 'cards missing');
+    })();
+  </script>
+  <script>
     const scriptURL = 'https://script.google.com/macros/s/AKfycbxXJq4ITdX7JBrXgoLkcOic-Pr3HNRhFHG4VBXaWAKXl_LyQHDWau_OqkhQ2FnXa7WTsw/exec' // add your own app script link here
     const form = document.forms['submit-to-google-sheet']
     const msg = document.getElementById("msg")
