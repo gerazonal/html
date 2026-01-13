@@ -3,312 +3,376 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CONNECTS Event Landing</title>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <title>매일 밤 10시 이벤트</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Text:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    * { margin:0; padding:0; box-sizing:border-box; }
-    body { font-family:'Noto Sans KR', sans-serif; color:#111; }
-
-    /* header */
-    .hero {
-      background: radial-gradient(circle at top right, #333, #000);
-      color:#fff;
-      padding-bottom:120px;
-    }
-    .top-nav {
-      max-width:1200px; margin:0 auto;
-      display:flex; justify-content:space-between; align-items:center;
-      padding:24px 0;
-    }
-    .top-nav .logo { font-weight:700; letter-spacing:1px; }
-    .top-nav ul { display:flex; gap:32px; list-style:none; font-size:14px; }
-
-    .hero-content { text-align:center; margin-top:80px; }
-    .hero-content .date {
-      display:inline-block; border:1px solid rgba(255,255,255,.4);
-      padding:6px 16px; border-radius:20px; font-size:13px; margin-bottom:24px;
-    }
-    .hero-content h1 { font-size:48px; line-height:1.25; margin-bottom:16px; }
-    .hero-content h1 strong { color:#7a3cff; }
-    .hero-content p { font-size:16px; opacity:.9; }
-
-    .cta {
-      margin-top:32px; width:110px; height:110px; border-radius:50%;
-      background:#7a3cff; color:#fff; border:none; font-size:15px;
-      cursor:pointer; box-shadow:0 10px 30px rgba(122,60,255,.4);
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'SF Pro Text', system-ui, -apple-system, BlinkMacSystemFont;
+      background: radial-gradient(circle at top, #3b2b4f, #1f162b);
+      color: #fff;
     }
 
-    .prize-row { margin-top:80px; display:flex; justify-content:center; }
-    .prize-row img { width:940px; max-width:100%; }
-
-    /* intro */
-    .intro { padding:100px 0; text-align:center; }
-    .intro-text { font-size:18px; margin-bottom:40px; }
-    .video-box img { width:560px; max-width:100%; border-radius:6px; }
-
-    /* steps */
-    .steps {
-      background:linear-gradient(135deg,#6a5acd,#7ec8c8);
-      padding:60px 0; display:flex; justify-content:center; gap:80px;
-      color:#fff;
-    }
-    .step { text-align:center; font-size:14px; }
-    .step span { display:block; margin-top:8px; opacity:.85; }
-
-    /* event */
-    .event { background:linear-gradient(#2b213f,#1c162a); color:#fff; padding:120px 0; }
-    .event-core { max-width:640px; margin:0 auto; text-align:center; }
-    .event-title { font-size:24px; margin-bottom:32px; }
-
-    /* timer */
-    .timer { display:flex; justify-content:center; align-items:center; gap:8px; margin-bottom:24px; }
-    .time-box { width:56px; height:72px; background:#120c1e; border-radius:6px; font-size:40px; font-weight:700; display:flex; align-items:center; justify-content:center; }
-    .colon { font-size:40px; margin:0 4px; }
-
-    /* notice */
-    .notice-bar { background:#2ecc71; color:#000; padding:8px 0; font-size:13px; margin-bottom:28px; }
-
-    /* question */
-    .question { font-size:14px; margin-bottom:24px; }
-
-    /* cards */
-    .card-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-bottom:24px; }
-    .card { background:#fff; color:#111; border-radius:8px; padding:16px 0; display:flex; flex-direction:column; gap:6px; cursor:pointer; transition:transform .15s ease, background-color .15s ease; }
-    .card:hover { transform:translateY(-1px); }
-    .card span { font-size:12px; color:#7a3cff; }
-
-    /* 마감: 회색 */
-    .card.disabled { background:#e5e5e5; color:#9a9a9a; cursor:not-allowed; }
-    .card.disabled span { color:#9a9a9a; }
-
-    /* 선택됨: 주컬러 */
-    .card.selected { background:#7a3cff; color:#fff; }
-    .card.selected span { color:#fff; }
-
-    /* inputs: 3칸 */
-    .input-row {
-      display:flex;
-      justify-content:space-between;
-      gap:12px;
-      margin-bottom:24px;
-    }
-    .answer-input {
-      flex:1;
-      height:44px;
-      border-radius:6px;
-      border:none;
-      padding:0 12px;
+    .wrap {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 80px 24px 120px;
+      text-align: center;
     }
 
-    /* button */
-    .apply-btn {
-      width:100%; height:48px;
-      background:#7a3cff; color:#fff;
-      border:none; border-radius:6px;
-      font-size:15px; font-weight:500;
-      cursor:pointer;
-      position:relative;
-      z-index:5;
+    h1 {
+      font-size: 28px;
+      font-weight: 600;
+      margin-bottom: 40px;
     }
 
-    /* footer */
-    .footer {
-      background:#000; color:#777; text-align:center; padding:40px 0;
-      font-size:13px;
+    h1 strong { font-weight: 700; }
+
+    /* countdown */
+    .countdown {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .digit {
+      width: 64px;
+      height: 80px;
+      background: linear-gradient(#2c213f 50%, #241a34 50%);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 40px;
+      font-weight: 700;
+    }
+
+    .colon {
+      font-size: 40px;
+      font-weight: 700;
+      line-height: 80px;
+      margin: 0 4px;
+    }
+
+    .hint {
+      font-size: 12px;
+      color: #ff4fd8;
+      margin-bottom: 32px;
+    }
+
+    .search {
+      margin-bottom: 48px;
+    }
+
+    .search select {
+      width: 320px;
+      height: 44px;
+      border-radius: 6px;
+      border: 2px solid #4cff4c;
+      background: #fff;
+      color: #000;
+      padding: 0 12px;
+      font-size: 14px;
+    }
+
+    /* card area */
+    .panel {
+      background: #1c1428;
+      border-radius: 16px;
+      padding: 48px 32px 56px;
+    }
+
+    .question {
+      font-size: 16px;
+      margin-bottom: 32px;
+      line-height: 1.6;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 32px;
+    }
+
+    .card {
+      background: #fff;
+      color: #000;
+      border-radius: 8px;
+      padding: 16px 12px 20px;
+      position: relative;
+    }
+
+    .card img {
+      width: 100%;
+      height: 140px;
+      object-fit: contain;
+      margin-bottom: 12px;
+    }
+
+    .card h3 {
+      font-size: 14px;
+      margin: 0 0 8px;
+    }
+
+    .remain {
+      font-size: 14px;
+      font-weight: 700;
+      color: #6a00ff;
+    }
+
+    .radio {
+      display: none;
+    }
+
+    .card {
+      cursor: pointer;
+      transition: box-shadow .2s, transform .2s;
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0,0,0,.15);
+    }
+
+    .card.selected {
+      background: #6a00ff;
+      color: #fff;
+      outline: none;
+      box-shadow: none;
+    }
+
+    .card.selected .remain {
+      color: #fff;
+    }
+
+    .card.selected h3 {
+      color: #fff;
+    }
+
+    .card.disabled {
+      opacity: .4;
+    }
+
+    .card.disabled::after {
+      content: '마감';
+      position: absolute;
+      inset: 0;
+      background: rgba(60,0,100,.6);
+      color: #b36bff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      font-weight: 700;
+      border-radius: 8px;
+    }
+
+    .answer {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+
+    .answer input {
+      width: 100%;
+      height: 44px;
+      border-radius: 6px;
+      border: none;
+      padding: 0 16px;
+      font-size: 14px;
+    }
+
+    .submit {
+      width: 100%;
+      height: 56px;
+      border-radius: 8px;
+      border: none;
+      background: #6a00ff;
+      color: #fff;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: not-allowed;
+      opacity: .4;
+    }
+
+    .submit.enabled {
+      cursor: pointer;
+      opacity: 1;
+    }
+
+    @media (max-width: 768px) {
+      .grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 480px) {
+      h1 { font-size: 22px; }
+      .digit { width: 52px; height: 68px; font-size: 32px; }
+      .grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
-  <header class="hero">
-    <nav class="top-nav">
-      <div class="logo">CONNECTS</div>
-      <ul>
-        <li>참가방법</li>
-        <li>당첨자</li>
-        <li>공지사항</li>
-      </ul>
-    </nav>
+  <div class="wrap">
+    <h1>매일 밤 <strong>10시</strong> 이벤트가 시작됩니다!</h1>
 
-    <div class="hero-content">
-      <span class="date">2020.3.13 - 3.17</span>
-      <h1><strong>커넥츠가</strong><br/>미러리스 밀어줄게</h1>
-      <p>매일 밤 10시, 선착순 100% 증정</p>
-      <button class="cta" type="button">응모<br/>참가하기</button>
+    <div class="countdown">
+      <div class="digit" id="h1">1</div>
+      <div class="digit" id="h2">0</div>
+      <div class="colon">:</div>
+      <div class="digit" id="m1">0</div>
+      <div class="digit" id="m2">0</div>
+      <div class="colon">:</div>
+      <div class="digit" id="s1">0</div>
+      <div class="digit" id="s2">0</div>
     </div>
 
-    <div class="prize-row">
-      <img src="assets/prize.png" alt="prize list" />
-    </div>
-  </header>
+    
 
-  <section class="intro">
-    <p class="intro-text">소중한 경험을 공유하는 여러분을 커넥츠가 응원합니다.</p>
-    <div class="video-box">
-      <img src="assets/video.jpg" alt="video" />
-    </div>
-  </section>
+    
 
-  <section class="steps">
-    <div class="step">STEP 1<span>응모권 획득</span></div>
-    <div class="step">STEP 2<span>응모하기</span></div>
-    <div class="step">STEP 3<span>결과확인</span></div>
-    <div class="step">STEP 4<span>경품수령</span></div>
-  </section>
+    <div class="panel">
+      <form id="eventForm" name="eventForm">
+      
 
-  <section class="event">
-    <div class="event-core">
-      <h2 class="event-title">매일 밤 10시 이벤트가 시작됩니다!</h2>
-
-      <!-- 시안 동일: 숫자 블록형 시계 (KST) -->
-      <div class="timer" id="timer" aria-label="KST clock">
-        <div class="time-box" data-unit="h1">0</div>
-        <div class="time-box" data-unit="h2">0</div>
-        <span class="colon">:</span>
-        <div class="time-box" data-unit="m1">0</div>
-        <div class="time-box" data-unit="m2">0</div>
-        <span class="colon">:</span>
-        <div class="time-box" data-unit="s1">0</div>
-        <div class="time-box" data-unit="s2">0</div>
-      </div>
-
-      <div class="notice-bar">소진 시까지 당일 선착순 지급</div>
-      <p class="question">Q. 제 13회 국시 · 커넥츠에서 응원하고 싶은 선물은?</p>
-
-      <div class="card-grid" aria-label="gift selection">
-        <div class="card" data-gift="sony_a5100">
-          <strong>소니 미러리스 A5100</strong>
-          <span>3명</span>
+      <div class="grid">
+        <div class="card">
+          <img src="https://dummyimage.com/200x140/eee/000" alt="카메라">
+          <h3>소니 미러리스 A5100</h3>
+          <div class="remain">3개 남음</div>
+          <input class="radio" type="radio" name="gift" />
         </div>
-        <div class="card disabled" data-gift="closed">
-          <strong>마감</strong>
-          <span>0명</span>
+
+        <div class="card disabled">
+          <img src="https://dummyimage.com/200x140/ddd/000" alt="식사권">
+          <h3>신라호텔 더 파크뷰 식사권 2인</h3>
+          <div class="remain">0개 남음</div>
         </div>
-        <div class="card" data-gift="hdd_1tb">
-          <strong>외장하드 1TB</strong>
-          <span>10명</span>
+
+        <div class="card">
+          <img src="https://dummyimage.com/200x140/eee/000" alt="하드">
+          <h3>외장하드 1TB</h3>
+          <div class="remain">10개 남음</div>
+          <input class="radio" type="radio" name="gift" />
         </div>
-        <div class="card" data-gift="hair_iron">
-          <strong>고데기</strong>
-          <span>3명</span>
+
+        <div class="card">
+          <img src="https://dummyimage.com/200x140/eee/000" alt="고데기">
+          <h3>라미 민트컬</h3>
+          <div class="remain">3개 남음</div>
+          <input class="radio" type="radio" name="gift" />
         </div>
-        <div class="card" data-gift="giftcard">
-          <strong>상품권</strong>
-          <span>20명</span>
+
+        <div class="card">
+          <img src="https://dummyimage.com/200x140/eee/000" alt="상품권">
+          <h3>백화점 상품권 1만원</h3>
+          <div class="remain">20개 남음</div>
+          <input class="radio" type="radio" name="gift" />
         </div>
-        <div class="card" data-gift="vitamin">
-          <strong>비타민</strong>
-          <span>100명</span>
+
+        <div class="card">
+          <img src="https://dummyimage.com/200x140/eee/000" alt="우유">
+          <h3>바나나맛 우유</h3>
+          <div class="remain">100개 남음</div>
+          <input class="radio" type="radio" name="gift" />
         </div>
       </div>
 
-      <!-- 구글 시트 연동하기 쉽게: id/name 고정 -->
-      <form class="input-row" name="submit-to-google-sheet">
-        <input class="answer-input" type="text" id="user_name" name="name" placeholder="이름" autocomplete="name" />
-        <input class="answer-input" type="tel" id="user_phone" name="phone" placeholder="연락처" autocomplete="tel" />
-        <input class="answer-input" type="email" id="user_email" name="email" placeholder="이메일" autocomplete="email" />
+      <form class="answer" name="submit-to-google-sheet">
+        <input type="text" id="userName" name="userName" placeholder="이름" />
+        <input type="tel" id="userPhone" name="userPhone" placeholder="연락처 (- 없이 입력)" />
+        <input type="email" id="userEmail" name="userEmail" placeholder="이메일" />
+        <input type="hidden" id="gift" name="gift" />
       </form>
 
-      <button class="apply-btn" id="apply_btn" type="button">응모하기</button>
+      <button type="submit" class="submit" id="submitBtn">응모하기</button>
+      </form>
     </div>
-  </section>
-
-  <footer class="footer">ⓒ CONNECTS. All Rights Reserved.</footer>
+  </div>
 
   <script>
-    // ===== KST clock (Asia/Seoul) -> blocks =====
-    (function () {
-      var formatter = new Intl.DateTimeFormat('ko-KR', {
-        timeZone: 'Asia/Seoul',
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit',
-        hour12: false
-      });
+    function updateKoreaTime() {
+      const now = new Date();
+      const korea = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Seoul' }));
 
-      function setDigit(unit, value) {
-        var el = document.querySelector('[data-unit="' + unit + '"]');
-        if (el) el.textContent = value;
+      const h = String(korea.getHours()).padStart(2, '0');
+      const m = String(korea.getMinutes()).padStart(2, '0');
+      const s = String(korea.getSeconds()).padStart(2, '0');
+
+      document.getElementById('h1').textContent = h[0];
+      document.getElementById('h2').textContent = h[1];
+      document.getElementById('m1').textContent = m[0];
+      document.getElementById('m2').textContent = m[1];
+      document.getElementById('s1').textContent = s[0];
+      document.getElementById('s2').textContent = s[1];
+    }
+
+    setInterval(updateKoreaTime, 1000);
+    updateKoreaTime();
+
+    const cards = document.querySelectorAll('.card:not(.disabled)');
+    const inputs = document.querySelectorAll('.answer input');
+    const eventFormEl = document.getElementById('eventForm');
+    const submitBtn = document.getElementById('submitBtn');
+
+    let selectedCard = null;
+
+    function checkForm() {
+      const allFilled = Array.from(inputs).every(input => input.value.trim() !== '');
+      if (allFilled && selectedCard) {
+        submitBtn.classList.add('enabled');
+      } else {
+        submitBtn.classList.remove('enabled');
+      }
+    }
+
+    cards.forEach(card => {
+      card.addEventListener('click', () => {
+        cards.forEach(c => c.classList.remove('selected'));
+        card.classList.add('selected');
+        selectedCard = card;
+        document.getElementById('gift').value = card.querySelector('h3').innerText;
+        checkForm();
+      });
+    });
+
+    inputs.forEach(input => {
+      input.addEventListener('input', checkForm);
+    });
+
+    eventFormEl.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      if (!submitBtn.classList.contains('enabled')) {
+        const empty = Array.from(inputs).find(input => input.value.trim() === '');
+        if (empty) {
+          alert('이름, 연락처, 이메일을 모두 입력해주세요.');
+          empty.focus();
+          return;
+        }
+        if (!selectedCard) {
+          alert('선물을 선택해주세요.');
+          return;
+        }
       }
 
-      function updateClock() {
-        var parts = formatter.formatToParts(new Date());
-        var h = parts.find(function (p) { return p.type === 'hour'; }).value;
-        var m = parts.find(function (p) { return p.type === 'minute'; }).value;
-        var s = parts.find(function (p) { return p.type === 'second'; }).value;
-        var time = String(h) + String(m) + String(s); // HHMMSS
+      // 이 지점에서 Google Sheet 연동 fetch 코드 추가하면 됨
+      // new FormData(eventFormEl)
 
-        setDigit('h1', time.charAt(0));
-        setDigit('h2', time.charAt(1));
-        setDigit('m1', time.charAt(2));
-        setDigit('m2', time.charAt(3));
-        setDigit('s1', time.charAt(4));
-        setDigit('s2', time.charAt(5));
-      }
-
-      updateClock();
-      setInterval(updateClock, 1000);
-    })();
-
-    // ===== gift single-select + form validation =====
-    (function () {
-      var cards = document.querySelectorAll('.card');
-      var applyBtn = document.getElementById('apply_btn');
-      var nameInput = document.getElementById('user_name');
-      var phoneInput = document.getElementById('user_phone');
-      var emailInput = document.getElementById('user_email');
-
-      function clearSelected() {
-        cards.forEach(function (c) { c.classList.remove('selected'); });
-      }
-
-      cards.forEach(function (card) {
-        card.addEventListener('click', function () {
-          if (card.classList.contains('disabled')) return;
-          clearSelected();
-          card.classList.add('selected');
-        });
-      });
-
-      applyBtn.addEventListener('click', function () {
-        var selected = document.querySelector('.card.selected');
-
-        if (!selected) {
-          alert('선물을 선택해주세요');
-          return;
-        }
-        if (!nameInput.value.trim()) {
-          alert('이름을 입력해주세요');
-          nameInput.focus();
-          return;
-        }
-        if (!phoneInput.value.trim()) {
-          alert('연락처를 입력해주세요');
-          phoneInput.focus();
-          return;
-        }
-        if (!emailInput.value.trim()) {
-          alert('이메일을 입력해주세요');
-          emailInput.focus();
-          return;
-        }
-
-        // TODO: 여기서 구글 시트 연동(fetch) 붙이면 됨
-        // 예) selected.dataset.gift, nameInput.value, phoneInput.value, emailInput.value
-        alert('응모가 완료되었습니다.');
-
-        // TODO: 실제 서비스에서는 여기서 구글 시트 연동(fetch) 처리
-        // fetch(...) 이후 성공 시 위 alert 유지
-      });
-
-      // ===== tiny "tests" (console assertions) =====
-      // 런타임에서 요소가 누락되면 바로 알아차리도록 최소 체크
-      console.assert(!!applyBtn, 'apply button missing');
-      console.assert(!!nameInput && !!phoneInput && !!emailInput, 'inputs missing');
-      console.assert(document.querySelectorAll('.card').length >= 2, 'cards missing');
-    })();
+      alert('응모가 완료되었습니다.');
+      eventFormEl.reset();
+      submitBtn.classList.remove('enabled');
+      cards.forEach(c => c.classList.remove('selected'));
+      selectedCard = null;
+    });
   </script>
   <script>
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbxXJq4ITdX7JBrXgoLkcOic-Pr3HNRhFHG4VBXaWAKXl_LyQHDWau_OqkhQ2FnXa7WTsw/exec' // add your own app script link here
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbwOb4czC8-rwHwN3nNEcQiSZdtHjAh-Bh4sPRVsOw8Q4zOiCyNMyuLVp_1HMNEh9kqmvQ/exec' // add your own app script link here
     const form = document.forms['submit-to-google-sheet']
     const msg = document.getElementById("msg")
   
