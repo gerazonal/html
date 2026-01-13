@@ -202,11 +202,11 @@
       </div>
 
       <!-- 구글 시트 연동하기 쉽게: id/name 고정 -->
-      <div class="input-row" form id="apply">
+      <form class="input-row" name="submit-to-google-sheet">
         <input class="answer-input" type="text" id="user_name" name="name" placeholder="이름" autocomplete="name" />
         <input class="answer-input" type="tel" id="user_phone" name="phone" placeholder="연락처" autocomplete="tel" />
         <input class="answer-input" type="email" id="user_email" name="email" placeholder="이메일" autocomplete="email" />
-      </div>
+      </form>
 
       <button class="apply-btn" id="apply_btn" type="button">응모하기</button>
     </div>
@@ -309,7 +309,7 @@
   </script>
   <script>
     const scriptURL = 'https://script.google.com/macros/s/AKfycbxXJq4ITdX7JBrXgoLkcOic-Pr3HNRhFHG4VBXaWAKXl_LyQHDWau_OqkhQ2FnXa7WTsw/exec' // add your own app script link here
-    const form = document.forms['apply']
+    const form = document.forms['submit-to-google-sheet']
     const msg = document.getElementById("msg")
   
     form.addEventListener('submit', e => {
