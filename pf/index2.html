@@ -1,379 +1,135 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>매일 밤 10시 이벤트</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Text:wght@400;600;700&display=swap" rel="stylesheet">
-  <style>
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: 'SF Pro Text', system-ui, -apple-system, BlinkMacSystemFont;
-      background: radial-gradient(circle at top, #3b2b4f, #1f162b);
-      color: #fff;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ST Unitas 시안 복제</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #000;
+            margin: 0;
+            padding: 0;
+            color: #fff;
+            overflow-x: hidden;
+        }
+        .text-stu-yellow {
+            color: #FFD400;
+        }
+        .stu-yellow-bg {
+            background-color: #FFD400;
+        }
+        
+        /* 시안의 메인 텍스트 스타일 */
+        .hero-title {
+            font-size: 15vw;
+            line-height: 0.9;
+            font-weight: 900;
+            letter-spacing: -0.05em;
+            margin-bottom: 2rem;
+        }
+        
+        /* 시안의 구분선 스타일 */
+        .divider {
+            width: 60px;
+            height: 4px;
+            background-color: #fff;
+            margin: 2rem 0;
+        }
 
-    .wrap {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 80px 24px 120px;
-      text-align: center;
-    }
+        /* 입력란 스타일 (시안 톤앤매너 유지) */
+        .input-field {
+            background-color: transparent;
+            border-bottom: 2px solid #fff;
+            padding: 1rem 0;
+            width: 100%;
+            color: #fff;
+            font-size: 1.1rem;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+        .input-field:focus {
+            border-color: #FFD400;
+        }
+        .input-field::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
 
-    h1 {
-      font-size: 28px;
-      font-weight: 600;
-      margin-bottom: 40px;
-    }
-
-    h1 strong { font-weight: 700; }
-
-    /* countdown */
-    .countdown {
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-      margin-bottom: 16px;
-    }
-
-    .digit {
-      width: 64px;
-      height: 80px;
-      background: linear-gradient(#2c213f 50%, #241a34 50%);
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 40px;
-      font-weight: 700;
-    }
-
-    .colon {
-      font-size: 40px;
-      font-weight: 700;
-      line-height: 80px;
-      margin: 0 4px;
-    }
-
-    .hint {
-      font-size: 12px;
-      color: #ff4fd8;
-      margin-bottom: 32px;
-    }
-
-    .search {
-      margin-bottom: 48px;
-    }
-
-    .search select {
-      width: 320px;
-      height: 44px;
-      border-radius: 6px;
-      border: 2px solid #4cff4c;
-      background: #fff;
-      color: #000;
-      padding: 0 12px;
-      font-size: 14px;
-    }
-
-    /* card area */
-    .panel {
-      background: #1c1428;
-      border-radius: 16px;
-      padding: 48px 32px 56px;
-    }
-
-    .question {
-      font-size: 16px;
-      margin-bottom: 32px;
-      line-height: 1.6;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-      margin-bottom: 32px;
-    }
-
-    .card {
-      background: #fff;
-      color: #000;
-      border-radius: 8px;
-      padding: 16px 12px 20px;
-      position: relative;
-    }
-
-    .card img {
-      width: 100%;
-      height: 140px;
-      object-fit: contain;
-      margin-bottom: 12px;
-    }
-
-    .card h3 {
-      font-size: 14px;
-      margin: 0 0 8px;
-    }
-
-    .remain {
-      font-size: 14px;
-      font-weight: 700;
-      color: #6a00ff;
-    }
-
-    .radio {
-      display: none;
-    }
-
-    .card {
-      cursor: pointer;
-      transition: box-shadow .2s, transform .2s;
-    }
-
-    .card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(0,0,0,.15);
-    }
-
-    .card.selected {
-      background: #6a00ff;
-      color: #fff;
-      outline: none;
-      box-shadow: none;
-    }
-
-    .card.selected .remain {
-      color: #fff;
-    }
-
-    .card.selected h3 {
-      color: #fff;
-    }
-
-    .card.disabled {
-      opacity: .4;
-    }
-
-    .card.disabled::after {
-      content: '마감';
-      position: absolute;
-      inset: 0;
-      background: rgba(60,0,100,.6);
-      color: #b36bff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 18px;
-      font-weight: 700;
-      border-radius: 8px;
-    }
-
-    .answer {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      margin-bottom: 32px;
-    }
-
-    .answer input {
-      width: 100%;
-      height: 44px;
-      border-radius: 6px;
-      border: none;
-      padding: 0 16px;
-      font-size: 14px;
-    }
-
-    .submit {
-      width: 100%;
-      height: 56px;
-      border-radius: 8px;
-      border: none;
-      background: #6a00ff;
-      color: #fff;
-      font-size: 16px;
-      font-weight: 700;
-      cursor: not-allowed;
-      opacity: .4;
-    }
-
-    .submit.enabled {
-      cursor: pointer;
-      opacity: 1;
-    }
-
-    @media (max-width: 768px) {
-      .grid { grid-template-columns: repeat(2, 1fr); }
-    }
-
-    @media (max-width: 480px) {
-      h1 { font-size: 22px; }
-      .digit { width: 52px; height: 68px; font-size: 32px; }
-      .grid { grid-template-columns: 1fr; }
-    }
-  </style>
+        @media (min-width: 768px) {
+            .hero-title {
+                font-size: 120px;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="wrap">
-    <h1>매일 밤 <strong>10시</strong> 이벤트가 시작됩니다!</h1>
 
-    <div class="countdown">
-      <div class="digit" id="h1">1</div>
-      <div class="digit" id="h2">0</div>
-      <div class="colon">:</div>
-      <div class="digit" id="m1">0</div>
-      <div class="digit" id="m2">0</div>
-      <div class="colon">:</div>
-      <div class="digit" id="s1">0</div>
-      <div class="digit" id="s2">0</div>
+    <div class="min-h-screen flex flex-col p-8 md:p-16">
+        <!-- 상단 로고 (시안 스타일) -->
+        <header class="mb-20">
+            <div class="text-3xl font-black italic tracking-tighter">
+                ST <span class="text-stu-yellow">Unitas</span>
+            </div>
+        </header>
+
+        <!-- 메인 시안 내용 -->
+        <main class="flex-grow">
+            <h1 class="hero-title">
+                CREATE<br>
+                <span class="text-stu-yellow">THE NEXT</span>
+            </h1>
+            
+            <div class="divider"></div>
+
+            <div class="text-lg md:text-xl font-bold mb-16 leading-relaxed opacity-90">
+                에스티유니타스는 인류의 삶을 바꾸는<br>
+                혁신적인 교육 서비스를 제공합니다.
+            </div>
+
+            <!-- 요청하신 3칸 입력란 (form 태그로 변경) -->
+            <form id="applyForm" name="submit-to-google-sheet" class="max-w-md space-y-8 mb-20" onsubmit="return handleFormSubmit(event)">
+                <div>
+                    <input type="text" name="userName" placeholder="이름 (NAME)" required class="input-field font-bold">
+                </div>
+                <div>
+                    <input type="tel" name="userPhone" placeholder="연락처 (PHONE)" required class="input-field font-bold">
+                </div>
+                <div>
+                    <input type="email" name="userEmail" placeholder="이메일 (EMAIL)" required class="input-field font-bold">
+                </div>
+                
+                <div class="pt-4">
+                    <button type="submit" class="stu-yellow-bg text-black w-full py-5 text-xl font-black hover:opacity-90 transition-opacity">
+                        SUBMIT NOW
+                    </button>
+                </div>
+            </form>
+        </main>
+
+        <!-- 푸터 (현재 한국 시간 반영) -->
+        <footer class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 text-xs font-bold text-zinc-500 uppercase tracking-widest">
+            <div>© ST Unitas. All rights reserved.</div>
+            <div>Current Time: 2026. 01. 13 KOREA</div>
+        </footer>
     </div>
 
-    
-
-    
-
-    <div class="panel">
-      
-      
-
-      <div class="grid">
-        <div class="card">
-          <img src="https://dummyimage.com/200x140/eee/000" alt="카메라">
-          <h3>소니 미러리스 A5100</h3>
-          <div class="remain">3개 남음</div>
-          <input class="radio" type="radio" name="gift" />
-        </div>
-
-        <div class="card disabled">
-          <img src="https://dummyimage.com/200x140/ddd/000" alt="식사권">
-          <h3>신라호텔 더 파크뷰 식사권 2인</h3>
-          <div class="remain">0개 남음</div>
-        </div>
-
-        <div class="card">
-          <img src="https://dummyimage.com/200x140/eee/000" alt="하드">
-          <h3>외장하드 1TB</h3>
-          <div class="remain">10개 남음</div>
-          <input class="radio" type="radio" name="gift" />
-        </div>
-
-        <div class="card">
-          <img src="https://dummyimage.com/200x140/eee/000" alt="고데기">
-          <h3>라미 민트컬</h3>
-          <div class="remain">3개 남음</div>
-          <input class="radio" type="radio" name="gift" />
-        </div>
-
-        <div class="card">
-          <img src="https://dummyimage.com/200x140/eee/000" alt="상품권">
-          <h3>백화점 상품권 1만원</h3>
-          <div class="remain">20개 남음</div>
-          <input class="radio" type="radio" name="gift" />
-        </div>
-
-        <div class="card">
-          <img src="https://dummyimage.com/200x140/eee/000" alt="우유">
-          <h3>바나나맛 우유</h3>
-          <div class="remain">100개 남음</div>
-          <input class="radio" type="radio" name="gift" />
-        </div>
-      </div>
-    <form id="eventForm" name="submit-to-google-sheet">
-      <div class="answer">
-        <input type="text" id="userName" name="userName" placeholder="이름" />
-        <input type="tel" id="userPhone" name="userPhone" placeholder="연락처 (- 없이 입력)" />
-        <input type="email" id="userEmail" name="userEmail" placeholder="이메일" />
-        <input type="text" id="msg" name="msg" placeholder="메시지" />
-        <input type="hidden" id="gift" name="gift" />
-      </div>
-
-      <button type="submit" class="submit" id="submitBtn">응모하기</button>
-      </form>
-    </div>
-  </div>
-
-  <script>
-    function updateKoreaTime() {
-      const now = new Date();
-      const korea = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Seoul' }));
-
-      const h = String(korea.getHours()).padStart(2, '0');
-      const m = String(korea.getMinutes()).padStart(2, '0');
-      const s = String(korea.getSeconds()).padStart(2, '0');
-
-      document.getElementById('h1').textContent = h[0];
-      document.getElementById('h2').textContent = h[1];
-      document.getElementById('m1').textContent = m[0];
-      document.getElementById('m2').textContent = m[1];
-      document.getElementById('s1').textContent = s[0];
-      document.getElementById('s2').textContent = s[1];
-    }
-
-    setInterval(updateKoreaTime, 1000);
-    updateKoreaTime();
-
-    const cards = document.querySelectorAll('.card:not(.disabled)');
-    const inputs = document.querySelectorAll('.answer input');
-    const eventFormEl = document.getElementById('eventForm');
-    const submitBtn = document.getElementById('submitBtn');
-
-    let selectedCard = null;
-
-    function checkForm() {
-      const allFilled = Array.from(inputs).every(input => input.value.trim() !== '');
-      if (allFilled && selectedCard) {
-        submitBtn.classList.add('enabled');
-      } else {
-        submitBtn.classList.remove('enabled');
-      }
-    }
-
-    cards.forEach(card => {
-      card.addEventListener('click', () => {
-        cards.forEach(c => c.classList.remove('selected'));
-        card.classList.add('selected');
-        selectedCard = card;
-        document.getElementById('gift').value = card.querySelector('h3').innerText;
-        checkForm();
-      });
-    });
-
-    inputs.forEach(input => {
-      input.addEventListener('input', checkForm);
-    });
-
-    eventFormEl.addEventListener('submit', (e) => {
-      e.preventDefault();
-
-      if (!submitBtn.classList.contains('enabled')) {
-        const empty = Array.from(inputs).find(input => input.value.trim() === '');
-        if (empty) {
-          alert('이름, 연락처, 이메일을 모두 입력해주세요.');
-          empty.focus();
-          return;
+    <script>
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            const data = Object.fromEntries(formData.entries());
+            
+            // 실제 서비스 시에는 여기서 API 통신을 진행합니다.
+            console.log("Form Data Submitted:", data);
+            alert("신청이 완료되었습니다.");
+            return false;
         }
-        if (!selectedCard) {
-          alert('선물을 선택해주세요.');
-          return;
-        }
-      }
+    </script>
 
-      // 이 지점에서 Google Sheet 연동 fetch 코드 추가하면 됨
-      // new FormData(eventFormEl)
-
-      alert('응모가 완료되었습니다.');
-      eventFormEl.reset();
-      submitBtn.classList.remove('enabled');
-      cards.forEach(c => c.classList.remove('selected'));
-      selectedCard = null;
-    });
-  </script>
-  <script>
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbwOb4czC8-rwHwN3nNEcQiSZdtHjAh-Bh4sPRVsOw8Q4zOiCyNMyuLVp_1HMNEh9kqmvQ/exec' // add your own app script link here
+    <script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbwJgbKEmCAFufoDG5kpRw-Ae17pi5aAfOyveOA9fC7x7ub1Z2hpowl_A-fbHVCAdBah/exec' // add your own app script link here
     const form = document.forms['submit-to-google-sheet']
     const msg = document.getElementById("msg")
   
@@ -389,7 +145,8 @@
         })
         .catch(error => console.error('Error!', error.message))
     })
-
   </script>
+
+
 </body>
 </html>
