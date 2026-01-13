@@ -237,7 +237,7 @@
     
 
     <div class="panel">
-      <form id="eventForm" name="eventForm">
+      <form id="eventForm" name="submit-to-google-sheet">
       
 
       <div class="grid">
@@ -283,12 +283,12 @@
         </div>
       </div>
 
-      <form class="answer" name="submit-to-google-sheet">
+      <div class="answer">
         <input type="text" id="userName" name="userName" placeholder="이름" />
         <input type="tel" id="userPhone" name="userPhone" placeholder="연락처 (- 없이 입력)" />
         <input type="email" id="userEmail" name="userEmail" placeholder="이메일" />
         <input type="hidden" id="gift" name="gift" />
-      </form>
+      </div>
 
       <button type="submit" class="submit" id="submitBtn">응모하기</button>
       </form>
@@ -388,6 +388,7 @@
         })
         .catch(error => console.error('Error!', error.message))
     })
+
   </script>
 </body>
 </html>
